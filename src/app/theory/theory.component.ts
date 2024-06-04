@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ApiService } from '../api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-theory',
@@ -8,5 +10,23 @@ import { Component } from '@angular/core';
   styleUrl: './theory.component.css'
 })
 export class TheoryComponent {
+
+  route: ActivatedRoute = inject(ActivatedRoute);
+  param: string = "";
+  data = {topic: "", description: ""};
+
+  constructor(private api: ApiService) {
+
+    this.param = this.route.snapshot.params['topic'];
+
+    if (this.param = "binaryConversion") {
+      this.api.getBinaryConversionTheory().subscribe(data => this.data = {
+        topic: (data as any).topic,
+        description:  (data as any).description
+      });
+    }
+
+  }
+  
 
 }
