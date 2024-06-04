@@ -15,8 +15,10 @@ export class ExerciseComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   param: string = "";
 
-  data = {topic: "", task: "", answer: ""};
-  userInput: string = "";
+  data = { topic: "", task: "", targetAnswer: "" };
+  checkingResult = { result: false, feedback: "" };
+
+  userAnswer: string = "";
   notFinished: boolean = true;
   feedback: string = "";
 
@@ -24,25 +26,25 @@ export class ExerciseComponent {
 
     this.param = this.route.snapshot.params['topic'];
 
-    if (this.param = "binaryConversion") {
+    if (this.param == "binaryConversion") {
       this.api.getBinaryConversionExercise().subscribe(data => this.data = {
         topic: (data as any).topic,
         task:  (data as any).task,
-        answer: (data as any).answer
+        targetAnswer: (data as any).targetAnswer
       });
     }
 
   }
 
   checkAnswer() {
-    if (this.userInput == this.data.answer) {
-      this.feedback = "Great! You're answer is correct! Feel free to go to next exercise!"
-      this.notFinished = false;
-    }
-    else {
-      this.feedback = "You're answer is not correct. Please try again!"
-    }
-    
+
+    if (this.param == "binaryConversion") {
+      this.api.checkBinaryConversion(this.userAnswer, this.data.targetAnswer).subscribe(data => {
+        this.checkingResult = { result: (data as any).result, feedback: (data as any).feedback };
+        this.feedback = this.checkingResult.feedback;
+        this.notFinished = !this.checkingResult.result;
+    })};
+
   }
 
 }

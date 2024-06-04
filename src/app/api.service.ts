@@ -19,4 +19,8 @@ export class ApiService {
     return this.http.get(`${this.url}/exercise/binaryConversion`);
   }
 
+  checkBinaryConversion(userAnswer:string, targetAnswer:string): Observable<any> {
+    return this.http.post(`${this.url}/check/binaryConversion`, {userAnswer: userAnswer, targetAnswer: targetAnswer});
+  }
+
 }
