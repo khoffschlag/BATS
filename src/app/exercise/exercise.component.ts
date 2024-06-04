@@ -20,6 +20,7 @@ export class ExerciseComponent {
 
   userAnswer: string = "";
   correctAnswerStreak: number = 0;
+  disableCheckButton: boolean = false;
 
   constructor(private api: ApiService) {
 
@@ -43,6 +44,7 @@ export class ExerciseComponent {
 
     if (this.checkingResult.result) {
       this.correctAnswerStreak += 1;
+      this.disableCheckButton = true;
     }
     else {
       this.correctAnswerStreak = 0;
@@ -52,6 +54,10 @@ export class ExerciseComponent {
 
   newExercise() {
 
+    this.data = { topic: "", task: "", targetAnswer: "" };
+    this.checkingResult = { result: false, feedback: "" };
+    this.disableCheckButton = false;
+
     if (this.param == "binaryConversion") {
       this.api.getBinaryConversionExercise().subscribe(data => this.data = {
         topic: (data as any).topic,
@@ -59,8 +65,6 @@ export class ExerciseComponent {
         targetAnswer: (data as any).targetAnswer
       });
     }
-
-    this.checkingResult = { result: false, feedback: "" };
 
   }
 

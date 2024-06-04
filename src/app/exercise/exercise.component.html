@@ -3,7 +3,7 @@
 <p>{{ data.task }}</p>
 
 <input [(ngModel)]="userAnswer">
-<button (click)="checkAnswer()">Check answer</button>
+<button [disabled]="disableCheckButton" (click)="checkAnswer()">Check answer</button>
 <button [disabled]="!checkingResult.result" (click)="newExercise()">Next exercise</button>
 <button>Finish exercising</button>
 
