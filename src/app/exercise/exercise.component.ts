@@ -45,8 +45,7 @@ export class ExerciseComponent {
     if (this.checkingResult.result) {
       this.correctAnswerStreak += 1;
       this.disableCheckButton = true;
-    }
-    else {
+    } else {
       this.correctAnswerStreak = 0;
     }
 

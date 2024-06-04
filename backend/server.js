@@ -21,15 +21,13 @@ app.post("/api/check/binaryConversion", function (req, res) {
     if (userAnswer == targetAnswer) {
         result = true;
         feedback = "You're answer is correct! You're good!"
-    }
-    else {
+    } else {
         result = false;
         feedback = "Wrong answer.";
         
         if (targetAnswer.length != userAnswer.length) {
             feedback += `You're answer should have ${targetAnswer.length} digits and not only ${userAnswer.length}. Please double check your calculations!`;
-        }
-        else {
+        } else {
             const different_positions = [];
             for (let i = 0; i < userAnswer.length; i++) {
                 if (userAnswer[i] !== targetAnswer[i]) {
