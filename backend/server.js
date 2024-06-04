@@ -9,7 +9,9 @@ app.get("/api/theory/binaryConversion", function (req, res) {
 })
 
 app.get("/api/exercise/binaryConversion", function (req, res) {
-    res.json({topic: "Binary Conversion", task: "Convert 12 to binary.", targetAnswer: "1100"});
+    decimalNumber = Math.floor(Math.random() * 1000) + 1;   // Create number between 1 and 1000
+    binaryNumber = decimalNumber.toString(2);  // Convert decimal number to binary
+        res.json({topic: "Binary Conversion", task: `Convert ${decimalNumber} to binary.`, targetAnswer: binaryNumber});
 })
 
 app.post("/api/check/binaryConversion", function (req, res) {
@@ -22,7 +24,7 @@ app.post("/api/check/binaryConversion", function (req, res) {
     }
     else {
         result = false;
-        feedback = "Wrong nswer.Get better!"
+        feedback = "Wrong answer.Get better!"
     }
 
     res.json({result: result, feedback: feedback});
