@@ -61,7 +61,7 @@ export class ExerciseComponent {
     }
 
     this.checkingResult = { result: false, feedback: "" };
-    
+
   }
 
 }

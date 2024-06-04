@@ -9,9 +9,8 @@ app.get("/api/theory/binaryConversion", function (req, res) {
 })
 
 app.get("/api/exercise/binaryConversion", function (req, res) {
-    decimalNumber = Math.floor(Math.random() * 1000) + 1;   // Create number between 1 and 1000
-    binaryNumber = decimalNumber.toString(2);  // Convert decimal number to binary
-        res.json({topic: "Binary Conversion", task: `Convert ${decimalNumber} to binary.`, targetAnswer: binaryNumber});
+    decimalNumber = Math.floor(Math.random() * 1000) + 1;   // Create number between 1 and 1
+    res.json({topic: "Binary Conversion", task: "Convert 12 to binary.", targetAnswer: "1100"});
 })
 
 app.post("/api/check/binaryConversion", function (req, res) {
@@ -24,7 +23,20 @@ app.post("/api/check/binaryConversion", function (req, res) {
     }
     else {
         result = false;
-        feedback = "Wrong answer.Get better!"
+        feedback = "Wrong answer.";
+        
+        if (targetAnswer.length != userAnswer.length) {
+            feedback += `You're answer should have ${targetAnswer.length} digits and not only ${userAnswer.length}. Please double check your calculations!`;
+        }
+        else {
+            const different_positions = [];
+            for (let i = 0; i < userAnswer.length; i++) {
+                if (userAnswer[i] !== targetAnswer[i]) {
+                    different_positions.push(i+1)
+                }
+            }
+            feedback += `The following position(s) wrong: ${different_positions}`;
+        }
     }
 
     res.json({result: result, feedback: feedback});
