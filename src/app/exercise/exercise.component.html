@@ -1,1 +1,9 @@
-<p>exercise works!</p>
+<h1>{{ data.topic }}</h1>
+
+<p>{{ data.task }}</p>
+
+<input [(ngModel)]="userInput">
+<button (click)="checkAnswer()">Check answer</button>
+<button [disabled]="notFinished">Next exercise</button>
+
+<p>{{ feedback }}</p>

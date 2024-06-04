@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { OverviewComponent } from './overview/overview.component';
 import { AboutComponent } from './about/about.component';
 import { TheoryComponent } from './theory/theory.component';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 export const routes: Routes = [
     {
@@ -24,5 +25,10 @@ export const routes: Routes = [
         path: "overview/theory/:topic",
         component: TheoryComponent,
         title: "Theory"
+    },
+    {
+        path: "overview/exercise/:topic",
+        component: ExerciseComponent,
+        title: "Exercise"
     }
 ];

@@ -15,4 +15,8 @@ export class ApiService {
     return this.http.get(`${this.url}/theory/binaryConversion`);
   }
 
+  getBinaryConversionExercise(): Observable<any> {
+    return this.http.get(`${this.url}/exercise/binaryConversion`);
+  }
+
 }
