@@ -19,7 +19,7 @@ export class TheoryComponent {
 
     this.param = this.route.snapshot.params['topic'];
 
-    if (this.param = "binaryConversion") {
+    if (this.param == "binaryConversion") {
       this.api.getBinaryConversionTheory().subscribe(data => this.data = {
         topic: (data as any).topic,
         description:  (data as any).description
