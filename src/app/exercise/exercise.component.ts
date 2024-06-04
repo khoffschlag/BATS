@@ -19,12 +19,38 @@ export class ExerciseComponent {
   checkingResult = { result: false, feedback: "" };
 
   userAnswer: string = "";
-  notFinished: boolean = true;
-  feedback: string = "";
+  correctAnswerStreak: number = 0;
 
   constructor(private api: ApiService) {
 
     this.param = this.route.snapshot.params['topic'];
+    this.newExercise();
+
+  }
+
+
+  checkAnswer() {
+
+    if (this.param == "binaryConversion") {
+      this.api.checkBinaryConversion(this.userAnswer, this.data.targetAnswer).subscribe(data => {
+        this.checkingResult = { result: (data as any).result, feedback: (data as any).feedback };
+        this.updateAnswerStreak(this.checkingResult);
+    })};
+
+  }
+
+  updateAnswerStreak(checkingResult: object) {
+
+    if (this.checkingResult.result) {
+      this.correctAnswerStreak += 1;
+    }
+    else {
+      this.correctAnswerStreak = 0;
+    }
+
+  }
+
+  newExercise() {
 
     if (this.param == "binaryConversion") {
       this.api.getBinaryConversionExercise().subscribe(data => this.data = {
@@ -34,17 +60,8 @@ export class ExerciseComponent {
       });
     }
 
-  }
-
-  checkAnswer() {
-
-    if (this.param == "binaryConversion") {
-      this.api.checkBinaryConversion(this.userAnswer, this.data.targetAnswer).subscribe(data => {
-        this.checkingResult = { result: (data as any).result, feedback: (data as any).feedback };
-        this.feedback = this.checkingResult.feedback;
-        this.notFinished = !this.checkingResult.result;
-    })};
-
+    this.checkingResult = { result: false, feedback: "" };
+    
   }
 
 }
