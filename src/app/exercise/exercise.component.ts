@@ -32,11 +32,10 @@ export class ExerciseComponent {
 
   checkAnswer() {
 
-    if (this.param == "binaryConversion") {
-      this.api.checkBinaryConversion(this.userAnswer, this.data.targetAnswer).subscribe(data => {
+      this.api.checkExercise(this.param, this.userAnswer, this.data.targetAnswer).subscribe(data => {
         this.checkingResult = { result: (data as any).result, feedback: (data as any).feedback };
         this.updateAnswerStreak(this.checkingResult);
-    })};
+      })
 
   }
 
@@ -57,13 +56,11 @@ export class ExerciseComponent {
     this.checkingResult = { result: false, feedback: "" };
     this.disableCheckButton = false;
 
-    if (this.param == "binaryConversion") {
-      this.api.getBinaryConversionExercise().subscribe(data => this.data = {
-        topic: (data as any).topic,
-        task:  (data as any).task,
-        targetAnswer: (data as any).targetAnswer
-      });
-    }
+    this.api.getExercise(this.param).subscribe(data => this.data = {
+      topic: (data as any).topic,
+      task:  (data as any).task,
+      targetAnswer: (data as any).targetAnswer
+    });
 
   }
 

@@ -18,14 +18,11 @@ export class TheoryComponent {
   constructor(private api: ApiService) {
 
     this.param = this.route.snapshot.params['topic'];
-
-    if (this.param == "binaryConversion") {
-      this.api.getBinaryConversionTheory().subscribe(data => this.data = {
-        topic: (data as any).topic,
-        description:  (data as any).description
-      });
-    }
-
+    this.api.getTheory(this.param).subscribe(data => this.data = {
+      topic: (data as any).topic,
+      description:  (data as any).description
+    });
+    
   }
   
 
