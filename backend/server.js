@@ -3,6 +3,13 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use((req, res, next) => { 
+    res.header("Access-Control-Allow-Origin",  
+               "http://localhost:4200"); 
+    res.header("Access-Control-Allow-Headers",  
+               "Origin, X-Requested-With, Content-Type, Accept"); 
+    next(); 
+}); 
 
 app.get("/api/theory/binaryConversion", function (req, res) {
     res.json({topic: "Binary Conversion", description: "0 and 1 are binary numbers. Crazy innit?"});
