@@ -11,16 +11,16 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getBinaryConversionTheory(): Observable<any> {
-    return this.http.get(`${this.url}/theory/binaryConversion`);
+  getTheory(topic: string): Observable<any> {
+    return this.http.get(`${this.url}/theory/${topic}`);
   }
 
-  getBinaryConversionExercise(): Observable<any> {
-    return this.http.get(`${this.url}/exercise/binaryConversion`);
+  getExercise(topic: string): Observable<any> {
+    return this.http.get(`${this.url}/exercise/${topic}`);
   }
 
-  checkBinaryConversion(userAnswer:string, targetAnswer:string): Observable<any> {
-    return this.http.post(`${this.url}/check/binaryConversion`, {userAnswer: userAnswer, targetAnswer: targetAnswer});
+  checkExercise(topic: string, userAnswer:string, targetAnswer:string): Observable<any> {
+    return this.http.post(`${this.url}/check/${topic}`, {userAnswer: userAnswer, targetAnswer: targetAnswer});
   }
 
 }
