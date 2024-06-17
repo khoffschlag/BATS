@@ -1,3 +1,6 @@
+// First we need to import the theory, exercise and check methods of the corresponding disciplines
+const { getBinaryConversionTheory, getBinaryConversionExercise, checkBinaryConversionExercise } = require('./disciplines/binaryConversion');
+
 const express = require("express")
 const app = express();
 const port = 3000;
@@ -11,41 +14,86 @@ app.use((req, res, next) => {
     next(); 
 }); 
 
-app.get("/api/theory/binaryConversion", function (req, res) {
-    res.json({topic: "Binary Conversion", description: "0 and 1 are binary numbers. Crazy innit?"});
-})
+app.post("/api/theory", function (req, res) {
+    const { topic } = req.body;
 
-app.get("/api/exercise/binaryConversion", function (req, res) {
-    decimalNumber = Math.floor(Math.random() * 1000) + 1;   // Create number between 1 and 1
-    binaryNumber = decimalNumber.toString(2);
-    res.json({topic: "Binary Conversion", task: `Convert ${decimalNumber} to binary.`, targetAnswer: binaryNumber});
-})
+    console.log(`/api/theory/ got called with topic: ${topic}`);
 
-app.post("/api/check/binaryConversion", function (req, res) {
-    let result, feedback;
-    const { userAnswer, targetAnswer } = req.body;
-    
-    if (userAnswer == targetAnswer) {
-        result = true;
-        feedback = "You're answer is correct! You're good!"
-    } else {
-        result = false;
-        feedback = "Wrong answer.";
-        
-        if (targetAnswer.length != userAnswer.length) {
-            feedback += `You're answer should have ${targetAnswer.length} digits and not only ${userAnswer.length}. Please double check your calculations!`;
-        } else {
-            const different_positions = [];
-            for (let i = 0; i < userAnswer.length; i++) {
-                if (userAnswer[i] !== targetAnswer[i]) {
-                    different_positions.push(i+1)
-                }
-            }
-            feedback += `The following position(s) wrong: ${different_positions}`;
-        }
+    // Let's check if topic is undefinied, empty string or similiar
+    if (!topic) {
+        res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
     }
 
-    res.json({result: result, feedback: feedback});
+    let title, description;
+    switch(topic) {
+        case 'binaryConversion':
+            var response = getBinaryConversionTheory();
+            break;
+        default:
+            res.status(400).json({ error: 'Invalid topic was submitted!' });
+    }
+    title = response.title;
+    description = response.description;
+
+    res.json({ title: title, description: description });
+})
+
+app.post("/api/exercise/", function (req, res) {
+    const { topic } = req.body;
+
+    console.log(`/api/exercise/ got called with topic: ${topic}`);
+
+    // Let's check if topic is undefinied, empty string or similiar
+    if (!topic) {
+        res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
+    }
+
+    let title, task, targetAnswer;
+    switch(topic) {
+        case 'binaryConversion':
+            var response = getBinaryConversionExercise();
+            break;
+        default:
+            res.status(400).json({ error: 'Invalid topic was submitted!' });
+    }
+    title = response.title;
+    task = response.task;
+    targetAnswer = response.targetAnswer;
+
+    res.json({ topic: topic, task: task, targetAnswer: targetAnswer });
+
+})
+
+app.post("/api/check/", function (req, res) {
+    const { topic, userAnswer, targetAnswer } = req.body;
+
+    console.log(`/api/check/ got called with topic: ${topic}, userAnswer: ${userAnswer} and targetAnswer: ${targetAnswer}`);
+
+    // Let's check if topic, userAnswer or targetAnswer is undefinied, empty string or similiar
+    if (!topic) {
+        res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
+    }
+
+    if (!userAnswer) {
+        res.status(400).json({ error: 'No userAnswer was submitted in the POST request!' });  // Send bad request error!
+    }
+
+    if (!targetAnswer) {
+        res.status(400).json({ error: 'No targetAnswer was submitted in the POST request!' });  // Send bad request error!
+    }
+
+    let result, feedback;
+    switch(topic) {
+        case 'binaryConversion':
+            var response = checkBinaryConversionExercise(userAnswer, targetAnswer);
+            break;
+        default:
+            res.status(400).json({ error: 'Invalid topic was submitted!' });
+    }
+    result = response.result;
+    feedback = response.feedback;
+
+    res.json({ result: result, feedback: feedback });
 })
 
 
