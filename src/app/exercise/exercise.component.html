@@ -2,10 +2,10 @@
 
 <p>{{ data.task }}</p>
 
-<input [(ngModel)]="userAnswer">
+<input [(ngModel)]="data.userAnswer">
 <button [disabled]="disableCheckButton" (click)="checkAnswer()">Check answer</button>
-<button [disabled]="!checkingResult.result" (click)="newExercise()">Next exercise</button>
+<button [disabled]="!data.result" (click)="newExercise()">Next exercise</button>
 <button>Finish exercising</button>
 
 <p>You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-<p>{{ checkingResult.feedback }}</p>
+<p>{{ data.feedback }}</p>

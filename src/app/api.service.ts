@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ExerciseData } from './exercise-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,10 @@ export class ApiService {
     return this.http.post(`${this.url}/exercise/`, {topic: topic});
   }
 
-  checkExercise(topic: string, userAnswer:string, targetAnswer:string): Observable<any> {
-    return this.http.post(`${this.url}/check/`, {topic: topic, userAnswer: userAnswer, targetAnswer: targetAnswer});
+  checkExercise(exerciseData: ExerciseData): Observable<any> {
+    
+    return this.http.post(`${this.url}/check/`, {data: exerciseData});
+    
   }
 
 }
