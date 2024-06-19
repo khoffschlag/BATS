@@ -65,7 +65,13 @@ app.post("/api/exercise/", function (req, res) {
 })
 
 app.post("/api/check/", function (req, res) {
-    const { topic, userAnswer, targetAnswer } = req.body;
+    const { data } = req.body;
+
+    console.log(data);
+    
+    let topic = data.topic;
+    let userAnswer = data.userAnswer;
+    let targetAnswer = data.targetAnswer;
 
     console.log(`/api/check/ got called with topic: ${topic}, userAnswer: ${userAnswer} and targetAnswer: ${targetAnswer}`);
 

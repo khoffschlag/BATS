@@ -2,10 +2,21 @@
 
 <p>{{ data.task }}</p>
 
-<input [(ngModel)]="userAnswer">
+<button (click)="setLevel(1)">Level 1</button>
+<button (click)="setLevel(2)">Level 2</button>
+
+<div id="digit-{{ i }}" *ngFor="let digit of data.userAnswer; let i = index" style="margin: 10px;">
+    <div id="helper-{{ i }}" *ngIf="current_level == 1">
+        {{ helpers[i] }}
+    </div>
+    <button (click)="toggleDigit(i)">
+        {{ data.userAnswer[i] }}
+    </button>
+</div>
+
 <button [disabled]="disableCheckButton" (click)="checkAnswer()">Check answer</button>
-<button [disabled]="!checkingResult.result" (click)="newExercise()">Next exercise</button>
+<button [disabled]="!data.result" (click)="newExercise()">Next exercise</button>
 <button>Finish exercising</button>
 
 <p>You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-<p>{{ checkingResult.feedback }}</p>
+<p>{{ data.feedback }}</p>
