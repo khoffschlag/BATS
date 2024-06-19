@@ -1,6 +1,7 @@
 // First we need to import the theory, exercise and check methods of the corresponding disciplines
 const { getBinaryConversionTheory, getBinaryConversionExercise, checkBinaryConversionExercise } = require('./disciplines/binaryConversion');
 const { getDecimalConversionTheory, getDecimalConversionExercise, checkDecimalConversionExercise } = require('./disciplines/decimalConversion');
+const { getBinaryArithmeticTheory, getBinaryArithmeticExercise, checkBinaryArithmeticExercise } = require('./disciplines/binaryArithmetic');
 
 const express = require("express")
 const app = express();
@@ -33,6 +34,9 @@ app.post("/api/theory", function (req, res) {
         case 'decimalConversion':
             var response = getDecimalConversionTheory();
             break;
+        case 'binaryArithmetic':
+            var response = getBinaryArithmeticTheory();
+            break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
     }
@@ -59,6 +63,9 @@ app.post("/api/exercise/", function (req, res) {
             break;
         case 'decimalConversion':
             var response = getDecimalConversionExercise();
+            break;
+        case 'binaryArithmetic':
+            var response = getBinaryArithmeticExercise();
             break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
@@ -102,6 +109,9 @@ app.post("/api/check/", function (req, res) {
             break;
         case 'decimalConversion':
             var response = checkDecimalConversionExercise(userAnswer, targetAnswer);
+            break;
+        case 'binaryArithmetic':
+            var response = checkBinaryArithmeticExercise(userAnswer, targetAnswer);
             break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
