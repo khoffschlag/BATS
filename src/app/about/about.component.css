@@ -12,11 +12,12 @@
     margin: 0 auto;
 }
 .blurry-background {
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
     padding: 0;
     margin: 0;
 }
-.custom-hover{
-    color: antiquewhite;
+.small-image{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
 }
-
