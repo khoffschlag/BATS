@@ -1,0 +1,15 @@
+/*:host{
+    background-image: url('../../assets/zeros_and_ones_2.jpg');
+}*/
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust as needed */
+  }
+  
+  .card {
+    flex: 1 1 calc(25% - 20px); /* Adjust as needed */
+    /* The above line divides the container into four equal parts (25% each)
+    and subtracts the gap */
+    height: 300px;
+  }

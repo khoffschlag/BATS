@@ -1,19 +1,45 @@
-<h1>Binary Conversion</h1>
-Wanna learn to convert decimal to binary?<br>
-<a [routerLink]="['theory', 'binaryConversion']">Read more!</a><br>
-<a [routerLink]="['exercise', 'binaryConversion']">Exercise!</a>
 
-<h1>Decimal Conversion</h1>
-Wanna learn to convert binary to decimal?<br>
-<a [routerLink]="['theory', 'decimalConversion']">Read more!</a><br>
-<a [routerLink]="['exercise', 'decimalConversion']">Exercise!</a>
-
-<h1>Logical Operations</h1>
-Wanna learn logical Operations?<br>
-<a [routerLink]="['theory', 'logicalOperations']">Read more!</a><br>
-<a [routerLink]="['exercise', 'logicalOperations']">Exercise!</a>
-
-<h1>Binary Arithmetic</h1>
-Wanna learn binary arithmetic?<br>
-<a [routerLink]="['theory', 'binaryArithmetic']">Read more!</a><br>
-<a [routerLink]="['exercise', 'binaryArithmetic']">Exercise!</a>
+    <h1 class="mb-10 mt-5 text-6xl font-mono text-center" style="color: antiquewhite;">BATS</h1>
+    <div class="card-container">
+        <div class="card w-96 glass">
+            <div class="card-body">
+                <h2 class="card-title font-mono" style="color: antiquewhite;">Binary Conversion</h2>
+                <p class="font-mono" style="color: antiquewhite;">Wanna learn to convert decimal to binary?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn font-mono" [routerLink]="['theory', 'binaryConversion']">Read more</button>
+                    <button class="btn font-mono" [routerLink]="['exercise', 'binaryConversion']">Exercise!</button>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card w-96 glass">
+            <div class="card-body">
+                <h2 class="card-title font-mono" style="color: antiquewhite;">Decimal Conversion</h2>
+                <p class="font-mono" style="color: antiquewhite;">Wanna learn to convert binary to decimal?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn font-mono" [routerLink]="['theory', 'decimalConversion']">Read more</button>
+                    <button class="btn font-mono" [routerLink]="['exercise', 'decimalConversion']">Exercise!</button>
+                </div>
+            </div>
+        </div>
+        <div class="card w-96 glass">
+            <div class="card-body">
+                <h2 class="card-title font-mono" style="color:antiquewhite;">Logical Operations</h2>
+                <p class="font-mono" style="color: antiquewhite;">Wanna learn logical Operations?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn font-mono" [routerLink]="['theory', 'logicalOperations']">Read more</button>
+                    <button class="btn font-mono" [routerLink]="['exercise', 'logicalOperations']">Exercise!</button>
+                </div>
+            </div>
+        </div>
+        <div class="card w-96 glass">
+            <div class="card-body">
+                <h2 class="card-title font-mono" style="color:antiquewhite;">Binary Arithmetic</h2>
+                <p class="font-mono" style="color: antiquewhite;">Wanna learn binary arithmetic?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn font-mono" [routerLink]="['theory', 'logicalOperations']">Read more</button>
+                    <button class="btn font-mono" [routerLink]="['exercise', 'logicalOperations']">Exercise!</button>
+                </div>
+            </div>
+        </div>
+    </div>

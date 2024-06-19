@@ -1,0 +1,6 @@
+.text-current{
+    color:currentColor;
+}
+.text-current:visited {
+    color: currentColor; 
+}
