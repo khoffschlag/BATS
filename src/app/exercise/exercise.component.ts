@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { FormsModule } from '@angular/forms';
 import { ExerciseData } from '../exercise-data.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-exercise',
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './exercise.component.html',
   styleUrl: './exercise.component.css'
 })
@@ -54,6 +55,10 @@ export class ExerciseComponent {
       this.data.targetAnswer = (response as any).targetAnswer;
     });
 
+  }
+
+  toggleDigit(index: number) {
+    this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
   }
 
 }

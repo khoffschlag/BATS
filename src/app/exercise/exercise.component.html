@@ -2,7 +2,12 @@
 
 <p>{{ data.task }}</p>
 
-<input [(ngModel)]="data.userAnswer">
+<div id="digit-{{ i }}" *ngFor="let digit of data.userAnswer; let i = index" style="margin: 10px;">
+    <button (click)="toggleDigit(i)">
+        {{ data.userAnswer[i] }}
+    </button>
+</div>
+
 <button [disabled]="disableCheckButton" (click)="checkAnswer()">Check answer</button>
 <button [disabled]="!data.result" (click)="newExercise()">Next exercise</button>
 <button>Finish exercising</button>
