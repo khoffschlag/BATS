@@ -20,6 +20,9 @@ export class ExerciseComponent {
   correctAnswerStreak: number = 0;
   disableCheckButton: boolean = false;
 
+  current_level = 1;
+  helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
+
   constructor(private api: ApiService) {
 
     this.data.topic = this.route.snapshot.params['topic'];
@@ -59,6 +62,10 @@ export class ExerciseComponent {
 
   toggleDigit(index: number) {
     this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
+  }
+
+  setLevel(level: number) {
+    this.current_level = level;
   }
 
 }
