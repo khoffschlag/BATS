@@ -7,7 +7,7 @@ function getLogicalOperationsTheory() {
 function getLogicalOperationsExercise() {
 
     const possibleOperators = ["&", "|", "xor"];
-    let selectedOperator = possibleOperators[Math.floor(Math.random() * possibleOperators.length)];  // Randomly choose an operator. Currently we have only one though...
+    let selectedOperator = possibleOperators[Math.floor(Math.random() * possibleOperators.length)];
 
     numberOne = Math.floor(Math.random() * 255) + 1;
     numberTwo = Math.floor(Math.random() * 255) + 1;
