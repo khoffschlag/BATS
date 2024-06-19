@@ -50,6 +50,10 @@ export class ExerciseComponent {
     let topic = this.data.topic;
     this.data = new ExerciseData();
     this.data.topic = topic;
+    if (this.data.topic == 'decimalConversion') {
+      this.data.userAnswer = 0;
+      this.data.targetAnswer = -1;
+    }
     this.disableCheckButton = false;
 
     this.api.getExercise(this.data.topic).subscribe(response => {
@@ -60,12 +64,39 @@ export class ExerciseComponent {
 
   }
 
+  getDigit(index: number) {
+    // This method is needed because if we directly return the single digit in the component html without the Array check, we get an error
+    if (Array.isArray(this.data.userAnswer)) {
+      return this.data.userAnswer[index];
+    }
+    else {
+      console.log('Can only index arrays (and lists)!');
+      return -1;
+    }
+
+  }
+
   toggleDigit(index: number) {
-    this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
+    if (Array.isArray(this.data.userAnswer)) {
+      this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
+    }
+    else {
+      console.log('Can only toggle buttons!');
+    }
   }
 
   setLevel(level: number) {
     this.current_level = level;
   }
 
+  ensureArray(input : number | number[]) {
+    if (Array.isArray(input)) {
+      return input;
+    }
+    else {
+      return [input];
+    }
+  }
+
+  
 }
