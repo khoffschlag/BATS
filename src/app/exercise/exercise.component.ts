@@ -15,7 +15,7 @@ export class ExerciseComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   param: string = "";
 
-  data = { topic: "", task: "", targetAnswer: "" };
+  data = { title: "", task: "", targetAnswer: "" };
   checkingResult = { result: false, feedback: "" };
 
   userAnswer: string = "";
@@ -52,12 +52,12 @@ export class ExerciseComponent {
 
   newExercise() {
 
-    this.data = { topic: "", task: "", targetAnswer: "" };
+    this.data = { title: "", task: "", targetAnswer: "" };
     this.checkingResult = { result: false, feedback: "" };
     this.disableCheckButton = false;
 
     this.api.getExercise(this.param).subscribe(data => this.data = {
-      topic: (data as any).topic,
+      title: (data as any).title,
       task:  (data as any).task,
       targetAnswer: (data as any).targetAnswer
     });

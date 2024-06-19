@@ -13,13 +13,13 @@ export class TheoryComponent {
 
   route: ActivatedRoute = inject(ActivatedRoute);
   param: string = "";
-  data = {topic: "", description: ""};
+  data = {title: "", description: ""};
 
   constructor(private api: ApiService) {
 
     this.param = this.route.snapshot.params['topic'];
     this.api.getTheory(this.param).subscribe(data => this.data = {
-      topic: (data as any).topic,
+      title: (data as any).title,
       description:  (data as any).description
     });
     

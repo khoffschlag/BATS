@@ -12,15 +12,15 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getTheory(topic: string): Observable<any> {
-    return this.http.get(`${this.url}/theory/${topic}`);
+    return this.http.post(`${this.url}/theory/`, {topic: topic});
   }
 
   getExercise(topic: string): Observable<any> {
-    return this.http.get(`${this.url}/exercise/${topic}`);
+    return this.http.post(`${this.url}/exercise/`, {topic: topic});
   }
 
   checkExercise(topic: string, userAnswer:string, targetAnswer:string): Observable<any> {
-    return this.http.post(`${this.url}/check/${topic}`, {userAnswer: userAnswer, targetAnswer: targetAnswer});
+    return this.http.post(`${this.url}/check/`, {topic: topic, userAnswer: userAnswer, targetAnswer: targetAnswer});
   }
 
 }
