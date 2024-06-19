@@ -2,6 +2,7 @@
 const { getBinaryConversionTheory, getBinaryConversionExercise, checkBinaryConversionExercise } = require('./disciplines/binaryConversion');
 const { getDecimalConversionTheory, getDecimalConversionExercise, checkDecimalConversionExercise } = require('./disciplines/decimalConversion');
 const { getBinaryArithmeticTheory, getBinaryArithmeticExercise, checkBinaryArithmeticExercise } = require('./disciplines/binaryArithmetic');
+const { getLogicalOperationsTheory, getLogicalOperationsExercise, checkLogicalOperationsExercise } = require('./disciplines/logicalOperations');
 
 const express = require("express")
 const app = express();
@@ -37,6 +38,9 @@ app.post("/api/theory", function (req, res) {
         case 'binaryArithmetic':
             var response = getBinaryArithmeticTheory();
             break;
+        case 'logicalOperations':
+            var response = getLogicalOperationsTheory();
+            break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
     }
@@ -66,6 +70,9 @@ app.post("/api/exercise/", function (req, res) {
             break;
         case 'binaryArithmetic':
             var response = getBinaryArithmeticExercise();
+            break;
+        case 'logicalOperations':
+            var response = getLogicalOperationsExercise();
             break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
@@ -112,6 +119,9 @@ app.post("/api/check/", function (req, res) {
             break;
         case 'binaryArithmetic':
             var response = checkBinaryArithmeticExercise(userAnswer, targetAnswer);
+            break;
+        case 'logicalOperations':
+            var response = checkLogicalOperationsExercise(userAnswer, targetAnswer);
             break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
