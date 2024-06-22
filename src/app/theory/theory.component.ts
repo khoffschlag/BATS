@@ -1,29 +1,50 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-theory',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './theory.component.html',
   styleUrl: './theory.component.css'
 })
-export class TheoryComponent {
+export class TheoryComponent implements OnInit {
 
-  route: ActivatedRoute = inject(ActivatedRoute);
-  param: string = "";
-  data = {title: "", description: ""};
+  // A dummy model to avoid problems
+  tutorial = 
+  {
+    title: '',
+    description: '',
+  };
 
-  constructor(private api: ApiService) {
-
-    this.param = this.route.snapshot.params['topic'];
-    this.api.getTheory(this.param).subscribe(data => this.data = {
-      title: (data as any).title,
-      description:  (data as any).description
-    });
-    
-  }
+  topic: string = '';
   
+
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) { }
+
+  ngOnInit(): void {
+    this.topic = this.route.snapshot.params['topic'];
+      if (this.topic) {
+        this.fetchTutorial(this.topic);
+      }
+    }
+
+
+  fetchTutorial(topic: string): void {
+    this.apiService.getTheory(topic).subscribe({
+      next: (data) => {
+        this.tutorial = data;
+        console.log('Tutorial:', this.tutorial);
+      },
+      error: (error) => {
+        console.error('Error fetching tutorial', error);
+      }
+    });
+  }
 
 }
