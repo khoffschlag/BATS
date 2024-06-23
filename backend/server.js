@@ -1,5 +1,8 @@
 // First we need to import the theory, exercise and check methods of the corresponding disciplines
 const { getBinaryConversionTheory, getBinaryConversionExercise, checkBinaryConversionExercise } = require('./disciplines/binaryConversion');
+const { getDecimalConversionTheory, getDecimalConversionExercise, checkDecimalConversionExercise } = require('./disciplines/decimalConversion');
+const { getBinaryArithmeticTheory, getBinaryArithmeticExercise, checkBinaryArithmeticExercise } = require('./disciplines/binaryArithmetic');
+const { getLogicalOperationsTheory, getLogicalOperationsExercise, checkLogicalOperationsExercise } = require('./disciplines/logicalOperations');
 
 const express = require("express");
 require('dotenv').config();
@@ -61,6 +64,15 @@ app.post("/api/exercise/", function (req, res) {
         case 'binaryConversion':
             var response = getBinaryConversionExercise();
             break;
+        case 'decimalConversion':
+            var response = getDecimalConversionExercise();
+            break;
+        case 'binaryArithmetic':
+            var response = getBinaryArithmeticExercise();
+            break;
+        case 'logicalOperations':
+            var response = getLogicalOperationsExercise();
+            break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });
     }
@@ -73,7 +85,13 @@ app.post("/api/exercise/", function (req, res) {
 })
 
 app.post("/api/check/", function (req, res) {
-    const { topic, userAnswer, targetAnswer } = req.body;
+    const { data } = req.body;
+
+    console.log(data);
+    
+    let topic = data.topic;
+    let userAnswer = data.userAnswer;
+    let targetAnswer = data.targetAnswer;
 
     console.log(`/api/check/ got called with topic: ${topic}, userAnswer: ${userAnswer} and targetAnswer: ${targetAnswer}`);
 
@@ -94,6 +112,15 @@ app.post("/api/check/", function (req, res) {
     switch(topic) {
         case 'binaryConversion':
             var response = checkBinaryConversionExercise(userAnswer, targetAnswer);
+            break;
+        case 'decimalConversion':
+            var response = checkDecimalConversionExercise(userAnswer, targetAnswer);
+            break;
+        case 'binaryArithmetic':
+            var response = checkBinaryArithmeticExercise(userAnswer, targetAnswer);
+            break;
+        case 'logicalOperations':
+            var response = checkLogicalOperationsExercise(userAnswer, targetAnswer);
             break;
         default:
             res.status(400).json({ error: 'Invalid topic was submitted!' });

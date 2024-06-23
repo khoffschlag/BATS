@@ -1,0 +1,23 @@
+.figur{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+.mask {
+    max-width: 50%; 
+    height: auto;
+    margin: 0 auto;
+}
+.blurry-background {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    padding: 0;
+    margin: 0;
+}
+.small-image{
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+}
