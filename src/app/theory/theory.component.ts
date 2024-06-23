@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-theory',
   standalone: true,
