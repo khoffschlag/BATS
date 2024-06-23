@@ -1,28 +1,30 @@
-<h1>{{ data.title }}</h1>
+<div class="m-1 p-2">
+    <h1 class="font-mono" style="color: antiquewhite;">{{ data.title }}</h1>
 
-<p>{{ data.task }}</p>
+    <p class="font-mono" style="color: antiquewhite;">{{ data.task }}</p>
 
-<button (click)="setLevel(1)">Level 1</button>
-<button (click)="setLevel(2)">Level 2</button>
+    <button (click)="setLevel(1)" class="font-mono" style="color: antiquewhite;">Level 1</button>
+    <button (click)="setLevel(2)" class="font-mono" style="color: antiquewhite;">Level 2</button>
 
-<div *ngIf="data.topic == 'decimalConversion'">
-    <input [(ngModel)]="data.userAnswer">
-</div>
-
-<div *ngIf="data.topic != 'decimalConversion'">
-    <div id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index" style="margin: 10px;">
-        <div id="helper-{{ i }}" *ngIf="current_level == 1">
-            {{ helpers[i] }}
-        </div>
-        <button (click)="toggleDigit(i)">
-            {{ getDigit(i) }}
-        </button>
+    <div *ngIf="data.topic == 'decimalConversion'">
+        <input [(ngModel)]="data.userAnswer">
     </div>
+
+    <div *ngIf="data.topic != 'decimalConversion'">
+        <div id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index" style="margin: 10px;">
+            <div class="font-mono" style="color: antiquewhite;" id="helper-{{ i }}" *ngIf="current_level == 1">
+                {{ helpers[i] }}
+            </div>
+            <button (click)="toggleDigit(i)" class="font-mono" style="color: antiquewhite;">
+                {{ getDigit(i) }}
+            </button>
+        </div>
+    </div>
+
+    <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="font-mono" style="color: antiquewhite;">Check answer</button>
+    <button [disabled]="!data.result" (click)="newExercise()" class="font-mono" style="color: antiquewhite;">Next exercise</button>
+    <button class="font-mono" style="color: antiquewhite;">Finish exercising</button>
+
+    <p class="font-mono" style="color: antiquewhite;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
+    <p class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p>
 </div>
-
-<button [disabled]="disableCheckButton" (click)="checkAnswer()">Check answer</button>
-<button [disabled]="!data.result" (click)="newExercise()">Next exercise</button>
-<button>Finish exercising</button>
-
-<p>You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-<p>{{ data.feedback }}</p>
