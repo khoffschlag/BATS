@@ -4,9 +4,15 @@ const { getDecimalConversionTheory, getDecimalConversionExercise, checkDecimalCo
 const { getBinaryArithmeticTheory, getBinaryArithmeticExercise, checkBinaryArithmeticExercise } = require('./disciplines/binaryArithmetic');
 const { getLogicalOperationsTheory, getLogicalOperationsExercise, checkLogicalOperationsExercise } = require('./disciplines/logicalOperations');
 
-const express = require("express")
+const express = require("express");
+require('dotenv').config();
 const app = express();
 const port = 3000;
+
+const mongoose = require('mongoose');
+const Tutorial = require('./models/tutorialModel');
+const { isAsyncIterable } = require('rxjs/internal/util/isAsyncIterable');
+const uri = process.env.MONGO_URI;
 
 app.use(express.json());
 app.use((req, res, next) => { 
@@ -17,38 +23,31 @@ app.use((req, res, next) => {
     next(); 
 }); 
 
-app.post("/api/theory", function (req, res) {
-    const { topic } = req.body;
+//Endpoint to get tutorial by title passed in the body
+app.post("/api/theory", async (req, res) => {
 
-    console.log(`/api/theory/ got called with topic: ${topic}`);
+    try {
+        const { topic } = req.body;
+        console.log(`/api/theory/ got called with topic: ${topic}`);
 
-    // Let's check if topic is undefinied, empty string or similiar
-    if (!topic) {
-        res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
+            // Let's check if topic is undefined, empty string or similar
+        if (!topic) {
+            res.status(400).json({ error: 'No topic was submitted in the POST request!' });  
+            // Send bad request error!
+        }
+
+        const tutorials = await Tutorial.findOne({ codeName: new RegExp(topic)}).exec();
+        console.log('Found tutorials:', tutorials); // Log found tutorials
+
+        if (!tutorials || tutorials.length === 0){
+            return res.status(404).send({ message: 'No tutorial found.'});
+        }
+        res.status(200).json(tutorials);
+
+    }catch(error) {
+        res.status(500).send(error);
     }
-
-    let title, description;
-    switch(topic) {
-        case 'binaryConversion':
-            var response = getBinaryConversionTheory();
-            break;
-        case 'decimalConversion':
-            var response = getDecimalConversionTheory();
-            break;
-        case 'binaryArithmetic':
-            var response = getBinaryArithmeticTheory();
-            break;
-        case 'logicalOperations':
-            var response = getLogicalOperationsTheory();
-            break;
-        default:
-            res.status(400).json({ error: 'Invalid topic was submitted!' });
-    }
-    title = response.title;
-    description = response.description;
-
-    res.json({ title: title, description: description });
-})
+});
 
 app.post("/api/exercise/", function (req, res) {
     const { topic } = req.body;
@@ -132,7 +131,31 @@ app.post("/api/check/", function (req, res) {
     res.json({ result: result, feedback: feedback });
 })
 
+async function run() {
+    try {
+        // try to connect to MongoDB using mongoose
+        await mongoose.connect(uri, {
+            serverApi: {
+                version: '1', 
+                strict: true,
+                deprecationErrors: true,
+            }
+        });
 
-app.listen(port, () => {
-    console.log("Express running like Usain Bolt! Yeah!")
-})
+        console.log("Successfully connected to MongoDB!");
+
+        app.listen(port, () => {
+            console.log("Express running like Usain Bolt! Yeah!");
+        });
+    }catch(error) {
+        console.error("Oopsi, not connection for you");
+    } finally {
+      // Ensures that the connection is closed when application terminated
+      process.on('SIGINT', async () => {
+        await mongoose.connection.close();
+        console.log('Mongoose connection closed');
+        process.exit(0);
+        });
+    }
+  }
+  run().catch(console.dir);
