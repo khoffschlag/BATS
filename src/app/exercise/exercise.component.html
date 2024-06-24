@@ -3,11 +3,11 @@
 
     <p class="font-mono" style="color: antiquewhite;">{{ data.task }}</p>
 
-    <button (click)="setLevel(1)" class="font-mono" style="color: antiquewhite;">Level 1</button>
-    <button (click)="setLevel(2)" class="font-mono" style="color: antiquewhite;">Level 2</button>
+    <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(1)" class="font-mono" style="color: antiquewhite;">Level 1</button>
+    <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(2)" class="font-mono" style="color: antiquewhite;">Level 2</button>
 
     <div *ngIf="data.topic == 'decimalConversion'">
-        <input [(ngModel)]="data.userAnswer">
+        <input type="text" placeholder="0" class="input input-bordered w-full max-w-xs" [(ngModel)]="data.userAnswer" />
     </div>
 
     <div *ngIf="data.topic != 'decimalConversion'">
