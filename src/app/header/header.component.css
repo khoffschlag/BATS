@@ -4,3 +4,7 @@
 .text-current:visited {
     color: currentColor; 
 }
+.text-current:hover{
+    background-color: rgb(43, 52, 64);
+    color: rgb(215, 221, 228);
+}
