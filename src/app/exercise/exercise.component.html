@@ -1,23 +1,26 @@
-<div class="m-1 p-2">
+<div class="flex flex-col justify-center items-center mt-20 mr-1 mb-1 ml-1 p-2">
     <h1 class="font-mono" style="color: antiquewhite;">{{ data.title }}</h1>
 
     <p class="font-mono" style="color: antiquewhite;">{{ data.task }}</p>
-
-    <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(1)" class="font-mono" style="color: antiquewhite;">Level 1</button>
-    <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(2)" class="font-mono" style="color: antiquewhite;">Level 2</button>
+    <div class="button-container">
+        <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(1)" class="btn-link font-mono mr-2">Level 1</button>
+        <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(2)" class="btn-link font-mono">Level 2</button>
+    </div>
 
     <div *ngIf="data.topic == 'decimalConversion'">
-        <input type="text" placeholder="0" class="input input-bordered w-full max-w-xs" [(ngModel)]="data.userAnswer" />
+        <input type="text" class="input input-bordered w-full max-w-xs custom-background" [(ngModel)]="data.userAnswer" />
     </div>
 
     <div *ngIf="data.topic != 'decimalConversion'">
-        <div id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index" style="margin: 10px;">
-            <div class="font-mono" style="color: antiquewhite;" id="helper-{{ i }}" *ngIf="current_level == 1">
-                {{ helpers[i] }}
+        <div class="flex">
+            <div id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index" style="margin: 10px;">
+                <div class="font-mono" style="color: antiquewhite;" id="helper-{{ i }}" *ngIf="current_level == 1">
+                    {{ helpers[i] }}
+                </div>
+                <button (click)="toggleDigit(i)" class="btn btn-square font-mono">
+                    {{ getDigit(i) }}
+                </button>
             </div>
-            <button (click)="toggleDigit(i)" class="font-mono" style="color: antiquewhite;">
-                {{ getDigit(i) }}
-            </button>
         </div>
     </div>
 
@@ -26,5 +29,19 @@
     <button class="font-mono" style="color: antiquewhite;">Finish exercising</button>
 
     <p class="font-mono" style="color: antiquewhite;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-    <p class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p>
+    <p class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
+    <!-- the previous <P> tag will be deleted later on, for now it stays -->
+
+    
+    <dialog id="my_modal_2" class="modal">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Hello!</h3>
+            <p class="py-4">{{ data.feedback }}</p>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 </div>

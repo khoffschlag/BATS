@@ -1,0 +1,15 @@
+.custom-background{
+    background-color: ghostwhite;
+    color: black;
+}
+.btn-square{
+    background-color: ghostwhite;
+    color: black;
+}
+.button-container{
+    display: flex;
+    gap: 8px;
+}
+.btn-link{
+    color: antiquewhite;
+}
