@@ -31,7 +31,7 @@ export class ExerciseComponent {
   }
 
   checkAnswer() {
-
+      const modal: any = document.getElementById('my_modal_2');
       this.api.checkExercise(this.data).subscribe(response => {
         this.data.result = (response as any).result;
         this.data.feedback = (response as any).feedback;
@@ -41,6 +41,9 @@ export class ExerciseComponent {
           this.disableCheckButton = true;
         } else {
           this.correctAnswerStreak = 0;
+        }
+        if(modal){
+          modal.showModal();
         }
       })
 
