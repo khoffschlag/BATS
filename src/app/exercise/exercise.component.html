@@ -26,7 +26,7 @@
 
     <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="font-mono" style="color: antiquewhite;">Check answer</button>
     <button [disabled]="!data.result" (click)="newExercise()" class="font-mono" style="color: antiquewhite;">Next exercise</button>
-    <button class="font-mono" style="color: antiquewhite;">Finish exercising</button>
+    <button class="font-mono" style="color: antiquewhite;" (click)="goToOverview()">Finish exercising</button>
 
     <p class="font-mono" style="color: antiquewhite;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
     <p class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 

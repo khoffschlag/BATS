@@ -27,6 +27,15 @@ export const routes: Routes = [
         title: "Theory"
     },
     {
+        path:"overview/theory/:topic",children:[
+            {
+                path: "exercise/:topic",
+                component: ExerciseComponent,
+                title: "Exercise"
+            }
+        ]
+    },
+    {
         path: "overview/exercise/:topic",
         component: ExerciseComponent,
         title: "Exercise"

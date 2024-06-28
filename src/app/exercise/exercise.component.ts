@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router} from '@angular/router';
 import { ApiService } from '../api.service';
 import { FormsModule } from '@angular/forms';
 import { ExerciseData } from '../exercise-data.model';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-exercise',
@@ -23,11 +24,14 @@ export class ExerciseComponent {
   current_level = 1;
   helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private router: Router) {
 
     this.data.topic = this.route.snapshot.params['topic'];
     this.newExercise();
 
+  }
+  goToOverview() {
+    this.router.navigate(['/overview']);
   }
 
   checkAnswer() {

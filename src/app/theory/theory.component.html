@@ -3,4 +3,11 @@
     <hr class="line-clamp-1">
     <p class="font-mono" style="margin-top: 20px;">{{ tutorial.description }}</p>
     <hr class="line-clamp-1">
+    <div class="button-container">
+        <button class="btn font-mono btn-custom" routerLink="">Back to Home</button>
+        <button class="btn font-mono btn-custom" *ngIf="tutorial.title =='Binary Conversion'" [routerLink]="['exercise', 'binaryConversion']">go to exercise</button>
+        <button class="btn font-mono btn-custom" *ngIf="tutorial.title =='Decimal Conversion'" [routerLink]="['exercise', 'decimalConversion']">go to exercise</button>
+        <button class="btn font-mono btn-custom" *ngIf="tutorial.title =='Logical Operations'" [routerLink]="['exercise', 'logicalOperations']">go to exercise</button>
+        <button class="btn font-mono btn-custom" *ngIf="tutorial.title =='Binary Arithmetic'" [routerLink]="['exercise', 'binaryArithmetic']" >go to exercise</button>
+    </div>
 </div>
