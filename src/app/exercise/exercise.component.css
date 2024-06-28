@@ -13,3 +13,16 @@
 .btn-link{
     color: antiquewhite;
 }
+.modal .modal-box{
+    background-color: rgb(255, 255, 255);
+    color: rgb(31, 41, 55);
+}
+.modal .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+    border: none;
+}
+.modal .btn:hover{
+    background-color: rgb(210, 210, 210);
+    color: rgb(31, 41, 55);
+}
