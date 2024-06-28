@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-theory',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './theory.component.html',
   styleUrl: './theory.component.css'
 })
@@ -23,7 +24,8 @@ export class TheoryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,5 +47,7 @@ export class TheoryComponent implements OnInit {
       }
     });
   }
-
+  goToOverview() {
+    this.router.navigate(['/overview']);
+  }
 }
