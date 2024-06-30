@@ -1,14 +1,14 @@
-<div class="flex flex-col justify-center items-center mt-20 mr-1 mb-1 ml-1 p-2">
-    <h1 class="font-mono" style="color: antiquewhite;">{{ data.title }}</h1>
+<div class="flex flex-col justify-center items-center mt-60 mr-1 mb-1 ml-1 p-2">
+    <h1 class="font-mono font-bold text-5xl" style="color: antiquewhite; margin-bottom: 4px;">{{ data.title }}</h1>
 
-    <p class="font-mono" style="color: antiquewhite;">{{ data.task }}</p>
+    <p class="font-mono text-3xl" style="color: antiquewhite; margin-top: 4px;">{{ data.task }}</p>
     <div class="button-container">
         <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(1)" class="btn-link font-mono mr-2">Level 1</button>
         <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(2)" class="btn-link font-mono">Level 2</button>
     </div>
 
     <div *ngIf="data.topic == 'decimalConversion'">
-        <input type="text" class="input input-bordered w-full max-w-xs custom-background" [(ngModel)]="data.userAnswer" />
+        <input type="text" class="input input-bordered w-full max-w-xs custom-background" style="margin: 10px;" [(ngModel)]="data.userAnswer" />
     </div>
 
     <div *ngIf="data.topic != 'decimalConversion'">
@@ -23,11 +23,11 @@
             </div>
         </div>
     </div>
-
-    <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="font-mono" style="color: antiquewhite;">Check answer</button>
-    <button class="font-mono" style="color: antiquewhite;" (click)="goToOverview()">Finish exercising</button>
-
-    <p class="font-mono" style="color: antiquewhite;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
+    <div class="button-container2">
+        <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="btn font-mono" >Check answer</button>
+        <button class="btn font-mono"  (click)="goToOverview()">Finish exercising</button>
+    </div>
+    <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
     <p class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
     <!-- the previous <P> tag will be deleted later on, for now it stays -->
 
