@@ -96,15 +96,15 @@ app.post("/api/check/", function (req, res) {
     console.log(`/api/check/ got called with topic: ${topic}, userAnswer: ${userAnswer} and targetAnswer: ${targetAnswer}`);
 
     // Let's check if topic, userAnswer or targetAnswer is undefinied, empty string or similiar
-    if (!topic) {
+    if (topic == null) {
         res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
     }
 
-    if (!userAnswer) {
+    if (userAnswer == null) {
         res.status(400).json({ error: 'No userAnswer was submitted in the POST request!' });  // Send bad request error!
     }
 
-    if (!targetAnswer) {
+    if (targetAnswer == null) {
         res.status(400).json({ error: 'No targetAnswer was submitted in the POST request!' });  // Send bad request error!
     }
 
