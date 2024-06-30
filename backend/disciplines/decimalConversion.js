@@ -3,7 +3,7 @@ function getDecimalConversionTheory() {
 }
 
 function getDecimalConversionExercise() {
-    decimalNumber = Math.floor(Math.random() * 512) + 1;   // Create number between 1 and 512
+    decimalNumber = Math.floor(Math.random() * 254) + 1;   // Create number between 1 and 255
     binaryRepresentation = decimalNumber.toString(2);
 
     return { title: "Binary to Decimal Conversion", task: `Convert ${binaryRepresentation} to decimal.`, targetAnswer: decimalNumber };
