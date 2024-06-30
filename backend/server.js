@@ -5,16 +5,20 @@ const { getBinaryArithmeticTheory, getBinaryArithmeticExercise, checkBinaryArith
 const { getLogicalOperationsTheory, getLogicalOperationsExercise, checkLogicalOperationsExercise } = require('./disciplines/logicalOperations');
 
 const express = require("express");
+const cors = require('cors');
 require('dotenv').config();
 const app = express();
 const port = 3000;
 
 const mongoose = require('mongoose');
 const Tutorial = require('./models/tutorialModel');
+const UserBehavior = require ('./models/userBehaviorModel')
 const { isAsyncIterable } = require('rxjs/internal/util/isAsyncIterable');
 const uri = process.env.MONGO_URI;
 
 app.use(express.json());
+app.use(cors());
+
 app.use((req, res, next) => { 
     res.header("Access-Control-Allow-Origin",  
                "http://localhost:4200"); 
@@ -129,6 +133,24 @@ app.post("/api/check/", function (req, res) {
     res.json({ result: result, feedback: feedback });
 })
 
+app.post("/api/log",  async (req, res) => {
+    console.log("Logging Event is triggered");
+    const { userId, eventType, eventData} = req.body;
+    console.log('Received data:', req.body);
+    const userBehavior = new UserBehavior( { userId, eventType, eventData} );
+
+    try{
+        const savedBehavior = await userBehavior.save();
+        console.log('Saved log data:', savedBehavior);
+        res.status(200).send('User behavior saved successfully');
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send("Error saving user behavior.");
+    }
+});
+
+
 async function run() {
     try {
         // try to connect to MongoDB using mongoose
@@ -137,7 +159,7 @@ async function run() {
                 version: '1', 
                 strict: true,
                 deprecationErrors: true,
-            }
+            },
         });
 
         console.log("Successfully connected to MongoDB!");

@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { UserLoggerService } from '../user-logger.service';
+
 @Component({
   selector: 'app-theory',
   standalone: true,
@@ -25,7 +27,8 @@ export class TheoryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private behaviorLogger: UserLoggerService
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +36,21 @@ export class TheoryComponent implements OnInit {
       if (this.topic) {
         this.fetchTutorial(this.topic);
       }
+    this.trackExercisePage();
     }
 
+  trackExercisePage() {
+    const eventType = 'page loaded';
+    const eventData = { page: `theory: ${this.topic}` };
+    this.behaviorLogger.logBehavior(eventType, eventData);
+  }
+
+  trackButtonOverviewClick(){
+    console.log('Tracking button click');
+    const eventType = 'button_click';
+    const eventData = {page: `theory to overview: ${this.topic}`};
+    this.behaviorLogger.logBehavior(eventType, eventData);
+  }
 
   fetchTutorial(topic: string): void {
     this.apiService.getTheory(topic).subscribe({
@@ -49,5 +65,6 @@ export class TheoryComponent implements OnInit {
   }
   goToOverview() {
     this.router.navigate(['/overview']);
+    this.trackButtonOverviewClick()
   }
 }
