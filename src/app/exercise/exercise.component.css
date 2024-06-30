@@ -26,3 +26,16 @@
     background-color: rgb(210, 210, 210);
     color: rgb(31, 41, 55);
 }
+.button-container2{
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.button-container2 .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+}
+.button-container2 .btn:hover {
+    background-color: rgb(210, 210, 210); 
+    color: rgb(31, 41, 55); 
+}
