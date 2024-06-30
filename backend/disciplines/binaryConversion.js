@@ -5,14 +5,8 @@ function getBinaryConversionTheory() {
 }
 
 function getBinaryConversionExercise() {
-    decimalNumber = Math.floor(Math.random() * 255) + 1;   // Create number between 1 and 255
-    binaryRepresentation = decimalNumber.toString(2);
-    targetAnswer = Array(8).fill(0);
-    
-    for (let i = binaryRepresentation.length - 1; i >= 0; i--) {
-        targetAnswer[i] = binaryRepresentation[i];
-    }
-
+    decimalNumber = Math.floor(Math.random() * 254) + 1;   // Create number between 1 and 255
+    targetAnswer = decimalNumber.toString(2).padStart(8, '0').split('');
     return { title: "Binary Conversion", task: `Convert ${decimalNumber} to binary.`, targetAnswer: targetAnswer };
 }
 
