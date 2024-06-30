@@ -34,16 +34,14 @@ app.post("/api/theory", async (req, res) => {
         const { topic } = req.body;
         console.log(`/api/theory/ got called with topic: ${topic}`);
 
-            // Let's check if topic is undefined, empty string or similar
-        if (!topic) {
-            res.status(400).json({ error: 'No topic was submitted in the POST request!' });  
-            // Send bad request error!
+        if (topic == null | topic.length === 0) {
+            res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
         }
 
         const tutorials = await Tutorial.findOne({ codeName: new RegExp(topic)}).exec();
         console.log('Found tutorials:', tutorials); // Log found tutorials
 
-        if (!tutorials || tutorials.length === 0){
+        if (tutorials == null || tutorials.length === 0){
             return res.status(404).send({ message: 'No tutorial found.'});
         }
         res.status(200).json(tutorials);
@@ -58,8 +56,8 @@ app.post("/api/exercise/", function (req, res) {
 
     console.log(`/api/exercise/ got called with topic: ${topic}`);
 
-    // Let's check if topic is undefined, empty string or similar
-    if (!topic) {
+    // Let's check if topic is undefinied, empty string or similiar
+    if (topic == null | topic.length === 0) {
         res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
     }
 
@@ -84,7 +82,7 @@ app.post("/api/exercise/", function (req, res) {
     task = response.task;
     targetAnswer = response.targetAnswer;
 
-    res.json({ topic: topic, task: task, targetAnswer: targetAnswer });
+    res.json({ title: title, task: task, targetAnswer: targetAnswer });
 
 })
 
@@ -99,16 +97,16 @@ app.post("/api/check/", function (req, res) {
 
     console.log(`/api/check/ got called with topic: ${topic}, userAnswer: ${userAnswer} and targetAnswer: ${targetAnswer}`);
 
-    // Let's check if topic, userAnswer or targetAnswer is undefined, empty string or similar
-    if (!topic) {
+    // Let's check if topic, userAnswer or targetAnswer is undefinied, empty string or similiar
+    if (topic == null | topic.length === 0) {
         res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
     }
 
-    if (!userAnswer) {
+    if (userAnswer == null) {
         res.status(400).json({ error: 'No userAnswer was submitted in the POST request!' });  // Send bad request error!
     }
 
-    if (!targetAnswer) {
+    if (targetAnswer == null) {
         res.status(400).json({ error: 'No targetAnswer was submitted in the POST request!' });  // Send bad request error!
     }
 

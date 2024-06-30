@@ -4,6 +4,8 @@ import { OverviewComponent } from './overview/overview.component';
 import { AboutComponent } from './about/about.component';
 import { TheoryComponent } from './theory/theory.component';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -15,6 +17,29 @@ export const routes: Routes = [
         path: "overview",
         component: OverviewComponent,
         title: "Overview"
+    },
+    {
+        path: "overview", children:[
+            {
+                path:"quiz",
+                component: QuizComponent,
+                title: "Quiz"
+            }
+        ]
+    },
+    {
+        path:"overview/quiz", children:[
+            {
+                path:"dashboard",
+                component: DashboardComponent,
+                title: "Dashboard"
+            }
+        ]
+    },
+    {
+        path: "dashboard",
+        component: DashboardComponent,
+        title:"Dashboard"
     },
     {
         path: "about",
