@@ -78,7 +78,7 @@ app.post("/api/exercise/", function (req, res) {
     task = response.task;
     targetAnswer = response.targetAnswer;
 
-    res.json({ topic: topic, task: task, targetAnswer: targetAnswer });
+    res.json({ title: title, task: task, targetAnswer: targetAnswer });
 
 })
 
