@@ -16,10 +16,10 @@ import { CommonModule } from '@angular/common';
 export class ExerciseComponent {
 
   route: ActivatedRoute = inject(ActivatedRoute);
-
   data: ExerciseData = new ExerciseData();
   correctAnswerStreak: number = 0;
   disableCheckButton: boolean = false;
+  modal: any = document.getElementById('my_modal_2');
 
   current_level = 1;
   helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
@@ -51,6 +51,21 @@ export class ExerciseComponent {
         }
       })
 
+  }
+  onCloseButtonClick(){
+    if(this.data.result)
+      {
+        this.newExercise();
+      }
+      else{
+        this.closeDialog();
+      }
+  }
+  closeDialog(){
+    if(this.modal)
+      {
+        this.modal.close();
+      }
   }
 
   newExercise() {
