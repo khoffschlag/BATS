@@ -175,7 +175,7 @@ export class ExerciseComponent implements OnInit{
   isCorrectDigit(index: number): boolean {
     const userAnswerArray = this.data.userAnswer as number[];
     const targetAnswerArray = this.data.targetAnswer as number[];
-    return userAnswerArray[index] === targetAnswerArray[index];
+    return userAnswerArray[index] == targetAnswerArray[index];
   }
 
   getButtonColor(index: number): { [key: string]: boolean } {
