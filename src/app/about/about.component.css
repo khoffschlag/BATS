@@ -12,9 +12,10 @@
     margin: 0 auto;
 }
 .blurry-background {
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-    padding: 0;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
     margin: 0;
+    padding: 0;
+    border-radius: 25px;
 }
 .small-image{
     height: 80px;
