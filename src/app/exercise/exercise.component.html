@@ -28,8 +28,7 @@
         <button class="btn font-mono"  (click)="goToOverview()">Finish exercising</button>
     </div>
     <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-    <p class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
-    <!-- the previous <P> tag will be deleted later on, for now it stays -->
+    <p *ngIf="data.topic == 'decimalConversion'" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
 
     
     <dialog id="my_modal_2" class="modal">
