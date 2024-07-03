@@ -21,9 +21,11 @@ export class ApiService {
   }
 
   checkExercise(exerciseData: ExerciseData): Observable<any> {
-    
     return this.http.post(`${this.url}/check/`, {data: exerciseData});
-    
+  }
+
+  getQuiz(): Observable<any> {
+    return this.http.get(`${this.url}/quiz/`);
   }
 
 }
