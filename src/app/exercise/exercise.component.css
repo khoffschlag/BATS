@@ -39,3 +39,11 @@
     background-color: rgb(210, 210, 210); 
     color: rgb(31, 41, 55); 
 }
+.btn-success{
+    background-color: seagreen;
+    color: antiquewhite;
+}
+.btn-error{
+    background-color: red;
+    color: antiquewhite;
+}

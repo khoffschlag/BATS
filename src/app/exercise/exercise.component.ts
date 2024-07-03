@@ -5,12 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { ExerciseData } from '../exercise-data.model';
 import { CommonModule } from '@angular/common';
 import { UserLoggerService } from '../user-logger.service';
+import { NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'app-exercise',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgClass],
   templateUrl: './exercise.component.html',
   styleUrl: './exercise.component.css'
 })
@@ -21,6 +22,7 @@ export class ExerciseComponent implements OnInit{
   correctAnswerStreak: number = 0;
   disableCheckButton: boolean = false;
   modal: any = document.getElementById('my_modal_2');
+  checkBtnPressed:boolean=false;
 
   current_level = 1;
   helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
@@ -82,6 +84,7 @@ export class ExerciseComponent implements OnInit{
 
   checkAnswer() {
       const modal: any = document.getElementById('my_modal_2');
+      this.checkBtnPressed=true;
       this.api.checkExercise(this.data).subscribe(response => {
         this.data.result = (response as any).result;
         this.data.feedback = (response as any).feedback;
@@ -102,6 +105,7 @@ export class ExerciseComponent implements OnInit{
   onCloseButtonClick(){
     if(this.data.result)
       {
+        this.checkBtnPressed=false;
         this.newExercise();
       }
       else{
@@ -168,6 +172,26 @@ export class ExerciseComponent implements OnInit{
       return [input];
     }
   }
+  isCorrectDigit(index: number): boolean {
+    const userAnswerArray = this.data.userAnswer as number[];
+    const targetAnswerArray = this.data.targetAnswer as number[];
+    return userAnswerArray[index] == targetAnswerArray[index];
+  }
 
-  
+  getButtonColor(index: number): { [key: string]: boolean } {
+    if (this.checkBtnPressed) {
+      if(this.data.result === undefined || this.data.result === null) 
+        {
+      return {};
+        }
+    else {
+    return {
+      'btn-success': this.isCorrectDigit(index),
+      'btn-error': !this.isCorrectDigit(index)
+    };
+  }
 }
+    return {};
+  }
+  }
+  

@@ -17,7 +17,7 @@
                 <div class="font-mono" style="color: antiquewhite;" id="helper-{{ i }}" *ngIf="current_level == 1">
                     {{ helpers[i] }}
                 </div>
-                <button (click)="toggleDigit(i)" class="btn btn-square font-mono">
+                <button (click)="toggleDigit(i)" class="btn btn-square font-mono" [ngClass]="getButtonColor(i)">
                     {{ getDigit(i) }}
                 </button>
             </div>
@@ -37,7 +37,7 @@
             <p class="py-4">{{ data.feedback }}</p>
             <div class="modal-action">
                 <form method="dialog">
-                    <button class="btn" (click)="onCloseButtonClick()">Close</button>
+                    <button class="btn" (click)="onCloseButtonClick()" >Close</button>
                 </form>
             </div>
         </div>
