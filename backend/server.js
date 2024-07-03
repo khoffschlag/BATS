@@ -133,6 +133,37 @@ app.post("/api/check/", function (req, res) {
     res.json({ result: result, feedback: feedback });
 })
 
+
+app.get("/api/quiz/", function (req, res) {
+
+    const possibleTopics = ['binaryConversion', 'decimalConversion', 'binaryArithmetic', 'logicalOperations'];
+    let topic = possibleTopics[Math.floor(Math.random() * possibleTopics.length)];
+
+    let title, task, targetAnswer;
+    switch(topic) {
+        case 'binaryConversion':
+            var response = getBinaryConversionExercise();
+            break;
+        case 'decimalConversion':
+            var response = getDecimalConversionExercise();
+            break;
+        case 'binaryArithmetic':
+            var response = getBinaryArithmeticExercise();
+            break;
+        case 'logicalOperations':
+            var response = getLogicalOperationsExercise();
+            break;
+        default:
+            res.status(400).json({ error: 'Invalid topic was submitted!' });
+    }
+    title = response.title;
+    task = response.task;
+    targetAnswer = response.targetAnswer;
+
+    res.json({ topic:topic, title: title, task: task, targetAnswer: targetAnswer });
+})
+
+
 app.post("/api/log",  async (req, res) => {
     console.log("Logging Event is triggered");
     const { userId, eventType, eventData} = req.body;
