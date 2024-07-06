@@ -10,3 +10,13 @@ body{
     height:100vh ; 
     width: 100%;
 }
+.attribution{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    color:aliceblue; 
+    padding: 5px 10px; 
+    border-radius: 5px;
+    font-size: 10px;
+    z-index: 1000; 
+}
