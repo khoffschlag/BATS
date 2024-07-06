@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timer-container{
+    margin-right: 20px; 
+    margin-left: 100px;
+    color: aliceblue;
+}
+.timer-unit{
+    margin-left: 5px;
+    padding-right: 4px;
+    padding-left: 6px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 2rem;
+}
+.custom-background{
+    background-color: ghostwhite;
+    color: black;
+}
+.btn-square{
+    background-color: ghostwhite;
+    color: black;
+}
+.button-container{
+    display: flex;
+    gap: 8px;
+}
+.btn-link{
+    color: antiquewhite;
+}
+.modal1 .modal-box{
+    background-color: rgb(255, 255, 255);
+    color: rgb(31, 41, 55);
+}
+.modal1 .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+    border: none;
+}
+.modal1 .btn:hover{
+    background-color: rgb(210, 210, 210);
+    color: rgb(31, 41, 55);
+}
+.button-container2{
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.button-container2 .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+}
+.button-container2 .btn:hover {
+    background-color: rgb(210, 210, 210); 
+    color: rgb(31, 41, 55); 
+}
+.btn-success{
+    background-color: seagreen;
+    color: antiquewhite;
+}
+.btn-error{
+    background-color: red;
+    color: antiquewhite;
+}
