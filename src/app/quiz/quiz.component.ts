@@ -20,7 +20,8 @@ export class QuizComponent implements OnInit , OnDestroy {
   data: ExerciseData = new ExerciseData();
   timer: number = 30;
   private intervalValue: any;
-  disableCheckButton: boolean = false;
+  disableCheckButton: boolean = true;
+  toggleButtonToggled: boolean = false;
   checkBtnPressed:boolean=false;
   correctAnswerStreak: number = 0;
   modal1: any = document.getElementById('my_modal_1');
@@ -91,6 +92,8 @@ export class QuizComponent implements OnInit , OnDestroy {
   toggleDigit(index: number) {
     if (Array.isArray(this.data.userAnswer)) {
       this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
+      this.toggleButtonToggled = true;
+      this.disableCheckButton = false;
     }
     else {
       console.log('Can only toggle buttons!');
@@ -102,7 +105,6 @@ export class QuizComponent implements OnInit , OnDestroy {
       this.data.userAnswer = 0;
       this.data.targetAnswer = -1;
     }
-    //this.disableCheckButton = false;
 
     this.api.getQuiz().subscribe(response => { // getQuiz instead of getExercise and we don't pass any data to API
       this.data.topic = (response as any).topic; 
@@ -113,7 +115,6 @@ export class QuizComponent implements OnInit , OnDestroy {
     //this.trackButtonNextExerciseClick()
   }
   checkAnswer() {
-    const modal: any = document.getElementById('my_modal_2');
     this.checkBtnPressed=true;
     this.api.checkExercise(this.data).subscribe(response => {
       this.data.result = (response as any).result;
@@ -122,11 +123,12 @@ export class QuizComponent implements OnInit , OnDestroy {
       if (this.data.result) {
         this.correctAnswerStreak += 1;
         this.disableCheckButton = true;
+        this.checkBtnPressed = false;
+        this.newExercise();
+        this.timer = 30;
       } else {
         this.correctAnswerStreak = 0;
-      }
-      if(modal){
-        modal.showModal();
+        this.disableCheckButton = true;
       }
     })
     //this.trackButtonCheckClick();
@@ -159,6 +161,9 @@ onCloseButtonClick(){
   {
     this.modal1.close();
   }
+}
+onInputFocus(){
+  this.disableCheckButton = false;
 }
 
 }
