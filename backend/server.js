@@ -1,8 +1,6 @@
-// First we need to import the theory, exercise and check methods of the corresponding disciplines
-const { getBinaryConversionTheory, getBinaryConversionExercise, checkBinaryConversionExercise } = require('./disciplines/binaryConversion');
-const { getDecimalConversionTheory, getDecimalConversionExercise, checkDecimalConversionExercise } = require('./disciplines/decimalConversion');
-const { getBinaryArithmeticTheory, getBinaryArithmeticExercise, checkBinaryArithmeticExercise } = require('./disciplines/binaryArithmetic');
-const { getLogicalOperationsTheory, getLogicalOperationsExercise, checkLogicalOperationsExercise } = require('./disciplines/logicalOperations');
+
+const { generateExercise } = require('./exercise/generate');
+const { checkExercise } = require('./exercise/check');
 
 const express = require("express");
 const cors = require('cors');
@@ -61,26 +59,10 @@ app.post("/api/exercise/", function (req, res) {
         res.status(400).json({ error: 'No topic was submitted in the POST request!' });  // Send bad request error!
     }
 
-    let title, task, targetAnswer;
-    switch(topic) {
-        case 'binaryConversion':
-            var response = getBinaryConversionExercise();
-            break;
-        case 'decimalConversion':
-            var response = getDecimalConversionExercise();
-            break;
-        case 'binaryArithmetic':
-            var response = getBinaryArithmeticExercise();
-            break;
-        case 'logicalOperations':
-            var response = getLogicalOperationsExercise();
-            break;
-        default:
-            res.status(400).json({ error: 'Invalid topic was submitted!' });
-    }
-    title = response.title;
-    task = response.task;
-    targetAnswer = response.targetAnswer;
+    response = generateExercise(topic);
+    let title = response.title;
+    let task = response.task;
+    let targetAnswer = response.targetAnswer;
 
     res.json({ title: title, task: task, targetAnswer: targetAnswer });
 
@@ -94,6 +76,7 @@ app.post("/api/check/", function (req, res) {
     let topic = data.topic;
     let userAnswer = data.userAnswer;
     let targetAnswer = data.targetAnswer;
+    let currentTry = data.currentTry;
 
     console.log(`/api/check/ got called with topic: ${topic}, userAnswer: ${userAnswer} and targetAnswer: ${targetAnswer}`);
 
@@ -110,26 +93,9 @@ app.post("/api/check/", function (req, res) {
         res.status(400).json({ error: 'No targetAnswer was submitted in the POST request!' });  // Send bad request error!
     }
 
-    let result, feedback;
-    switch(topic) {
-        case 'binaryConversion':
-            var response = checkBinaryConversionExercise(userAnswer, targetAnswer);
-            break;
-        case 'decimalConversion':
-            var response = checkDecimalConversionExercise(userAnswer, targetAnswer);
-            break;
-        case 'binaryArithmetic':
-            var response = checkBinaryArithmeticExercise(userAnswer, targetAnswer);
-            break;
-        case 'logicalOperations':
-            var response = checkLogicalOperationsExercise(userAnswer, targetAnswer);
-            break;
-        default:
-            res.status(400).json({ error: 'Invalid topic was submitted!' });
-    }
-    result = response.result;
-    feedback = response.feedback;
-
+    response = checkExercise(topic, userAnswer, targetAnswer, currentTry);
+    let result = response.result;
+    let feedback = response.feedback;
     res.json({ result: result, feedback: feedback });
 })
 
@@ -139,26 +105,10 @@ app.get("/api/quiz/", function (req, res) {
     const possibleTopics = ['binaryConversion', 'decimalConversion', 'binaryArithmetic', 'logicalOperations'];
     let topic = possibleTopics[Math.floor(Math.random() * possibleTopics.length)];
 
-    let title, task, targetAnswer;
-    switch(topic) {
-        case 'binaryConversion':
-            var response = getBinaryConversionExercise();
-            break;
-        case 'decimalConversion':
-            var response = getDecimalConversionExercise();
-            break;
-        case 'binaryArithmetic':
-            var response = getBinaryArithmeticExercise();
-            break;
-        case 'logicalOperations':
-            var response = getLogicalOperationsExercise();
-            break;
-        default:
-            res.status(400).json({ error: 'Invalid topic was submitted!' });
-    }
-    title = response.title;
-    task = response.task;
-    targetAnswer = response.targetAnswer;
+    response = generateExercise(topic);
+    let title = response.title;
+    let task = response.task;
+    let targetAnswer = response.targetAnswer;
 
     res.json({ topic:topic, title: title, task: task, targetAnswer: targetAnswer });
 })
