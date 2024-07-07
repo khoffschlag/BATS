@@ -121,9 +121,11 @@ export class QuizComponent implements OnInit , OnDestroy {
 
       if (this.data.result) {
         this.correctAnswerStreak += 1;
+        this.data.try = 0;
         this.disableCheckButton = true;
       } else {
         this.correctAnswerStreak = 0;
+        this.data.try += 1;
       }
       if(modal){
         modal.showModal();
