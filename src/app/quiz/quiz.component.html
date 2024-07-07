@@ -15,7 +15,7 @@
             </div>
 
             <div *ngIf="data.topic == 'decimalConversion'">
-                <input type="text" class="input input-bordered w-full max-w-xs custom-background" style="margin: 10px;" [(ngModel)]="data.userAnswer" />
+                <input type="text" class="input input-bordered w-full max-w-xs custom-background" style="margin: 10px;" [(ngModel)]="data.userAnswer" (focus)="onInputFocus()" />
             </div>
 
             <div *ngIf="data.topic != 'decimalConversion'">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="button-container2">
-                <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="btn font-mono" >Check answer</button>
+                <button [disabled]="disableCheckButton" (click)="checkAnswer()"  class="btn font-mono" >Check answer</button>
             </div>
             <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
             <p *ngIf="data.topic == 'decimalConversion'" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 

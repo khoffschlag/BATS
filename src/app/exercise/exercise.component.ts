@@ -20,7 +20,8 @@ export class ExerciseComponent implements OnInit{
   route: ActivatedRoute = inject(ActivatedRoute);
   data: ExerciseData = new ExerciseData();
   correctAnswerStreak: number = 0;
-  disableCheckButton: boolean = false;
+  disableCheckButton: boolean = true;
+  toggleButtonToggled: boolean = false;
   modal: any = document.getElementById('my_modal_2');
   checkBtnPressed:boolean=false;
 
@@ -109,8 +110,10 @@ export class ExerciseComponent implements OnInit{
       {
         this.checkBtnPressed=false;
         this.newExercise();
+        this.disableCheckButton = true;
       }
       else{
+        this.disableCheckButton = true;
         this.closeDialog();
       }
   }
@@ -129,7 +132,6 @@ export class ExerciseComponent implements OnInit{
       this.data.userAnswer = 0;
       this.data.targetAnswer = -1;
     }
-    this.disableCheckButton = false;
 
     this.api.getExercise(this.data.topic).subscribe(response => {
       this.data.title = (response as any).title;
@@ -155,6 +157,8 @@ export class ExerciseComponent implements OnInit{
   toggleDigit(index: number) {
     if (Array.isArray(this.data.userAnswer)) {
       this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
+      this.toggleButtonToggled = true;
+      this.disableCheckButton = false;
     }
     else {
       console.log('Can only toggle buttons!');
@@ -194,6 +198,9 @@ export class ExerciseComponent implements OnInit{
   }
 }
     return {};
+  }
+  onInputFocus(){
+    this.disableCheckButton = false;
   }
   }
   
