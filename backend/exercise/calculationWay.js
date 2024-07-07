@@ -50,17 +50,34 @@ function getBinaryConversionCalculationWay(task, targetAnswer) {
 }
 
 
-function getDecimalConversionCalculationWay(task, userAnswer, targetAnswer) {
+function getDecimalConversionCalculationWay(task, targetAnswer) {
+    let binaryNumber = String(task.match(/\d+/g));
+
+    let calculationWay = `In order to conver the binary number ${binaryNumber} to decimal, you can calculate the result of: \n`
+
+    amountBits = binaryNumber.length;
+    for (let pow = 0; pow < amountBits; pow++) {
+        currentBit = binaryNumber.charAt(amountBits - pow - 1);
+
+        if (pow == amountBits - 1) {
+            calculationWay += `${currentBit} * 2^${pow}`;
+        }
+        else {
+            calculationWay += `${currentBit} * 2^${pow} + `;
+        }
+
+    }
+
+    return calculationWay;
+}
+
+
+function getBinaryArithmeticCalculationWay(task, targetAnswer) {
     return 'Here could be a calculation way!';
 }
 
 
-function getBinaryArithmeticCalculationWay(task, userAnswer, targetAnswer) {
-    return 'Here could be a calculation way!';
-}
-
-
-function getLogicalOperationsCalculationWay(task, userAnswer, targetAnswer) {
+function getLogicalOperationsCalculationWay(task, targetAnswer) {
     return 'Here could be a calculation way!';
 }
 
