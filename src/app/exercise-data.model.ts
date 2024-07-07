@@ -7,7 +7,7 @@ export class ExerciseData {
 
     userAnswer: number | number[] = Array(8).fill(0);
     targetAnswer: number | number[] = Array(8).fill(-1);
-    try: number = 0;
+    currentTry: number = 0;
     
     result: boolean = false;
     feedback: string = '';

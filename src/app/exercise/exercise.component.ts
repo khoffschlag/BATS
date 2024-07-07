@@ -91,11 +91,11 @@ export class ExerciseComponent implements OnInit{
 
         if (this.data.result) {
           this.correctAnswerStreak += 1;
-          this.data.try = 0;
+          this.data.currentTry = 0;
           this.disableCheckButton = true;
         } else {
           this.correctAnswerStreak = 0;
-          this.data.try += 1;
+          this.data.currentTry += 1;
         }
         if(modal){
           modal.showModal();
