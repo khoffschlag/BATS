@@ -74,6 +74,7 @@ app.post("/api/check/", function (req, res) {
     console.log(data);
     
     let topic = data.topic;
+    let task = data.task;
     let userAnswer = data.userAnswer;
     let targetAnswer = data.targetAnswer;
     let currentTry = data.currentTry;
@@ -93,7 +94,7 @@ app.post("/api/check/", function (req, res) {
         res.status(400).json({ error: 'No targetAnswer was submitted in the POST request!' });  // Send bad request error!
     }
 
-    response = checkExercise(topic, userAnswer, targetAnswer, currentTry);
+    response = checkExercise(topic, task, userAnswer, targetAnswer, currentTry);
     let result = response.result;
     let feedback = response.feedback;
     res.json({ result: result, feedback: feedback });

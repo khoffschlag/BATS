@@ -1,4 +1,7 @@
-function checkExercise(topic, userAnswer, targetAnswer, currentTry) {
+const { showCalculationWay } = require('./calculationWay');
+
+
+function checkExercise(topic, task, userAnswer, targetAnswer, currentTry) {
 
     if (userAnswer.toString() == targetAnswer.toString()) {
         return { result: true, feedback: 'Well done! Your answer is correct!' };
@@ -10,7 +13,7 @@ function checkExercise(topic, userAnswer, targetAnswer, currentTry) {
     }
 
     if (currentTry == 1) {
-        return { result: false, feedback: showCalculationWay(topic) };
+        return { result: false, feedback: showCalculationWay(topic, task, userAnswer, targetAnswer) };
     }
 
     if (currentTry == 2) {
@@ -26,11 +29,6 @@ function checkExercise(topic, userAnswer, targetAnswer, currentTry) {
         return { result: false, feedback: `The correct answer is ${targetAnswer}` };
     }
 
-}
-
-
-function showCalculationWay(topic) {
-    return 'Here could be a calculation way!';
 }
 
 
