@@ -186,18 +186,16 @@ export class ExerciseComponent implements OnInit{
 
   getButtonColor(index: number): { [key: string]: boolean } {
     if (this.checkBtnPressed) {
-      if(this.data.result === undefined || this.data.result === null) 
-        {
-      return {};
-        }
-    else {
-    return {
-      'btn-success': this.isCorrectDigit(index),
-      'btn-error': !this.isCorrectDigit(index)
-    };
+      if (this.data.result === undefined || this.data.result === null || this.data.currentTry <= 1) {
+          return {};
+      } else if (this.data.currentTry >2) {
+              return {
+                  'btn-success': this.isCorrectDigit(index),
+                  'btn-error': !this.isCorrectDigit(index)
+                };
+          } 
   }
-}
-    return {};
+  return {};
   }
   onInputFocus(){
     this.disableCheckButton = false;
