@@ -101,6 +101,7 @@ export class QuizComponent implements OnInit , OnDestroy {
   }
   newExercise() {
     this.data = new ExerciseData();
+
     if (this.data.topic == 'decimalConversion') {
       this.data.userAnswer = 0;
       this.data.targetAnswer = -1;
@@ -111,6 +112,10 @@ export class QuizComponent implements OnInit , OnDestroy {
       this.data.title = (response as any).title;
       this.data.task = (response as any).task;
       this.data.targetAnswer = (response as any).targetAnswer;
+
+      if (this.data.topic == 'decimalConversion') {
+        this.data.userAnswer = 0;
+      }
     });
     //this.trackButtonNextExerciseClick()
   }
@@ -122,6 +127,7 @@ export class QuizComponent implements OnInit , OnDestroy {
 
       if (this.data.result) {
         this.correctAnswerStreak += 1;
+        this.data.currentTry = 0;
         this.disableCheckButton = true;
         this.checkBtnPressed = false;
         this.newExercise();
@@ -129,6 +135,7 @@ export class QuizComponent implements OnInit , OnDestroy {
       } else {
         this.correctAnswerStreak = 0;
         this.disableCheckButton = true;
+        this.data.currentTry += 1;
       }
     })
     //this.trackButtonCheckClick();
