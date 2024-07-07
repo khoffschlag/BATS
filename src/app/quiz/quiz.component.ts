@@ -98,10 +98,6 @@ export class QuizComponent implements OnInit , OnDestroy {
   }
   newExercise() {
     this.data = new ExerciseData();
-    if (this.data.topic == 'decimalConversion') {
-      this.data.userAnswer = 0;
-      this.data.targetAnswer = -1;
-    }
     //this.disableCheckButton = false;
 
     this.api.getQuiz().subscribe(response => { // getQuiz instead of getExercise and we don't pass any data to API
@@ -109,6 +105,10 @@ export class QuizComponent implements OnInit , OnDestroy {
       this.data.title = (response as any).title;
       this.data.task = (response as any).task;
       this.data.targetAnswer = (response as any).targetAnswer;
+
+      if (this.data.topic == 'decimalConversion') {
+        this.data.userAnswer = 0;
+      }
     });
     //this.trackButtonNextExerciseClick()
   }
