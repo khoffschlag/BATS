@@ -1,0 +1,25 @@
+h2{
+    color: aliceblue;
+}
+
+.button-container{
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.button-container .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+}
+.button-container .btn:hover {
+    background-color: rgb(210, 210, 210); 
+    color: rgb(31, 41, 55); 
+}
+.custom-background{
+    background-color:white;
+    color: black;
+}
+.lb-class{
+    background-color: white;
+    color: black;
+}

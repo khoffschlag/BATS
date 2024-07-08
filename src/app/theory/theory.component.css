@@ -19,8 +19,8 @@ p{
 .button-container .btn-custom{
     background-color: rgb(242, 242, 242);
     color: rgb(31, 41, 55);
-  }
+}
 .button-container .btn-custom:hover {
     background-color: rgb(210, 210, 210); 
     color: rgb(31, 41, 55); 
-  }
+}
