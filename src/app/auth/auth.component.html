@@ -1,0 +1,25 @@
+<form
+  class="wrapper"
+  (submit)="register ? signUp($event) : signIn($event)"
+  [formGroup]="form"
+>
+  <h3>{{ register ? "SIGN-UP" : "SIGN-IN" }}</h3>
+  <input
+    formControlName="username"
+    type="text"
+    class="username"
+    placeholder="Username"
+  />
+  <input
+    formControlName="password"
+    type="password"
+    class="password"
+    placeholder="Password"
+  />
+  <button [class.inactive]="!form.valid" type="submit">
+    {{ register ? "Sign-Up" : "Sign-In" }}
+  </button>
+  <button class="clear" type="button" (click)="register = !register">
+    {{ register ? "Already have an account?" : "Don't have an account?" }}
+  </button>
+</form>

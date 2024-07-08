@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -26,14 +26,15 @@ export class UserLoggerService {
   }
 
   logBehavior(eventType: String, eventData: any) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const behavior = {
       userId: this.userId,
       eventType,
       eventData,
-      timestamp: new Date(),
+      timestamp: new Date().toISOString(),
     };
 
-    this.http.post(this.apiUrl, behavior).subscribe({
+    this.http.post<any>(this.apiUrl, behavior, { headers }).subscribe({
       next: (response) => console.log('Behavior logged successfully', response),
       error: (error) => console.error('Error logging behavior: ', error)
     });

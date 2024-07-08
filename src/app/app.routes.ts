@@ -6,6 +6,8 @@ import { TheoryComponent } from './theory/theory.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { authGuard } from './guards/auth.guard';
+import { AuthComponent } from './auth/auth.component';
 
 export const routes: Routes = [
     {
@@ -32,14 +34,16 @@ export const routes: Routes = [
             {
                 path:"dashboard",
                 component: DashboardComponent,
-                title: "Dashboard"
+                title: "Dashboard",
+                canActivate: [authGuard]
             }
         ]
     },
     {
         path: "dashboard",
         component: DashboardComponent,
-        title:"Dashboard"
+        title:"Dashboard",
+        canActivate: [authGuard]
     },
     {
         path: "about",
@@ -64,5 +68,10 @@ export const routes: Routes = [
         path: "overview/exercise/:topic",
         component: ExerciseComponent,
         title: "Exercise"
+    },
+    {
+        path: "auth",
+        component: AuthComponent,
+        title: "Authentication"
     }
 ];
