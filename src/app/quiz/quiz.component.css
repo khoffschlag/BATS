@@ -74,3 +74,31 @@
     background-color: red;
     color: antiquewhite;
 }
+.modal .modal-box{
+    background-color: rgb(255, 255, 255);
+    color: rgb(31, 41, 55);
+}
+.modal .modal-action .fm .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+    border: none;
+}
+.modal .modal-action .fm .btn:hover{
+    background-color: rgb(210, 210, 210); 
+    color: rgb(31, 41, 55); 
+    border: none;
+}
+.modal-action .fm .button-container3{
+    display: flex;
+    gap: 15px;
+} 
+.modal-action .fm .button-container3 .btn{
+    background-color: rgb(242, 242, 242);
+    color: rgb(31, 41, 55);
+    border: none;
+}
+.modal-action .fm .button-container3 .btn:hover {
+    background-color: rgb(210, 210, 210); 
+    color: rgb(31, 41, 55); 
+    border: none;
+}
