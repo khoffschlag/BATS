@@ -30,7 +30,6 @@
     <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
     <ng-container *ngIf="data.topic == 'decimalConversion'">
         <p *ngIf="data.currentTry !=2" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p>
-        <!-- <p *ngFor="let line of feedbackLines" class="font-mono" style="color: antiquewhite;">{{ line }}</p>  -->
     </ng-container>
 
     
