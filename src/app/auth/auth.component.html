@@ -1,25 +1,49 @@
 <form
-  class="wrapper"
+  class="wrapper flex flex-col items-center justify-center mt-40 p-2"
   (submit)="register ? signUp($event) : signIn($event)"
   [formGroup]="form"
 >
-  <h3>{{ register ? "SIGN-UP" : "SIGN-IN" }}</h3>
+  <h2 class="font-mono text-4xl mb-4">{{ register ? "SIGN-UP" : "SIGN-IN" }}</h2>
+  <label class="lb-class input flex items-center gap-2 mb-4">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    class="h-4 w-4 opacity-70">
+    <path
+      d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+  </svg>
   <input
     formControlName="username"
     type="text"
-    class="username"
+    class="username w-full max-w-xs custom-background"
     placeholder="Username"
   />
+</label>
+<label class="lb-class input flex items-center gap-2">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16 16"
+    fill="currentColor"
+    class="h-4 w-4 opacity-70">
+    <path
+      fill-rule="evenodd"
+      d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+      clip-rule="evenodd" />
+  </svg>
   <input
-    formControlName="password"
-    type="password"
-    class="password"
-    placeholder="Password"
-  />
-  <button [class.inactive]="!form.valid" type="submit">
+  formControlName="password"
+  type="password"
+  class="password w-full max-w-xs custom-background"
+  placeholder="Password"
+/>
+</label>
+<div class="button-container">
+  <button class="btn" [class.inactive]="!form.valid" type="submit">
     {{ register ? "Sign-Up" : "Sign-In" }}
   </button>
-  <button class="clear" type="button" (click)="register = !register">
+  <button class="clear btn" type="button" (click)="register = !register">
     {{ register ? "Already have an account?" : "Don't have an account?" }}
   </button>
+</div>
 </form>
