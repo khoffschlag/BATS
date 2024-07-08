@@ -24,6 +24,7 @@ export class ExerciseComponent implements OnInit{
   toggleButtonToggled: boolean = false;
   modal: any = document.getElementById('my_modal_2');
   checkBtnPressed:boolean=false;
+  feedbackLines: string[] = [];
 
   current_level = 1;
   helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
@@ -97,6 +98,9 @@ export class ExerciseComponent implements OnInit{
         } else {
           this.correctAnswerStreak = 0;
           this.data.currentTry += 1;
+        }
+        if(this.data.currentTry == 2){
+          this.feedbackLines=this.data.feedback.split('\n');
         }
         if(modal){
           modal.showModal();

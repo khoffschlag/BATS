@@ -31,7 +31,8 @@
                 </div>
             </div>
             <div class="button-container2">
-                <button [disabled]="disableCheckButton" (click)="checkAnswer()"  class="btn font-mono" >Check answer</button>
+                <button [disabled]="disableCheckButton" (click)="checkAnswer()"  class="btn font-mono" [ngClass]="{'visually-disabled': disableCheckButton}">Check answer</button>
+                <button class="btn font-mono" (click)="finishingQuiz()">Finish quiz</button>
             </div>
             <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
             <p *ngIf="data.topic == 'decimalConversion'" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
@@ -48,6 +49,19 @@
                     </div>
                 </div>
             </dialog>
+            <dialog id="my_modal_2" class="modal modal-middle">
+                <div class="modal-box">
+                    <h3 class="text-lg font-bold">Are you really want to leave the quiz!</h3>
+                    <p class="py-4">Do you want to sign up / login to keep up your achievement</p>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn" (click)="goToLogin()">sign up / login</button>
+                            <button class="btn" (click)="goToOverview()">back to overview</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </div>
     </div>
 </div>
 

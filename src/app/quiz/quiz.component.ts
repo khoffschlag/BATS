@@ -6,6 +6,7 @@ import { UserLoggerService } from '../user-logger.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
+import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-quiz',
@@ -25,6 +26,7 @@ export class QuizComponent implements OnInit , OnDestroy {
   checkBtnPressed:boolean=false;
   correctAnswerStreak: number = 0;
   modal1: any = document.getElementById('my_modal_1');
+  modal2 : any = document.getElementById('my_modal_2');
   
   
 
@@ -171,6 +173,20 @@ onCloseButtonClick(){
 }
 onInputFocus(){
   this.disableCheckButton = false;
+}
+finishingQuiz(){
+  this.clearInerValue();
+  const modal2 : any = document.getElementById('my_modal_2');
+  if(modal2)
+  {
+    modal2.showModal();
+  }
+}
+goToOverview() {
+  this.router.navigate(['/overview']);
+}
+goToLogin(){
+  this.router.navigate(['/auth']);
 }
 
 }
