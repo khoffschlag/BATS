@@ -54,6 +54,10 @@
     gap: 15px;
     margin-top: 20px;
 }
+.visually-disabled{
+    background-color: rgb(213, 214, 217) !important;
+    color: rgb(176, 179, 185) !important;
+}
 .button-container2 .btn{
     background-color: rgb(242, 242, 242);
     color: rgb(31, 41, 55);

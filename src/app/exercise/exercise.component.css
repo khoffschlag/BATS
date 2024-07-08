@@ -39,6 +39,10 @@
     background-color: rgb(210, 210, 210); 
     color: rgb(31, 41, 55); 
 }
+.visually-disabled{
+    background-color: rgb(213, 214, 217) !important;
+    color: rgb(176, 179, 185) !important;
+}
 .btn-success{
     background-color: seagreen;
     color: antiquewhite;

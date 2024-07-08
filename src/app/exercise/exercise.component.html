@@ -24,16 +24,22 @@
         </div>
     </div>
     <div class="button-container2">
-        <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="btn font-mono" >Check answer</button>
+        <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="btn font-mono" [ngClass]="{'visually-disabled': disableCheckButton}" >Check answer</button>
         <button class="btn font-mono"  (click)="goToOverview()">Finish exercising</button>
     </div>
     <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-    <p *ngIf="data.topic == 'decimalConversion'" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
+    <ng-container *ngIf="data.topic == 'decimalConversion'">
+        <p *ngIf="data.currentTry !=2" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p>
+        <!-- <p *ngFor="let line of feedbackLines" class="font-mono" style="color: antiquewhite;">{{ line }}</p>  -->
+    </ng-container>
 
     
     <dialog id="my_modal_2" class="modal modal-middle">
         <div class="modal-box">
-            <p class="py-4">{{ data.feedback }}</p>
+            <p class="py-4" *ngIf="data.currentTry!=2">{{ data.feedback }}</p>
+            <ng-container *ngIf="data.currentTry == 2">
+                <p *ngFor="let line of feedbackLines">{{ line }}</p>
+            </ng-container>
             <div class="modal-action">
                 <form method="dialog">
                     <button class="btn" (click)="onCloseButtonClick()" >Close</button>
