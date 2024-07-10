@@ -3,20 +3,13 @@
     <hr class="line-clamp-1">
     <p class="font-mono text-3xl" style="margin-top: 20px;">{{ tutorial.description }}</p>
     <hr class="line-clamp-1">
-    <div *ngFor="let section of tutorial.sections">
-        <h2 class="font-mono">{{ section.title }}</h2>
-        <p>{{ section.content }}</p>
-        <div *ngFor="let picture of section.pictures">
-            <img [src]="picture.url" [alt]="picture.caption" alt="here must be an image displayed">
-        </div>
-    </div>
-    <div class="bg-base-200 collapse">
-        <input type="checkbox" class="peer" />
-        <div class="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-            Click me to show/hide content
-        </div>
-        <div class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-            <p>hello</p>
+    <div class="join join-vertical w-full blurry-background mt-3 mb-3">
+        <div *ngFor="let section of tutorial.sections; let i = index" class="collapse collapse-arrow join-item border-base-300 border">
+            <input type="radio" name="my-accordion" [checked]="i === 0" />
+            <div class="collapse-title text-4xl font-mono font-bold">{{ section.title }}</div>
+            <div class="collapse-content">
+            <p class="font-mono font-bold text-2xl" style="color: black;">{{ section.content }}</p>
+            </div>
         </div>
     </div>
     <div class="button-container">
