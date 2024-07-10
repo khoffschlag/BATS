@@ -1,13 +1,5 @@
 const mongoose = require('mongoose');
 
-const pictureSchema = new mongoose.Schema(
-    {   
-        data: Buffer,
-        contentType: String,
-        url: String,
-        caption: String
-    }
-);
 
 const sectionSchema = new mongoose.Schema (
     {   
@@ -18,14 +10,6 @@ const sectionSchema = new mongoose.Schema (
         content:{
             type: String,
             required: true
-        },
-        pictures: {
-            type: [pictureSchema],
-            validate: function(val) {
-                return val.length <= 5;        
-            },
-            message: 'Exceeds the limit of 5 pictures',
-            required: false
         }
 
     }, {_id: false}

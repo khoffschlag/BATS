@@ -27,3 +27,6 @@ p{
     background-color: rgb(210, 210, 210); 
     color: rgb(31, 41, 55); 
 }
+.blurry-background{
+    background: rgba(255, 255, 255, 0.6);
+}

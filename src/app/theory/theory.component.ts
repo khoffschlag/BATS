@@ -22,12 +22,6 @@ export class TheoryComponent implements OnInit {
       {
         title: '',
         content: '',
-        pictures: [
-          {
-            url: '',
-            caption: ''
-          }
-        ]
       }
     ]
   };
