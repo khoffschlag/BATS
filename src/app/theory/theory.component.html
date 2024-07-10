@@ -3,6 +3,22 @@
     <hr class="line-clamp-1">
     <p class="font-mono text-3xl" style="margin-top: 20px;">{{ tutorial.description }}</p>
     <hr class="line-clamp-1">
+    <div *ngFor="let section of tutorial.sections">
+        <h2 class="font-mono">{{ section.title }}</h2>
+        <p>{{ section.content }}</p>
+        <div *ngFor="let picture of section.pictures">
+            <img [src]="picture.url" [alt]="picture.caption" alt="here must be an image displayed">
+        </div>
+    </div>
+    <div class="bg-base-200 collapse">
+        <input type="checkbox" class="peer" />
+        <div class="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            Click me to show/hide content
+        </div>
+        <div class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            <p>hello</p>
+        </div>
+    </div>
     <div class="button-container">
         <button class="btn font-mono btn-custom"  (click)="goToOverview()">back to overview</button>
         <button class="btn font-mono btn-custom" *ngIf="tutorial.title =='Binary Conversion'" [routerLink]="['exercise', 'binaryConversion']">go to exercise</button>

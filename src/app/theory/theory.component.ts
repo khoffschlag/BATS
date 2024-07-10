@@ -15,11 +15,25 @@ import { UserLoggerService } from '../user-logger.service';
 export class TheoryComponent implements OnInit {
 
   // A dummy model to avoid problems
-  tutorial = 
-  {
+  tutorial = {
     title: '',
     description: '',
+    sections: [
+      {
+        title: '',
+        content: '',
+        pictures: [
+          {
+            url: '',
+            caption: ''
+          }
+        ]
+      }
+    ]
   };
+
+
+
 
   topic: string = '';
   
