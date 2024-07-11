@@ -16,11 +16,6 @@ export const routes: Routes = [
         title: "Home"
     },
     {
-        path: "home",
-        component: HomeComponent,
-        title: "Home"
-    },
-    {
         path: "overview",
         component: OverviewComponent,
         title: "Overview"

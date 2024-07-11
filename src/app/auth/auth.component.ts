@@ -56,12 +56,11 @@ export class AuthComponent implements OnInit {
 
   signIn(e: Event) {
     e.preventDefault();
-    const signUpData  = {
+    const signInData  = {
       ...this.form.value,
       correctAnswerStreak: this.correctAnswerStreak
     };
-
-    this.apiService.signIn(signUpData).subscribe({
+    this.apiService.signIn(signInData).subscribe({
       next: () => {
         this.router.navigate(['/dashboard']);
       },
