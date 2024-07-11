@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit{
     this.apiService.logout().subscribe({
       next: () => {
         console.log('Logged out successfully');
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       },
       error: (error) => {
         console.error('Logout failed', error);
