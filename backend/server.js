@@ -55,12 +55,14 @@ app.post("/api/sign-up", async (req, res) => {
         const existing = await User.findOne({ username });
 
         if (existing) {
+            existing.correctAnswerStreak = existing.correctAnswerStreak + correctAnswerStreak;
+            await existing.save();
+            
             return res.status(400).json({ message: "Username already taken."});
         }
 
         // creating a new user
         const user = new User({ username, password ,correctAnswerStreak });
-        // user.correctAnswerStreak = req.body.correctAnswerStreak;
         await user.save();
 
         res.status(201).json({message: "User registered successfully."})
@@ -86,8 +88,9 @@ app.post("/api/sign-in", async (req, res) => {
         if (!passwordValid) {
             return res.status(401).json({ message: "Authentication failed" });
         }
-        user.correctAnswerStreak= correctAnswerStreak;
-        await user.save();
+            user.correctAnswerStreak =user.correctAnswerStreak + correctAnswerStreak;
+            await user.save();
+        
 
         // modify the session
         req.session.user = { id: user._id, username: user.username };
