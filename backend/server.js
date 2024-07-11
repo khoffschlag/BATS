@@ -105,13 +105,14 @@ app.post("/api/logout", (req, res) => {
             if (err) {
                 return res
                     .status(500)
-                    .send({ message: "Could not log out, please try again" });
+                    .json({ message: "Could not log out, please try again" });
             } else {
+                console.log("User logged out");
                 res.send({ message: "Logout successful "});
             }
         });
     } else {
-        res.status(400).send({ message: "You are not logged in "});
+        res.status(400).json({ message: "You are not logged in "});
     }
 });
 
