@@ -143,6 +143,10 @@ export class QuizComponent implements OnInit , OnDestroy {
     //this.trackButtonCheckClick();
 
 }
+//storing the value of correctAnswerStreak in the browser local storage, to retrieve it in auth component
+storeCorrectAnswerStreak() {
+  localStorage.setItem('correctAnswerStreak', this.correctAnswerStreak.toString());
+}
 
 isCorrectDigit(index: number): boolean {
   const userAnswerArray = this.data.userAnswer as number[];
@@ -176,6 +180,7 @@ onInputFocus(){
 }
 finishingQuiz(){
   this.clearInerValue();
+  this.storeCorrectAnswerStreak();
   const modal2 : any = document.getElementById('my_modal_2');
   if(modal2)
   {
@@ -187,6 +192,8 @@ goToOverview() {
 }
 goToLogin(){
   this.router.navigate(['/auth']);
+}goToDashboard(){
+  this.router.navigate(['/dashboard']);
 }
 
 }

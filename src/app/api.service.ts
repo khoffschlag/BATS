@@ -40,7 +40,7 @@ export class ApiService {
     );
   }
 
-  signUp(credentials: {username: String, password: String}) {
+  signUp(credentials: {username: String, password: String, correctAnswerStreak:number}) {
     return this.http.post(`${this.url}/sign-up`, credentials);
   }
 
@@ -64,6 +64,11 @@ export class ApiService {
     );
   }
   
+  updateStreak(username: string, correctAnswerStreak: number): Observable<any> {
+  return this.http.post(`${this.url}/update-streak`, { username, correctAnswerStreak });
+}
+
+
   isAuthenticated(): Observable<boolean> {
     return this.http.get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, { withCredentials: true }).pipe(
       map(response => response.isAuthenticated)
