@@ -11,14 +11,14 @@ footer{
 .attribution{
     text-align: right;
     bottom: 10px;
-    color:aliceblue; 
+    color: rgb(215, 221, 228); 
     padding: auto; 
-    font-size: 10px;
+    font-size: 12px;
 }
 .disclaimer{
     text-align: left;
     bottom: 10px;
-    color:aliceblue; 
+    color: rgb(215, 221, 228); 
     padding: auto; 
-    font-size: 10px;
+    font-size: 12px;
 }
