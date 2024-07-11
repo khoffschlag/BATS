@@ -13,9 +13,9 @@
 }
 .blurry-background {
     background: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
-    margin: 0;
     padding: 0;
     border-radius: 25px;
+    margin: 5%;
 }
 .small-image{
     height: 80px;

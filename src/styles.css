@@ -2,33 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body{
-    background-image: url('./assets/3d-fantasy-scene.jpg');
-    background-size: cover;
-    background-position: center;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
-}
-.attribution{
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    color:aliceblue; 
-    padding: 5px 10px; 
-    border-radius: 5px;
-    font-size: 10px;
-    z-index: 1000; 
-}
-.disclaimer{
-    position: fixed;
-    left: 10px;
-    bottom: 10px;
-    color:aliceblue; 
-    padding: 5px 10px; 
-    border-radius: 5px;
-    font-size: 10px;
-    z-index: 1000; 
-}
