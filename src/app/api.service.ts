@@ -28,17 +28,21 @@ export class ApiService {
     return this.http.get(`${this.url}/quiz/`);
   }
 
-  signIn(credentials: { username: string; password: string }): Observable<any> {
+  signIn(credentials: { username: string; password: string; correctAnswerStreak: number }): Observable<any> {
     return this.http.post(`${this.url}/sign-in`, credentials, { withCredentials: true });
   }
 
-  signUp(credentials: {username: String, password: String}) {
+  signUp(credentials: {username: String, password: String, correctAnswerStreak:number}) {
     return this.http.post(`${this.url}/sign-up`, credentials);
   }
 
   logout() {
     return this.http.post(`${this.url}/logout`, {});
   }
+
+  updateStreak(username: string, correctAnswerStreak: number): Observable<any> {
+  return this.http.post(`${this.url}/update-streak`, { username, correctAnswerStreak });
+}
 
   isAuthenticated(): Observable<boolean> {
     return this.http.get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, { withCredentials: true }).pipe(
