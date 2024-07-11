@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -13,15 +13,21 @@ import { ApiService } from '../api.service';
 })
 export class HeaderComponent implements OnInit{
 
-  isAuthenticated$: Observable<boolean>;
+  isAuthenticated = false;
 
   constructor(
     public apiService: ApiService,
-    private router: Router
-  ) {this.isAuthenticated$ = this.apiService.isAuthenticated();}
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.isAuthenticated$ = this.apiService.isAuthenticated();
+    this.apiService.authStatus$.subscribe(
+      (isAuthenticated) => {
+        this.isAuthenticated = isAuthenticated;
+        this.cdr.detectChanges(); 
+      }
+    );
   }
   
   login() {

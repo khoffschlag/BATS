@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
 import { ExerciseData } from './exercise-data.model';
 
 @Injectable({
@@ -8,9 +8,13 @@ import { ExerciseData } from './exercise-data.model';
 })
 export class ApiService {
 
-  private url = "http://localhost:3000/api"
+  private url = "http://localhost:3000/api";
+  private authStatus = new BehaviorSubject<boolean>(false);
+  authStatus$ = this.authStatus.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
   getTheory(topic: string): Observable<any> {
     return this.http.post(`${this.url}/theory/`, {topic: topic});
@@ -29,17 +33,37 @@ export class ApiService {
   }
 
   signIn(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(`${this.url}/sign-in`, credentials, { withCredentials: true });
+    return this.http.post(`${this.url}/sign-in`, credentials, { withCredentials: true }).pipe(
+      tap(() => {
+        this.authStatus.next(true); // Update auth status on successful login
+      })
+    );
   }
 
   signUp(credentials: {username: String, password: String}) {
     return this.http.post(`${this.url}/sign-up`, credentials);
   }
 
-  logout() {
-    return this.http.post(`${this.url}/logout`, {});
+  logout() : Observable<any>{
+    return this.http.post(`${this.url}/logout`, {}, { withCredentials: true }).pipe(
+      tap(() => {
+        this.authStatus.next(false); // Update auth status on successful logout
+      })
+    );
   }
 
+  checkAuthStatus(): Observable<{ isAuthenticated: boolean }> {
+    return this.http.get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, { withCredentials: true }).pipe(
+      tap(response => {
+        this.authStatus.next(response.isAuthenticated); // Update auth status
+      }),
+      catchError(() => {
+        this.authStatus.next(false); // Default to not authenticated on error
+        return of({ isAuthenticated: false }); // Return default value
+      })
+    );
+  }
+  
   isAuthenticated(): Observable<boolean> {
     return this.http.get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, { withCredentials: true }).pipe(
       map(response => response.isAuthenticated)
