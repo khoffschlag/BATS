@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 // Registration for a new user
 app.post("/api/sign-up", async (req, res) => {
     try {
-        const {username, password} = req.body;
+        const {username, password, correctAnswerStreak} = req.body;
         const existing = await User.findOne({ username });
 
         if (existing) {
@@ -59,7 +59,8 @@ app.post("/api/sign-up", async (req, res) => {
         }
 
         // creating a new user
-        const user = new User({ username, password });
+        const user = new User({ username, password ,correctAnswerStreak });
+        // user.correctAnswerStreak = req.body.correctAnswerStreak;
         await user.save();
 
         res.status(201).json({message: "User registered successfully."})
@@ -71,7 +72,7 @@ app.post("/api/sign-up", async (req, res) => {
 // Login 
 app.post("/api/sign-in", async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username, password, correctAnswerStreak } = req.body;
         console.log('Received login request:', username);
         const user = await User.findOne({ username });
         console.log('Found user:', user);
@@ -85,6 +86,8 @@ app.post("/api/sign-in", async (req, res) => {
         if (!passwordValid) {
             return res.status(401).json({ message: "Authentication failed" });
         }
+        user.correctAnswerStreak= correctAnswerStreak;
+        await user.save();
 
         // modify the session
         req.session.user = { id: user._id, username: user.username };
@@ -114,6 +117,26 @@ app.post("/api/logout", (req, res) => {
 
 app.get("/api/is-authenticated", isAuthenticated, (req, res) => {
     res.status(200).json({ isAuthenticated: req.isAuthenticated });
+});
+
+
+// Update correctAnswerStreak value
+app.post("/api/update-streak", async (req, res) => {
+    try {
+        const { username, correctAnswerStreak } = req.body;
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        user.correctAnswerStreak = correctAnswerStreak;
+        await user.save();
+
+        res.status(200).json({ message: "Streak updated successfully" });
+    } catch (error) {
+        res.status(500).json(error);
+    }
 });
 
 //Endpoint to get tutorial by title passed in the body
