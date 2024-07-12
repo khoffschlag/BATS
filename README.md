@@ -4,6 +4,8 @@
 
 <p align="center"> <img src="https://img.shields.io/badge/Universität Duisburg Essen-Advanced Web technologies-blue"/> </p>
 
+<p align="center"> <a href="">Video Demo</a> - <a href="">Live Demo </a> </p>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
 
 ## Development server
