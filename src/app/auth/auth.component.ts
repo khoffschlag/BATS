@@ -16,20 +16,26 @@ import { ApiService } from '../api.service';
 })
 export class AuthComponent implements OnInit {
 
+  isAuthenticated = false;
+  correctAnswerStreak: number | undefined;
+  saveStreak: string = '0';
+  register: boolean = false;
+
   constructor (private formBuilder: FormBuilder,
     private apiService: ApiService,
     private router: Router
   ) {}
+
     ngOnInit(): void {
-    // Retrieving correctAnswerStreak from the local storage
-    const streak = localStorage.getItem('correctAnswerStreak');
-    if (streak) {
-      this.correctAnswerStreak = +streak;
-    }
+      this.apiService.authStatus$.subscribe(
+        (isAuthenticated) => {
+          this.isAuthenticated = isAuthenticated;
+        }
+      ):
+
+    this.apiService.checkAuthStatus().subscribe();
   }
 
-  register: boolean = false;
-  correctAnswerStreak : number = 0;
 
   form: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
@@ -39,11 +45,17 @@ export class AuthComponent implements OnInit {
   signUp(e: Event) {
     // do not reload every time when submitted
     e.preventDefault();
+    const quizResultsString = localStorage.getItem('quizResults');
+    let quizResults = null;
+
+    if (quizResultsString) {
+      quizResults = JSON.parse(quizResultsString);
+      localStorage.removeItem('quizResults'); 
+    }
     const signUpData  = {
       ...this.form.value,
-      correctAnswerStreak: this.correctAnswerStreak
+      quizResults: quizResults,
     };
-
     this.apiService.signUp(signUpData).subscribe({
       next: () => {
         this.register = false;
@@ -56,9 +68,18 @@ export class AuthComponent implements OnInit {
 
   signIn(e: Event) {
     e.preventDefault();
+
+    const quizResultsString = localStorage.getItem('quizResults');
+    let quizResults = null;
+
+    if (quizResultsString) {
+      quizResults = JSON.parse(quizResultsString);
+      localStorage.removeItem('quizResults'); 
+    }
     const signInData  = {
       ...this.form.value,
-      correctAnswerStreak: this.correctAnswerStreak
+      quizResults: quizResults,
+
     };
     this.apiService.signIn(signInData).subscribe({
       next: () => {
@@ -70,8 +91,8 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  updateStreak(username: string, streak: number) {
-    this.apiService.updateStreak(username, streak).subscribe({
+  updateStreak( streak: number) {
+    this.apiService.updateStreak(streak).subscribe({
       next: () => {
         console.log('Streak updated successfully');
       },

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ChangeDetectorRef } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { ExerciseData } from '../exercise-data.model';
 import { ApiService } from '../api.service';
@@ -28,17 +28,26 @@ export class QuizComponent implements OnInit , OnDestroy {
   modal1: any = document.getElementById('my_modal_1');
   modal2 : any = document.getElementById('my_modal_2');
   
-  
+  isAuthenticated = false;
 
   current_level = 1;
   helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
 
-  constructor(private api: ApiService, private behaviorLogger: UserLoggerService, private router: Router) {
+  constructor(private api: ApiService, 
+              private behaviorLogger: UserLoggerService, 
+              private router: Router,
+              private cdr: ChangeDetectorRef) {
     this.newExercise();
 
   }
 
   ngOnInit(): void {
+      this.api.authStatus$.subscribe(
+        (isAuthenticated) => {
+          this.isAuthenticated = isAuthenticated;
+          this.cdr.detectChanges(); 
+        }
+      );
       this.startTimer();
   }
   ngOnDestroy(): void {
@@ -148,6 +157,10 @@ storeCorrectAnswerStreak() {
   localStorage.setItem('correctAnswerStreak', this.correctAnswerStreak.toString());
 }
 
+updateStreakInDB() {
+  this.api.updateStreak(this.correctAnswerStreak);
+}
+
 isCorrectDigit(index: number): boolean {
   const userAnswerArray = this.data.userAnswer as number[];
   const targetAnswerArray = this.data.targetAnswer as number[];
@@ -175,24 +188,47 @@ onCloseButtonClick(){
     this.modal1.close();
   }
 }
+
 onInputFocus(){
   this.disableCheckButton = false;
 }
+
 finishingQuiz(){
   this.clearInerValue();
   this.storeCorrectAnswerStreak();
-  const modal2 : any = document.getElementById('my_modal_2');
-  if(modal2)
+
+  let modal_show: any;
+  if (this.isAuthenticated) {
+    const currentRecordsubscription = this.api.checkUserStreak().subscribe({
+      next: (streak) => {
+        const currentRecord: number = streak;
+        if (this.correctAnswerStreak > currentRecord) {
+          modal_show = document.getElementById('modal_auth_ok');
+        }else {
+          modal_show = document.getElementById('modal_no_record');
+        }
+      }
+    });
+
+  }else {
+     modal_show = document.getElementById('my_modal_2');
+  }
+  if(modal_show)
   {
-    modal2.showModal();
+    modal_show.showModal();
   }
 }
+
 goToOverview() {
   this.router.navigate(['/overview']);
 }
-goToLogin(){
+
+goToLogin(){ 
+  localStorage.setItem('quizResults', JSON.stringify(this.correctAnswerStreak));
   this.router.navigate(['/auth']);
-}goToDashboard(){
+}
+
+goToDashboard(){
   this.router.navigate(['/dashboard']);
 }
 

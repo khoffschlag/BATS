@@ -24,9 +24,9 @@ export class HeaderComponent implements OnInit{
     this.apiService.authStatus$.subscribe(
       (isAuthenticated) => {
         this.isAuthenticated = isAuthenticated;
-        this.cdr.detectChanges(); 
       }
     );
+    this.apiService.checkAuthStatus().subscribe();
   }
   
   login() {

@@ -40,7 +40,7 @@ export class ApiService {
     );
   }
 
-  signUp(credentials: {username: String, password: String, correctAnswerStreak:number}) {
+  signUp(credentials: {username: String, password: String, correctAnswerStreak?:number}) {
     return this.http.post(`${this.url}/sign-up`, credentials);
   }
 
@@ -48,6 +48,7 @@ export class ApiService {
     return this.http.post(`${this.url}/logout`, {}, { withCredentials: true }).pipe(
       tap(() => {
         this.authStatus.next(false); // Update auth status on successful logout
+        localStorage.clear(); 
       })
     );
   }
@@ -64,8 +65,8 @@ export class ApiService {
     );
   }
   
-  updateStreak(username: string, correctAnswerStreak: number): Observable<any> {
-  return this.http.post(`${this.url}/update-streak`, { username, correctAnswerStreak });
+  updateStreak(correctAnswerStreak: number): Observable<any> {
+  return this.http.post(`${this.url}/update-streak`, {correctAnswerStreak });
 }
 
 
@@ -73,6 +74,11 @@ export class ApiService {
     return this.http.get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, { withCredentials: true }).pipe(
       map(response => response.isAuthenticated)
     );
+  }
+
+  checkUserStreak(): Observable<number> {
+    return this.http.get<{streak: number }>(`${this.url}/check-streak`, { withCredentials: true }).pipe(
+      map(response => response.streak));
   }
 
 }
