@@ -59,9 +59,13 @@ export class AuthComponent implements OnInit {
     this.apiService.signUp(signUpData).subscribe({
       next: () => {
         this.register = false;
+        const modal_show: any = document.getElementById('modal_success');
+        modal_show.showModal();
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);
+        const modal_show: any = document.getElementById('modal_fail');
+        modal_show.showModal();
       }
     });
   }
