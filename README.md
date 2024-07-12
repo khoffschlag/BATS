@@ -1,4 +1,4 @@
-# BATS
+<p align="center"> <img src="src/assets/bats_logo.png" width="350"> </p>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
 
