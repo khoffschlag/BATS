@@ -198,6 +198,7 @@ finishingQuiz(){
   this.storeCorrectAnswerStreak();
 
   let modal_show: any;
+
   if (this.isAuthenticated) {
     const currentRecordsubscription = this.api.checkUserStreak().subscribe({
       next: (streak) => {
@@ -207,6 +208,12 @@ finishingQuiz(){
         }else {
           modal_show = document.getElementById('modal_no_record');
         }
+        if (modal_show) {
+          modal_show.showModal();
+        }
+      },
+      error: (err) => {
+        console.error('Error checking streak:', err);
       }
     });
 
