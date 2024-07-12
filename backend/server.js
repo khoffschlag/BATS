@@ -51,18 +51,15 @@ app.use((req, res, next) => {
 // Registration for a new user
 app.post("/api/sign-up", async (req, res) => {
     try {
-        const {username, password, correctAnswerStreak} = req.body;
+        const {username, password, quizResults} = req.body;
         const existing = await User.findOne({ username });
 
         if (existing) {
-            existing.correctAnswerStreak = existing.correctAnswerStreak + correctAnswerStreak;
-            await existing.save();
-            
             return res.status(400).json({ message: "Username already taken."});
         }
 
         // creating a new user
-        const user = new User({ username, password ,correctAnswerStreak });
+        const user = new User({ username, password, quizResults });
         await user.save();
 
         res.status(201).json({message: "User registered successfully."})
@@ -74,7 +71,7 @@ app.post("/api/sign-up", async (req, res) => {
 // Login 
 app.post("/api/sign-in", async (req, res) => {
     try {
-        const { username, password, correctAnswerStreak } = req.body;
+        const { username, password, quizResults } = req.body;
         console.log('Received login request:', username);
         const user = await User.findOne({ username });
         console.log('Found user:', user);
@@ -87,11 +84,11 @@ app.post("/api/sign-in", async (req, res) => {
 
         if (!passwordValid) {
             return res.status(401).json({ message: "Authentication failed" });
-        }
-            user.correctAnswerStreak =user.correctAnswerStreak + correctAnswerStreak;
-            await user.save();
+        }   
         
-
+        user.correctAnswerStreak =quizResults;
+        await user.save();
+        
         // modify the session
         req.session.user = { id: user._id, username: user.username };
         console.log('Logged user:', { id: user._id, username: user.username });
@@ -142,6 +139,27 @@ app.post("/api/update-streak", async (req, res) => {
         res.status(500).json(error);
     }
 });
+
+app.get("/api/check-streak", async (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    try {
+        const { username } = req.body;
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        const streak = user.correctAnswerStreak;
+        res.status(200).json({ streak });
+
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+);
 
 //Endpoint to get tutorial by title passed in the body
 app.post("/api/theory", async (req, res) => {
