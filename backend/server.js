@@ -55,9 +55,6 @@ app.post("/api/sign-up", async (req, res) => {
         const existing = await User.findOne({ username });
 
         if (existing) {
-            existing.correctAnswerStreak = existing.correctAnswerStreak + correctAnswerStreak;
-            await existing.save();
-            
             return res.status(400).json({ message: "Username already taken."});
         }
 

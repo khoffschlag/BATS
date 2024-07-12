@@ -1,7 +1,5 @@
 footer{
     background-color: rgb(43, 52, 64);
-    color: rgb(215, 221, 228);
-    padding: 3em;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -9,16 +7,10 @@ footer{
 }
 
 .attribution{
-    text-align: right;
-    bottom: 10px;
     color: rgb(215, 221, 228); 
-    padding: auto; 
     font-size: 12px;
 }
 .disclaimer{
-    text-align: left;
-    bottom: 10px;
     color: rgb(215, 221, 228); 
-    padding: auto; 
     font-size: 12px;
 }
