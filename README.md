@@ -6,28 +6,27 @@
 
 <p align="center"> <a href="">Video Demo</a> - <a href="">Live Demo </a> </p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+# Introduction
 
-## Development server
+You don't know how do deal with binary numbers? No worries, BATS will help you! BATS provides theoretical information as well as automatically generated and evaluated exercises in order to help you learn binary conversion, decimal conversion, bianry arithmetic and logical operators.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Installation
 
-## Code scaffolding
+This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2 as well express.js.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you want to install a local version of BATS, make sure to first install Angular 18.0.2 as well as express.js.
 
-## Build
+Then you can install the frontend by running the command-line command `npm install` in the root folder of BATS.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+After running the command in the root folder, change to the backend folder and run `npm install` again.
 
-## Running unit tests
+Last step is to put the .env file with the needed password keys in the backend folder.
+We will provide the professor with an .env file.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Start the app
 
-## Running end-to-end tests
+Run `ng serve` in the root folder of BATS in order to start the frontend.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Now open another terminal, change into the backend folder and run `nodemon server.js`.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Afterward you can open `http://localhost:4200/` and use BATS locally.
