@@ -31,7 +31,7 @@ export class AuthComponent implements OnInit {
         (isAuthenticated) => {
           this.isAuthenticated = isAuthenticated;
         }
-      ):
+      );
 
     this.apiService.checkAuthStatus().subscribe();
   }
