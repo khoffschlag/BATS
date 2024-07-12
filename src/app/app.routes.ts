@@ -73,5 +73,11 @@ export const routes: Routes = [
         path: "auth",
         component: AuthComponent,
         title: "Authentication"
-    }
+    },
+    // Wildcard route
+    {
+        path: '**',
+        component: HomeComponent,
+        title: '404 Not Found'
+    },
 ];
