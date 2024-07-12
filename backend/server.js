@@ -146,13 +146,14 @@ app.get("/api/check-streak", async (req, res) => {
     }
 
     try {
-        const { username } = req.body;
-        const user = await User.findOne({ username });
-
+        console.log("User in session: ", req.session.user.username)
+        const username = req.session.user.username;
+        const user = await User.findOne( {username} );
         if (!user) {
+            console.log(user)
             return res.status(404).json({ message: "User not found" });
         }
-        const streak = user.correctAnswerStreak;
+        const streak = user.correctAnswerStreak || 0;
         res.status(200).json({ streak });
 
     } catch (error) {
