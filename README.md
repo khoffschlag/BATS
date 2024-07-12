@@ -1,27 +1,32 @@
-# BATS
+<p align="center"> <img src="src/assets/bats_logo.png" width="350"> </p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+<h1 align="center"> Binary Arithmetic Teaching System </h1>
 
-## Development server
+<p align="center"> <img src="https://img.shields.io/badge/Universität Duisburg Essen-Advanced Web technologies-blue"/> </p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center"> <a href="">Video Demo</a> - <a href="">Live Demo </a> </p>
 
-## Code scaffolding
+# Introduction
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You don't know how do deal with binary numbers? No worries, BATS will help you! BATS provides theoretical information as well as automatically generated and evaluated exercises in order to help you learn binary conversion, decimal conversion, bianry arithmetic and logical operators.
 
-## Build
+# Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2 as well express.js.
 
-## Running unit tests
+If you want to install a local version of BATS, make sure to first install Angular 18.0.2 as well as express.js.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Then you can install the frontend by running the command-line command `npm install` in the root folder of BATS.
 
-## Running end-to-end tests
+After running the command in the root folder, change to the backend folder and run `npm install` again.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Last step is to put the .env file with the needed password keys in the backend folder.
+We will provide the professor with an .env file.
 
-## Further help
+## Start the app
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run `ng serve` in the root folder of BATS in order to start the frontend.
+
+Now open another terminal, change into the backend folder and run `nodemon server.js`.
+
+Afterward you can open `http://localhost:4200/` and use BATS locally.
