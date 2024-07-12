@@ -161,6 +161,16 @@ app.get("/api/check-streak", async (req, res) => {
 }
 );
 
+app.get("/api/users",async (req,res) =>{
+    try{
+        const users = await User.find({});
+        res.status(200).json(users);
+    } catch{
+        res.status(500).json({message: "error fetching the users"});
+    }
+});
+
+
 //Endpoint to get tutorial by title passed in the body
 app.post("/api/theory", async (req, res) => {
 
