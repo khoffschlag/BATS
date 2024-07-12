@@ -63,7 +63,30 @@
                     </div>
                 </div>
             </dialog>
+            <dialog id="modal_auth_ok" class="modal modal-middle">
+                <div class="modal-box">
+                    <h3 class="text-lg font-bold">Are you really want to leave the quiz!</h3>
+                    <p class="py-4">Do you want to store the record?</p>
+                    <div class="modal-action">
+                        <form method="dialog" class="fm">
+                            <div class="button-container3">
+                                <button class="btn" (click)="updateStreakInDB()">Save the record</button>
+                                <button class="btn" (click)="goToOverview()">back to overview</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+            <dialog id="modal_no_record" class="modal modal-middle">
+                <div class="modal-box">
+                    <h3 class="text-lg font-bold">Unfortunately, You have not reached a higher score!</h3>
+                    <div class="modal-action">
+                        <form method="dialog" class="fm">
+                            <button class="btn font-mono" (click)="onCloseButtonClick()" routerLink="dashboard">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </div>
     </div>
 </div>
-

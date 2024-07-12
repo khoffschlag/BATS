@@ -1,16 +1,19 @@
 footer{
     background-color: rgb(43, 52, 64);
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    color: rgb(215, 221, 228);
+    padding: 1em;
 }
 
-.attribution{
-    color: rgb(215, 221, 228); 
-    font-size: 12px;
-}
 .disclaimer{
-    color: rgb(215, 221, 228); 
-    font-size: 12px;
+    bottom: 10px;
+    color:aliceblue; 
+    padding: auto; 
+    font-size: 10px;
+}
+
+.footer-content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: space-between;
 }
