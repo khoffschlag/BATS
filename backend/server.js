@@ -85,10 +85,11 @@ app.post("/api/sign-in", async (req, res) => {
         if (!passwordValid) {
             return res.status(401).json({ message: "Authentication failed" });
         }   
-        
-        user.correctAnswerStreak =quizResults;
-        await user.save();
-        
+        if (quizResults) {
+            user.correctAnswerStreak =quizResults;
+            await user.save();
+        }
+
         // modify the session
         req.session.user = { id: user._id, username: user.username };
         console.log('Logged user:', { id: user._id, username: user.username });
