@@ -69,6 +69,9 @@ export class ApiService {
   return this.http.post(`${this.url}/update-streak`, {correctAnswerStreak });
 }
 
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.url}/users`);
+  }
 
   isAuthenticated(): Observable<boolean> {
     return this.http.get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, { withCredentials: true }).pipe(
