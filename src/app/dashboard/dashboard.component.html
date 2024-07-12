@@ -1,1 +1,17 @@
 <p class="font-mono text-2xl" style="color: antiquewhite;">dashboard coming soon!</p>
+<div class="overflow-x-auto">
+    <table class="table-md">
+        <thead>
+        <tr>
+            <th style="color: aliceblue;">Username</th>
+            <th style="color: aliceblue;">Correct Answer Streak</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+            <td style="color: aliceblue;">{{ user.username }}</td>
+            <td style="color: aliceblue;">{{ user.correctAnswerStreak }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
