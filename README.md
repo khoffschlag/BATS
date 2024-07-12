@@ -1,5 +1,9 @@
 <p align="center"> <img src="src/assets/bats_logo.png" width="350"> </p>
 
+<h1 align="center"> Binary Arithmetic Teaching System </h1>
+
+<p align="center"> <img src="https://img.shields.io/badge/Universität Duisburg Essen-Advanced Web technologies-blue"/> </p>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
 
 ## Development server
