@@ -39,10 +39,10 @@
 />
 </label>
 <div class="button-container">
-  <button class="btn" [class.inactive]="!form.valid" type="submit">
+  <button class="btn font-mono" [class.inactive]="!form.valid" type="submit">
     {{ register ? "Sign-Up" : "Sign-In" }}
   </button>
-  <button class="clear btn" type="button" (click)="register = !register">
+  <button class="clear btn font-mono" type="button" (click)="register = !register">
     {{ register ? "Already have an account?" : "Don't have an account?" }}
   </button>
 </div>
@@ -50,7 +50,7 @@
 
 <dialog id="modal_success" class="modal modal-middle">
   <div class="modal-box">
-      <h3 class="text-lg font-bold">Registration was successful!</h3>
+      <h3 class="text-lg font-mono font-bold">Registration was successful!</h3>
       <div class="modal-action">
           <form method="dialog" class="fm">
               <button class="btn font-mono">Close</button>
@@ -61,7 +61,7 @@
 
 <dialog id="modal_fail" class="modal modal-middle">
   <div class="modal-box">
-      <h3 class="text-lg font-bold">Registration failed!</h3>
+      <h3 class="text-lg font-mono font-bold">Registration failed!</h3>
       <div class="modal-action">
           <form method="dialog" class="fm">
               <button class="btn font-mono">Close</button>

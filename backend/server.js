@@ -51,7 +51,8 @@ app.use((req, res, next) => {
 // Registration for a new user
 app.post("/api/sign-up", async (req, res) => {
     try {
-        const {username, password, quizResults} = req.body;
+        const {username, password, correctAnswerStreak} = req.body;
+        console.log('retrieved signup data:',{username, password, correctAnswerStreak});
         const existing = await User.findOne({ username });
 
         if (existing) {
@@ -59,7 +60,7 @@ app.post("/api/sign-up", async (req, res) => {
         }
 
         // creating a new user
-        const user = new User({ username, password, quizResults });
+        const user = new User({ username, password, correctAnswerStreak });
         await user.save();
 
         res.status(201).json({message: "User registered successfully."})
@@ -71,7 +72,7 @@ app.post("/api/sign-up", async (req, res) => {
 // Login 
 app.post("/api/sign-in", async (req, res) => {
     try {
-        const { username, password, quizResults } = req.body;
+        const { username, password, correctAnswerStreak } = req.body;
         console.log('Received login request:', username);
         const user = await User.findOne({ username });
         console.log('Found user:', user);
@@ -85,8 +86,8 @@ app.post("/api/sign-in", async (req, res) => {
         if (!passwordValid) {
             return res.status(401).json({ message: "Authentication failed" });
         }   
-        if (quizResults) {
-            user.correctAnswerStreak =quizResults;
+        if (correctAnswerStreak) {
+            user.correctAnswerStreak =correctAnswerStreak;
             await user.save();
         }
 
