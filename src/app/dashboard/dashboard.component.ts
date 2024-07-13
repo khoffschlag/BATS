@@ -15,7 +15,11 @@ export class DashboardComponent implements OnInit {
   constructor(private apiService: ApiService) { }
     ngOnInit(): void {
     this.apiService.getUsers().subscribe(data => {
-        this.users = data;
+        this.users = this.sortUsersByStreak(data);
       });
+    }
+
+    sortUsersByStreak(users: any[]): any[] {
+      return users.sort((a,b) => b.correctAnswerStreak - a.correctAnswerStreak);
     }
 }
