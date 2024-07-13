@@ -125,7 +125,13 @@ app.get("/api/is-authenticated", isAuthenticated, (req, res) => {
 // Update correctAnswerStreak value
 app.post("/api/update-streak", async (req, res) => {
     try {
-        const { username, correctAnswerStreak } = req.body;
+
+        if (!req.session.user || !req.session.user.username) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        const username = req.session.user.username;
+        const correctAnswerStreak = req.body.correctAnswerStreak;
         const user = await User.findOne({ username });
 
         if (!user) {

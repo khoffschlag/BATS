@@ -66,7 +66,7 @@ export class ApiService {
   }
   
   updateStreak(correctAnswerStreak: number): Observable<any> {
-  return this.http.post(`${this.url}/update-streak`, {correctAnswerStreak });
+    return this.http.post(`${this.url}/update-streak`, { correctAnswerStreak: correctAnswerStreak }, { withCredentials: true });
 }
 
   getUsers(): Observable<any> {
