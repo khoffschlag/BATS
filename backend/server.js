@@ -6,14 +6,13 @@ const { checkExercise } = require('./exercise/check');
 const express = require("express");
 const session = require('express-session');
 
+const path = require('path');
 const cors = require('cors');
 const argon2 = require('argon2');
 const MongoStore = require("connect-mongo");
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
-
 const mongoose = require('mongoose');
 const Tutorial = require('./models/tutorialModel');
 const UserBehavior = require ('./models/userBehaviorModel');
@@ -23,7 +22,7 @@ const uri = process.env.MONGO_URI;
 app.use(express.json());
 
 const corsOptions = {
-    origin: "http://localhost:4200",
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
 };
 
@@ -286,6 +285,12 @@ app.post("/api/log",  async (req, res) => {
 });
 
 
+
+//HEROKU
+app.use(express.static(__dirname + '/../dist/bats/browser'));
+app.get('/*', function(req, res) { res.sendFile(path.join(__dirname+'/../dist/bats/browser/index.html' ));});
+//-----------------------------------------------
+
 async function run() {
     try {
         // try to connect to MongoDB using mongoose
@@ -299,7 +304,7 @@ async function run() {
 
         console.log("Successfully connected to MongoDB!");
 
-        app.listen(port, () => {
+        app.listen(process.env.PORT || 3000, () => {
             console.log("Express running like Usain Bolt! Yeah!");
         });
     }catch(error) {
