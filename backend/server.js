@@ -12,8 +12,6 @@ const MongoStore = require("connect-mongo");
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
-
 const mongoose = require('mongoose');
 const Tutorial = require('./models/tutorialModel');
 const UserBehavior = require ('./models/userBehaviorModel');
@@ -304,7 +302,7 @@ async function run() {
 
         console.log("Successfully connected to MongoDB!");
 
-        app.listen(port, () => {
+        app.listen(process.env.PORT || 3000, () => {
             console.log("Express running like Usain Bolt! Yeah!");
         });
     }catch(error) {
