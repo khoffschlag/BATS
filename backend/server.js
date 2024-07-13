@@ -22,8 +22,8 @@ const uri = process.env.MONGO_URI;
 app.use(express.json());
 
 //HEROKU
-app.use(express.static(__dirname + '../dist/bats/browser'));
-app.get('/*', function(req, res) { res.sendFile(path.join(__dirname+'../dist/bats/browser/index.html' ));});
+app.use(express.static(__dirname + '/../dist/bats/browser'));
+app.get('/*', function(req, res) { res.sendFile(path.join(__dirname+'/../dist/bats/browser/index.html' ));});
 //-----------------------------------------------
 
 const corsOptions = {
