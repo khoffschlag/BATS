@@ -19,7 +19,7 @@ export class QuizComponent implements OnInit , OnDestroy {
 
   topic: string = '';
   data: ExerciseData = new ExerciseData();
-  timer: number = 30;
+  timer: number = 60;
   private intervalValue: any;
   disableCheckButton: boolean = true;
   toggleButtonToggled: boolean = false;
@@ -138,15 +138,12 @@ export class QuizComponent implements OnInit , OnDestroy {
 
       if (this.data.result) {
         this.correctAnswerStreak += 1;
-        this.data.currentTry = 0;
         this.disableCheckButton = true;
         this.checkBtnPressed = false;
         this.newExercise();
-        this.timer = 30;
+        this.timer = 60;
       } else {
-        this.correctAnswerStreak = 0;
         this.disableCheckButton = true;
-        this.data.currentTry += 1;
       }
     })
     //this.trackButtonCheckClick();
@@ -159,6 +156,7 @@ storeCorrectAnswerStreak() {
 
 updateStreakInDB() {
   this.api.updateStreak(this.correctAnswerStreak).subscribe();
+  this.goToDashboard();
 }
 
 isCorrectDigit(index: number): boolean {

@@ -96,7 +96,6 @@ export class ExerciseComponent implements OnInit{
           this.data.currentTry = 0;
           this.disableCheckButton = true;
         } else {
-          this.correctAnswerStreak = 0;
           this.data.currentTry += 1;
         }
         if(this.data.currentTry == 2){
