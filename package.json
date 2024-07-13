@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "heroku-postbuild": "npm install && ng build && cd backend && npm install",
+  "heroku-postbuild": "npm install && ng build --configuration=production && cd backend && npm install",
   "engines": { "node": "20.14.0", "npm": "10.7.0" },
   "private": true,
   "dependencies": {
