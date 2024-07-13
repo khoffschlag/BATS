@@ -26,7 +26,7 @@ app.get('/*', function(req, res) { res.sendFile(path.join(__dirname+'/dist/bats/
 //-----------------------------------------------
 
 const corsOptions = {
-    origin: "http://localhost:4200",
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
 };
 
