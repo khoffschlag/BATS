@@ -1,0 +1,22 @@
+Binary Conversion
+-----------------
+
+You want to convert a decimal number like 42 to binary? If you don't know how to do this, then you came to the right place!
+We will teach you this based on the knowledge provided by the book "Digital Design and Computer Architecture" from David and Sarah Harris!
+
+Start dividing the decimal number by 2. The remainder will be the most-right bit! Remove any decimal places from the division result and start the next division by 2. Next remainder will be the bit on the left next to the most-right bit.
+We continue this process of dividing by 2, saving the remainder to the left of our current binary number and removing the decimal places of the division result until we try to divide 0 by 2.
+
+Example: Conversion of 17
+
+Iteration 1: 17 / 2 = 8.5 with remainder 1
+Iteration 2: 8 / 2 = 4 with remainder 0
+Iteration 3: 4 / 2 = 2 with remainder 0
+Iteration 4: 2 / 2 = 1 with remainder 0
+Iteration 5: 1 / 2 = 0 with remainder 1
+Iteration 6: 0 / 2 --> We can stop!
+
+Our binary number is 10001. The most-left 1 comes from the last iteration, whereas the most-right 1 comes from the first iteration!
+
+Acknowledgements: Harris, D. M., & Harris, S. L. (2019). Digital Design and Computer Architecture. 3rd ed. Amsterdam: Morgan Kaufmann Publishers.
+
