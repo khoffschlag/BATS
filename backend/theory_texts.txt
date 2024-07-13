@@ -20,3 +20,20 @@ Our binary number is 10001. The most-left 1 comes from the last iteration, where
 
 Acknowledgements: Harris, D. M., & Harris, S. L. (2019). Digital Design and Computer Architecture. 3rd ed. Amsterdam: Morgan Kaufmann Publishers.
 
+
+Decimal Conversion
+-----------------
+
+Converting a binary number like 10011 is a problem for you?
+Not anymore, because we are going to teach you how to convert a binary number to decimal based on the book "Digital Design and Computer Architecture" from David and Sarah Harris!
+
+A binary number consists of two digits: 0 and 1. We call each digit of a binary number a bit.
+Every bit encodes a power of 2, whereas the most right bit encodes the power of 2 to 0 and with each digit to the left the power of 2 increases by 1.
+
+d = ... a2 * 2^1 + a1 * 2^0
+
+In order to convert a binary number to decimal, you add each bit's value with the corresponding power of 2.
+
+If you want to convert 10011 to decimal, you can calculate: 1 * 2^0 + 1 * 2^1 + 0 * 2^2 + 0 * 2^3 + 1 * 2^4 = 19.
+Here we calculated from the right to the left, but the other way around is also fine! In this case make sure to start with the power of 2 to 4 and decrease with every following step!
+Now we know that our binary number 10011 is the decimal number 19.
