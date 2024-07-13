@@ -34,8 +34,8 @@ function getDecimalConversionExercise() {
 
 
 function getBinaryArithmeticExercise() {
-    decimalNumberOne = Math.floor(Math.random() * 128) + 1;
-    decimalNumberTwo = Math.floor(Math.random() * 128) + 1;
+    decimalNumberOne = Math.floor(Math.random() * 127) + 1;
+    decimalNumberTwo = Math.floor(Math.random() * 127) + 1;
 
     // Swapping to make our life easier in subtraction tasks
     if (decimalNumberTwo > decimalNumberOne) {
@@ -47,8 +47,8 @@ function getBinaryArithmeticExercise() {
     const possibleOperators = ["+"];
     let selectedOperator = possibleOperators[Math.floor(Math.random() * possibleOperators.length)];  // Randomly choose an operator. Currently we have only one though...
 
-    binaryNumberOne = decimalNumberOne.toString(2);
-    binaryNumberTwo = decimalNumberTwo.toString(2);
+    binaryNumberOne = decimalNumberOne.toString(2).padStart(8, '0');
+    binaryNumberTwo = decimalNumberTwo.toString(2).padStart(8, '0');
 
     if (selectedOperator == "+") {
         calculationResult = (parseInt(binaryNumberOne, 2) + parseInt(binaryNumberTwo, 2)).toString(2);
