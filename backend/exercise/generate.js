@@ -34,8 +34,8 @@ function getDecimalConversionExercise() {
 
 
 function getBinaryArithmeticExercise() {
-    decimalNumberOne = Math.floor(Math.random() * 128) + 1;
-    decimalNumberTwo = Math.floor(Math.random() * 128) + 1;
+    decimalNumberOne = Math.floor(Math.random() * 127) + 1;
+    decimalNumberTwo = Math.floor(Math.random() * 127) + 1;
 
     // Swapping to make our life easier in subtraction tasks
     if (decimalNumberTwo > decimalNumberOne) {
