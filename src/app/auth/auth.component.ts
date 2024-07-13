@@ -45,22 +45,23 @@ export class AuthComponent implements OnInit {
   signUp(e: Event) {
     // do not reload every time when submitted
     e.preventDefault();
-    const quizResultsString = localStorage.getItem('quizResults');
-    let quizResults = null;
+    const streakString = localStorage.getItem('correctAnswerStreak');
+    let correctAnswerStreak = 0 ;
 
-    if (quizResultsString) {
-      quizResults = JSON.parse(quizResultsString);
-      localStorage.removeItem('quizResults'); 
+    if (streakString) {
+      correctAnswerStreak = JSON.parse(streakString); 
     }
     const signUpData  = {
       ...this.form.value,
-      quizResults: quizResults,
+      correctAnswerStreak: correctAnswerStreak,
     };
+    console.log('sign up data:', signUpData);
     this.apiService.signUp(signUpData).subscribe({
       next: () => {
         this.register = false;
         const modal_show: any = document.getElementById('modal_success');
         modal_show.showModal();
+        localStorage.removeItem('correctAnswerStreak');
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);
@@ -73,16 +74,16 @@ export class AuthComponent implements OnInit {
   signIn(e: Event) {
     e.preventDefault();
 
-    const quizResultsString = localStorage.getItem('quizResults');
-    let quizResults = null;
+    const streakString = localStorage.getItem('correctAnswerStreak');
+    let correctAnswerStreak = null;
 
-    if (quizResultsString) {
-      quizResults = JSON.parse(quizResultsString);
-      localStorage.removeItem('quizResults'); 
+    if (streakString) {
+      correctAnswerStreak = JSON.parse(streakString);
+      localStorage.removeItem('correctAnswerStreak'); 
     }
     const signInData  = {
       ...this.form.value,
-      quizResults: quizResults,
+      correctAnswerStreak: correctAnswerStreak,
 
     };
     this.apiService.signIn(signInData).subscribe({

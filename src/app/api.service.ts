@@ -40,7 +40,7 @@ export class ApiService {
     );
   }
 
-  signUp(credentials: {username: String, password: String, quizResults?: number }) {
+  signUp(credentials: {username: String, password: String, correctAnswerStreak?: number }) {
     return this.http.post(`${this.url}/sign-up`, credentials);
   }
 
