@@ -6,6 +6,7 @@ const { checkExercise } = require('./exercise/check');
 const express = require("express");
 const session = require('express-session');
 
+const path = require('path');
 const cors = require('cors');
 const argon2 = require('argon2');
 const MongoStore = require("connect-mongo");
