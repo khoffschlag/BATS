@@ -132,8 +132,6 @@ app.post("/api/update-streak", async (req, res) => {
 
         const username = req.session.user.username;
         const correctAnswerStreak = req.body.correctAnswerStreak;
-        console.log(`Xusername: ${username}`);
-        console.log(`XcorrectAnswerStreak: ${correctAnswerStreak}`);
         const user = await User.findOne({ username });
 
         if (!user) {
