@@ -158,7 +158,7 @@ storeCorrectAnswerStreak() {
 }
 
 updateStreakInDB() {
-  this.api.updateStreak(this.correctAnswerStreak);
+  this.api.updateStreak(this.correctAnswerStreak).subscribe();
 }
 
 isCorrectDigit(index: number): boolean {
