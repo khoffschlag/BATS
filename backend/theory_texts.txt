@@ -81,3 +81,23 @@ Example #1
 
 
 Acknowledgements: Harris, D. M., & Harris, S. L. (2019). Digital Design and Computer Architecture. 3rd ed. Amsterdam: Morgan Kaufmann Publishers.
+
+
+Binary Arithmetics
+-----------------
+
+You don't know how to add binary numbers? Let's change that with the help of the book "Digital Design and Computer Architecture" from David and Sarah Harris!
+
+The process of adding binary numbers is quite similiar to the addition of decimal numbers.
+From the left to the right we add each pair of digis (or also called bits when talking about binary numbers).
+If the sum of two digits is greater than 1, then we write down 0 for the current digit of the result and carry over a 1 to the next digit on the left (i.e., when we add 1 + 1 in binary, we get 10).
+
+Example:
+
+  10110101
++ 00100101
+  --------
+  11011010
+
+
+Acknowledgements: Harris, D. M., & Harris, S. L. (2019). Digital Design and Computer Architecture. 3rd ed. Amsterdam: Morgan Kaufmann Publishers.
