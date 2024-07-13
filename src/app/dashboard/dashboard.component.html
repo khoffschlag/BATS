@@ -1,16 +1,26 @@
-<div class="overflow-x-auto">
-    <table class="table-md">
-        <thead>
-        <tr>
-            <th style="color: aliceblue;">Username</th>
-            <th style="color: aliceblue;">Correct Answer Streak</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let user of users">
-            <td style="color: aliceblue;">{{ user.username }}</td>
-            <td style="color: aliceblue;">{{ user.correctAnswerStreak }}</td>
-        </tr>
-        </tbody>
-    </table>
+<h1 class="font-mono text-6xl text-center mb-10 mt-20">Users achievements </h1>
+<div class="wrapper">
+    <div class="flex blurry-background">
+        <div class="overflow-x-auto overflow-y-auto max-h-96">
+            <table class=" table table-md">
+                <thead>
+                <tr>
+                    <th class="font-mono font-bold text-3xl" style="color:black"> </th>
+                    <th class="font-mono font-bold text-3xl" style="color:black">Name</th>
+                    <th class="font-mono font-bold text-3xl" style="color:black">Streak</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of users; let i = index" class="hover:bg-gray-200">
+                    <div *ngIf="i<3">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m384-334 96-74 96 74-36-122 90-64H518l-38-124-38 124H330l90 64-36 122ZM233-120l93-304L80-600h304l96-320 96 320h304L634-424l93 304-247-188-247 188Zm247-369Z"/></svg>
+                    </div>
+                    <td *ngIf="i>=3" class="font-mono text-xl" style="color:black">{{ i+1 }}</td>
+                    <td class="font-mono text-xl" style="color:black">{{ user.username }}</td>
+                    <td class="font-mono text-xl" style="color:black">{{ user.correctAnswerStreak }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

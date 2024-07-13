@@ -78,6 +78,5 @@ export const routes: Routes = [
     {
         path: '**',
         component: HomeComponent,
-        title: '404 Not Found'
     },
 ];
