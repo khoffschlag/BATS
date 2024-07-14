@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { UserLoggerService } from '../user-logger.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-theory',
@@ -23,20 +24,22 @@ export class TheoryComponent implements OnInit {
         title: '',
         content: '',
       }
-    ]
+    ],
+    acknowledgment: '',
   };
 
 
 
 
   topic: string = '';
-  
+  contentLines: { [key: number]: string[] } = {};
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private router: Router,
-    private behaviorLogger: UserLoggerService
+    private behaviorLogger: UserLoggerService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +67,13 @@ export class TheoryComponent implements OnInit {
     this.apiService.getTheory(topic).subscribe({
       next: (data) => {
         this.tutorial = data;
+        console.log('API Response:', data);
+        this.tutorial.sections.forEach((section, index) => {
+          this.contentLines[index] = section.content.split('\\n');
+        });
         console.log('Tutorial:', this.tutorial);
+        console.log('Acknowledgment:', this.tutorial.acknowledgment);
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching tutorial', error);

@@ -1,16 +1,19 @@
 <div class=" flex mt-20 p-2" style="justify-content: center; text-align: center;">
     <h1 class="font-mono text-5xl">{{ tutorial.title }}</h1>
     <hr class="line-clamp-1">
-    <p class="font-mono text-3xl" style="margin-top: 20px;">{{ tutorial.description }}</p>
+    <h2 class="font-mono text-3xl" style="margin-top: 20px;">{{ tutorial.description }}</h2>
     <hr class="line-clamp-1">
     <div class="join join-vertical blurry-background mt-3 mb-3">
         <div *ngFor="let section of tutorial.sections; let i = index" class="collapse collapse-arrow join-item border-base-300 border">
             <input type="radio" name="my-accordion" [checked]="i === 0" />
             <div class="collapse-title text-4xl font-mono font-bold">{{ section.title }}</div>
             <div class="collapse-content">
-            <p class="font-mono font-bold text-2xl" style="color: black;">{{ section.content }}</p>
+            <p *ngFor="let line of contentLines[i]" class="font-mono font-bold text-2xl" style="color: black;">{{ line }}</p>
             </div>
         </div>
+    </div>
+    <div class="ack">
+        <p class="font-mono font-bold text-xs">{{ tutorial.acknowledgment }}</p>
     </div>
     <div class="button-container">
         <button class="btn font-mono btn-custom"  (click)="goToOverview()">back to overview</button>
