@@ -51,7 +51,7 @@ function getBinaryArithmeticExercise() {
     binaryNumberTwo = decimalNumberTwo.toString(2).padStart(8, '0');
 
     if (selectedOperator == "+") {
-        calculationResult = (parseInt(binaryNumberOne, 2) + parseInt(binaryNumberTwo, 2)).toString(2);
+        calculationResult = (parseInt(binaryNumberOne, 2) + parseInt(binaryNumberTwo, 2)).toString(2).padStart(8, '0');
     }
 
     targetAnswer = Array(8).fill(0);    
