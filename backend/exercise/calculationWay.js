@@ -73,7 +73,48 @@ function getDecimalConversionCalculationWay(task, targetAnswer) {
 
 
 function getBinaryArithmeticCalculationWay(task, targetAnswer) {
-    return 'Here could be a calculation way!';
+
+    matches = task.match(/\b[01]+\b/g);
+    let number1 = String(matches[0]);
+    let number2 = String(matches[1]);
+
+    let calculationWay = `In order to add the binary numbers ${number1} and ${number2} follow the following steps: \n`;
+
+    maxLength = Math.max(number1.length, number2.length);
+    number1 = number1.padStart(maxLength, '0');
+    number2 = number2.padStart(maxLength, '0');
+
+    let bit1, bit2, sum, resultBit;
+    let carry = 0;
+    let previousCarry = 0;
+    let step = 1;
+    for (let i = maxLength - 1; i >= 0; i--) {
+        bit1 = Number(number1[i]);
+        bit2 = Number(number2[i]);
+        previousCarry = carry;
+        sum = bit1 + bit2 + carry;
+        
+        if (sum === 0) {
+            resultBit = 0;
+            carry = 0;
+        } else if (sum === 1) {
+            resultBit = 1;
+            carry = 0;
+        } else if (sum === 2) {
+            resultBit = 0;
+            carry = 1;
+        } else if (sum === 3) {
+            resultBit = 1;
+            carry = 1;
+        }
+
+        calculationWay += `Step ${step}: ${bit1} + ${bit2} (+ carry of ${previousCarry}) results in ${resultBit} and carry of ${carry}. \n`;
+        step += 1;
+        
+    }
+
+    console.log(calculationWay);
+    return calculationWay;
 }
 
 
