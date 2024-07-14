@@ -37,6 +37,10 @@ const tutorialSchema = new mongoose.Schema(
         updatedAt : {
             type: Date,
             default: Date.now
+        },
+        acknowledgment:{
+            type: String,
+            required: true
         }
     }
 );

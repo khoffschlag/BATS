@@ -1,11 +1,15 @@
 h1{
-    color: antiquewhite;
+    color:aliceblue;
+    -webkit-text-stroke: 1px #282828;
+	text-shadow: 0px 4px 4px #282828;
 }
 h2{
-    color: antiquewhite;
+    color:aliceblue;
+    -webkit-text-stroke: 1px #282828;
+	text-shadow: 0px 4px 4px #282828;
 }
-p{
-    color: antiquewhite;
+.ack p{
+    color:aliceblue;
 }
 .flex {
     display: flex;
@@ -30,4 +34,11 @@ p{
 .blurry-background{
     background: rgba(255, 255, 255, 0.6);
     display: inline-block;
+}
+.ack{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.collapse-title{
+    color: rgb(31, 41, 55);
 }
