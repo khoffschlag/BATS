@@ -42,7 +42,7 @@ function getBinaryConversionCalculationWay(task, targetAnswer) {
             decimalNumber = nextDecimalNumber;
         }
 
-        calculationWay += `and if you now read the remainders in the correct order, you have the binary representation of the decimal number!`
+        calculationWay += `and if you now read the remainders in the correct order, you have the binary representation of the decimal number!`;
 
     }
 
@@ -53,7 +53,7 @@ function getBinaryConversionCalculationWay(task, targetAnswer) {
 function getDecimalConversionCalculationWay(task, targetAnswer) {
     let binaryNumber = String(task.match(/\d+/g));
 
-    let calculationWay = `In order to conver the binary number ${binaryNumber} to decimal, you can calculate the result of: \n`
+    let calculationWay = `In order to conver the binary number ${binaryNumber} to decimal, you can calculate the result of: \n`;
 
     amountBits = binaryNumber.length;
     for (let pow = 0; pow < amountBits; pow++) {
