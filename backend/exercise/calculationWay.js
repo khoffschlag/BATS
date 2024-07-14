@@ -113,7 +113,6 @@ function getBinaryArithmeticCalculationWay(task, targetAnswer) {
         
     }
 
-    console.log(calculationWay);
     return calculationWay;
 }
 
