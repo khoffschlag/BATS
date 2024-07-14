@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { UserLoggerService } from '../user-logger.service';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-theory',
@@ -38,8 +37,7 @@ export class TheoryComponent implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private router: Router,
-    private behaviorLogger: UserLoggerService,
-    private cdr: ChangeDetectorRef
+    private behaviorLogger: UserLoggerService
   ) { }
 
   ngOnInit(): void {
@@ -73,7 +71,6 @@ export class TheoryComponent implements OnInit {
         });
         console.log('Tutorial:', this.tutorial);
         console.log('Acknowledgment:', this.tutorial.acknowledgment);
-        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching tutorial', error);
