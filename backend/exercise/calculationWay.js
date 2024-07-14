@@ -1,16 +1,16 @@
-function showCalculationWay(topic, task, targetAnswer) {
+function showCalculationWay(topic, task) {
     switch(topic) {
         case 'binaryConversion':
-            var response = getBinaryConversionCalculationWay(task, targetAnswer);
+            var response = getBinaryConversionCalculationWay(task);
             break;
         case 'decimalConversion':
-            var response = getDecimalConversionCalculationWay(task, targetAnswer);
+            var response = getDecimalConversionCalculationWay(task);
             break;
         case 'binaryArithmetic':
-            var response = getBinaryArithmeticCalculationWay(task, targetAnswer);
+            var response = getBinaryArithmeticCalculationWay(task);
             break;
         case 'logicalOperations':
-            var response = getLogicalOperationsCalculationWay(task, targetAnswer);
+            var response = getLogicalOperationsCalculationWay(task);
             break;
     }
 
@@ -18,7 +18,7 @@ function showCalculationWay(topic, task, targetAnswer) {
 }
 
 
-function getBinaryConversionCalculationWay(task, targetAnswer) {
+function getBinaryConversionCalculationWay(task) {
     let decimalNumber = Number(task.match(/\d+/g));
     let binaryNumber = '';
 
@@ -50,7 +50,7 @@ function getBinaryConversionCalculationWay(task, targetAnswer) {
 }
 
 
-function getDecimalConversionCalculationWay(task, targetAnswer) {
+function getDecimalConversionCalculationWay(task) {
     let binaryNumber = String(task.match(/\d+/g));
 
     let calculationWay = `In order to conver the binary number ${binaryNumber} to decimal, you can calculate the result of: \n`;
@@ -72,7 +72,7 @@ function getDecimalConversionCalculationWay(task, targetAnswer) {
 }
 
 
-function getBinaryArithmeticCalculationWay(task, targetAnswer) {
+function getBinaryArithmeticCalculationWay(task) {
 
     matches = task.match(/\b[01]+\b/g);
     let number1 = String(matches[0]);
@@ -117,8 +117,42 @@ function getBinaryArithmeticCalculationWay(task, targetAnswer) {
 }
 
 
-function getLogicalOperationsCalculationWay(task, targetAnswer) {
-    return 'Here could be a calculation way!';
+function getLogicalOperationsCalculationWay(task) {
+    let numberMatches = task.match(/\b[01]+\b/g);
+    let number1 = String(numberMatches[0]);
+    let number2 = String(numberMatches[1]);
+    let operator = String(task.match(/[&\|]|xor/)).trim();
+    
+    maxLength = Math.max(number1.length, number2.length);
+    number1 = number1.padStart(maxLength, '0');
+    number2 = number2.padStart(maxLength, '0');
+
+    let calculationWay = `In order to calculate the result of ${task}, follow the following steps: \n`;
+    calculationWay += `Step 0: If needed, pad number with 0 to the same length -> ${number1} ${operator} ${number2} \n`;
+    calculationWay += `Then from the left to the right go through the bits. \n`;
+
+    let step = 1;
+    let resultBit;
+    for (let i = maxLength - 1; i >= 0; i--) {
+
+        bit1 = Number(number1[i]);
+        bit2 = Number(number2[i]);
+
+        if (operator === '&') {
+            resultBit = bit1 & bit2;
+        } else if (operator === '|') {
+            resultBit = bit1 | bit2;
+        } else if (operator === 'xor') {
+            resultBit = bit1 ^ bit2;
+        }
+
+        calculationWay += `Step ${step}: ${bit1} ${operator} ${bit2} results in ${resultBit} \n`;
+        step += 1;
+    }
+
+    calculationWay += `Combine the result bits in order to get the actual result! \n`;
+
+    return calculationWay;
 }
 
 module.exports = { showCalculationWay };

@@ -3,12 +3,6 @@ const { showCalculationWay } = require('./calculationWay');
 
 function checkExercise(topic, task, userAnswer, targetAnswer, currentTry) {
 
-    console.log(userAnswer);
-    console.log(userAnswer.toString());
-    console.log(targetAnswer);
-    console.log(targetAnswer.toString());
-
-
     if (userAnswer.toString() == targetAnswer.toString()) {
         return { result: true, feedback: 'Well done! Your answer is correct!' };
     }
@@ -19,7 +13,7 @@ function checkExercise(topic, task, userAnswer, targetAnswer, currentTry) {
     }
 
     if (currentTry == 1) {
-        return { result: false, feedback: showCalculationWay(topic, task, userAnswer, targetAnswer) };
+        return { result: false, feedback: showCalculationWay(topic, task, userAnswer) };
     }
 
     if (currentTry == 2) {
