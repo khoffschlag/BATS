@@ -61,10 +61,11 @@ export class QuizComponent implements OnInit , OnDestroy {
       }
       else{
         this.clearInerValue();
-        if(modal1)
-        {
-          modal1.showModal();
-        }
+        // if(modal1)
+        // {
+        //   modal1.showModal();
+        // }
+        this.finishingQuiz();
       }
     },1000);
   }
