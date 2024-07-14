@@ -1,16 +1,16 @@
-function showCalculationWay(topic, task, targetAnswer) {
+function showCalculationWay(topic, task) {
     switch(topic) {
         case 'binaryConversion':
-            var response = getBinaryConversionCalculationWay(task, targetAnswer);
+            var response = getBinaryConversionCalculationWay(task);
             break;
         case 'decimalConversion':
-            var response = getDecimalConversionCalculationWay(task, targetAnswer);
+            var response = getDecimalConversionCalculationWay(task);
             break;
         case 'binaryArithmetic':
-            var response = getBinaryArithmeticCalculationWay(task, targetAnswer);
+            var response = getBinaryArithmeticCalculationWay(task);
             break;
         case 'logicalOperations':
-            var response = getLogicalOperationsCalculationWay(task, targetAnswer);
+            var response = getLogicalOperationsCalculationWay(task);
             break;
     }
 
@@ -18,7 +18,7 @@ function showCalculationWay(topic, task, targetAnswer) {
 }
 
 
-function getBinaryConversionCalculationWay(task, targetAnswer) {
+function getBinaryConversionCalculationWay(task) {
     let decimalNumber = Number(task.match(/\d+/g));
     let binaryNumber = '';
 
@@ -50,7 +50,7 @@ function getBinaryConversionCalculationWay(task, targetAnswer) {
 }
 
 
-function getDecimalConversionCalculationWay(task, targetAnswer) {
+function getDecimalConversionCalculationWay(task) {
     let binaryNumber = String(task.match(/\d+/g));
 
     let calculationWay = `In order to conver the binary number ${binaryNumber} to decimal, you can calculate the result of: \n`;
@@ -72,7 +72,7 @@ function getDecimalConversionCalculationWay(task, targetAnswer) {
 }
 
 
-function getBinaryArithmeticCalculationWay(task, targetAnswer) {
+function getBinaryArithmeticCalculationWay(task) {
 
     matches = task.match(/\b[01]+\b/g);
     let number1 = String(matches[0]);
@@ -117,7 +117,7 @@ function getBinaryArithmeticCalculationWay(task, targetAnswer) {
 }
 
 
-function getLogicalOperationsCalculationWay(task, targetAnswer) {
+function getLogicalOperationsCalculationWay(task) {
     let numberMatches = task.match(/\b[01]+\b/g);
     let number1 = String(numberMatches[0]);
     let number2 = String(numberMatches[1]);
