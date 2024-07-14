@@ -229,7 +229,7 @@ goToOverview() {
 }
 
 goToLogin(){ 
-  localStorage.setItem('quizResults', JSON.stringify(this.correctAnswerStreak));
+  // localStorage.setItem('quizResults', JSON.stringify(this.correctAnswerStreak));
   this.router.navigate(['/auth']);
 }
 
