@@ -1,3 +1,28 @@
+h1{
+    color: antiquewhite;
+    margin-bottom: 4px;
+}
+h3{
+    color: black;
+}
+p{
+    color: antiquewhite;
+}
+input{
+    margin: 10px;
+}
+.modal .modal-box p{
+    color: black;
+}
+.modal .modal-box .modal-storerecored p{
+    color: black;
+}
+.digit-div{
+    margin: 10px;
+}
+.flex .help-div{
+    color: antiquewhite;
+}
 .container {
     display: flex;
     align-items: center;

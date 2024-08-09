@@ -62,10 +62,22 @@
 <dialog id="modal_fail" class="modal modal-middle">
   <div class="modal-box">
       <h3 class="text-lg font-mono font-bold">Registration failed!</h3>
+      <p class="reg-fail py-4 font-mono">This user name is already taken</p>
       <div class="modal-action">
           <form method="dialog" class="fm">
               <button class="btn font-mono">Close</button>
           </form>
       </div>
+  </div>
+</dialog>
+<dialog id="modal_wrong_credentials" class="modal modal-middle">
+  <div class="modal-box">
+    <h3 class="text-lg font-mono font-bold">Login failed!</h3>
+    <p class="wrong-cred py-4 font-mono">Incorrect username or password. Please check your entries and try again.</p>
+    <div class="modal-action">
+      <form method="dialog" class="fm">
+        <button class="btn font-mono">Close</button>
+      </form>
+    </div>
   </div>
 </dialog>

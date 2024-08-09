@@ -2,13 +2,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px; 
-    padding-top: 10vh;
   }
   
   .card {
     flex: 1 1 calc(25% - 20px);
     height: 300px;
-  }
+  } 
+
   .card:hover{
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.05);
@@ -36,4 +36,10 @@ h1 {
   color:aliceblue;
 	-webkit-text-stroke: 1px #282828;
 	text-shadow: 0px 4px 4px #282828;
+}
+h2{
+  color: antiquewhite;
+}
+p {
+  color: antiquewhite;
 }

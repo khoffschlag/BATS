@@ -35,3 +35,9 @@ h1 {
 	-webkit-text-stroke: 1px #282828;
 	text-shadow: 0px 4px 4px #282828;
 }
+.table th{
+    color:black;
+}
+.table td{
+    color:black;
+}

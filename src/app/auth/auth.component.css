@@ -23,6 +23,12 @@ h2{
     background-color: white;
     color: black;
 }
+.modal .modal-box .reg-fail p{
+    color:black;
+}
+.modal .modal-box .wrong-cred p{
+    color: black;
+}
 
 .modal .modal-box{
     background-color: rgb(255, 255, 255);

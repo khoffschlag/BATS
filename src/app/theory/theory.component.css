@@ -8,6 +8,9 @@ h2{
     -webkit-text-stroke: 1px #282828;
 	text-shadow: 0px 4px 4px #282828;
 }
+p{
+    color: black;
+}
 .ack p{
     color:aliceblue;
 }
