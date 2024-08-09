@@ -54,7 +54,7 @@ export class QuizComponent implements OnInit , OnDestroy {
       this.clearInerValue();
   }
   startTimer(){
-    const modal1: any = document.getElementById('my_modal_1');
+    // const modal1: any = document.getElementById('my_modal_1');
     this.intervalValue = setInterval(() => {
       if(this.timer > 0){
         this.timer--;
@@ -217,7 +217,7 @@ finishingQuiz(){
     });
 
   }else {
-     modal_show = document.getElementById('my_modal_2');
+      modal_show = document.getElementById('my_modal_2');
   }
   if(modal_show)
   {

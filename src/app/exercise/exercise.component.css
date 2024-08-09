@@ -1,3 +1,25 @@
+h1{
+    color: antiquewhite;
+    margin-bottom: 4px;
+}
+p{
+    color: antiquewhite;
+}
+input{
+    margin: 10px;
+}
+.flex .help-div{
+    color: antiquewhite;
+}
+.feedback-txt{
+    color: black;
+}
+.calculationway-feedback{
+    color: black;
+}
+.digit-div{
+    margin: 10px;
+}
 .custom-background{
     background-color: ghostwhite;
     color: black;

@@ -1,20 +1,20 @@
 <div class="flex flex-col justify-center items-center mt-60 mr-1 mb-1 ml-1 p-2">
-    <h1 class="font-mono font-bold text-5xl" style="color: antiquewhite; margin-bottom: 4px;">{{ data.title }}</h1>
+    <h1 class="font-mono font-bold text-5xl">{{ data.title }}</h1>
 
-    <p class="font-mono text-3xl" style="color: antiquewhite; margin-top: 4px;">{{ data.task }}</p>
+    <p class="font-mono text-3xl mt-1">{{ data.task }}</p>
     <div class="button-container">
         <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(1)" class="btn-link font-mono mr-2">Level 1</button>
         <button *ngIf="data.topic !== 'decimalConversion'" (click)="setLevel(2)" class="btn-link font-mono">Level 2</button>
     </div>
 
     <div *ngIf="data.topic == 'decimalConversion'">
-        <input type="number" class="input input-bordered w-full max-w-xs custom-background" style="margin: 10px;" [(ngModel)]="data.userAnswer" (focus)="onInputFocus()" />
+        <input type="number" class="input input-bordered w-full max-w-xs custom-background" [(ngModel)]="data.userAnswer" (focus)="onInputFocus()" />
     </div>
 
     <div *ngIf="data.topic != 'decimalConversion'">
         <div class="flex">
-            <div id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index" style="margin: 10px;">
-                <div class="font-mono" style="color: antiquewhite;" id="helper-{{ i }}" *ngIf="current_level == 1">
+            <div class="digit-div" id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index">
+                <div class="font-mono help-div" id="helper-{{ i }}" *ngIf="current_level == 1">
                     {{ helpers[i] }}
                 </div>
                 <button (click)="toggleDigit(i)" class="btn btn-square font-mono" [ngClass]="getButtonColor(i)">
@@ -27,17 +27,17 @@
         <button [disabled]="disableCheckButton" (click)="checkAnswer()" class="btn font-mono" [ngClass]="{'visually-disabled': disableCheckButton}" >Check answer</button>
         <button class="btn font-mono"  (click)="goToOverview()">Finish exercising</button>
     </div>
-    <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
+    <p class="font-mono text-2xl mt-5">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
     <ng-container *ngIf="data.topic == 'decimalConversion'">
-        <p *ngIf="data.currentTry !=2" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p>
+        <p *ngIf="data.currentTry !=2" class="font-mono">{{ data.feedback }}</p>
     </ng-container>
 
     
     <dialog id="my_modal_2" class="modal modal-middle">
         <div class="modal-box">
-            <p class="py-4" *ngIf="data.currentTry!=2">{{ data.feedback }}</p>
+            <p class="feedback-txt py-4" *ngIf="data.currentTry!=2">{{ data.feedback }}</p>
             <ng-container *ngIf="data.currentTry == 2">
-                <p *ngFor="let line of feedbackLines">{{ line }}</p>
+                <p class="calculationway-feedback" *ngFor="let line of feedbackLines">{{ line }}</p>
             </ng-container>
             <div class="modal-action">
                 <form method="dialog">

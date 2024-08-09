@@ -15,13 +15,13 @@
             </div>
 
             <div *ngIf="data.topic == 'decimalConversion'">
-                <input type="number" class="input input-bordered w-full max-w-xs custom-background" style="margin: 10px;" [(ngModel)]="data.userAnswer" (focus)="onInputFocus()" />
+                <input type="number" class="input input-bordered w-full max-w-xs custom-background" [(ngModel)]="data.userAnswer" (focus)="onInputFocus()" />
             </div>
 
             <div *ngIf="data.topic != 'decimalConversion'">
                 <div class="flex">
-                    <div id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index" style="margin: 10px;">
-                        <div class="font-mono" style="color: antiquewhite;" id="helper-{{ i }}" *ngIf="current_level == 1">
+                    <div class="digit-div" id="digit-{{ i }}" *ngFor="let digit of ensureArray(data.userAnswer); let i = index">
+                        <div class="font-mono help-div" id="helper-{{ i }}" *ngIf="current_level == 1">
                             {{ helpers[i] }}
                         </div>
                         <button (click)="toggleDigit(i)" class="btn btn-square font-mono" [ngClass]="getButtonColor(i)">
@@ -34,25 +34,12 @@
                 <button [disabled]="disableCheckButton" (click)="checkAnswer()"  class="btn font-mono" [ngClass]="{'visually-disabled': disableCheckButton}">Check answer</button>
                 <button class="btn font-mono" (click)="finishingQuiz()">Finish quiz</button>
             </div>
-            <p class="font-mono text-2xl" style="color: antiquewhite; margin-top: 20px;">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
-            <p *ngIf="data.topic == 'decimalConversion'" class="font-mono" style="color: antiquewhite;">{{ data.feedback }}</p> 
-
-    
-            <!-- <dialog id="my_modal_1" class="modal modal-middle">
-                <div class="modal-box">
-                    <h3 class="font-mono font-bold text-lg">OPPS!</h3>
-                    <p class="py-4 font-mono">Your time is up</p>
-                    <div class="modal-action">
-                        <form method="dialog" class="fm">
-                            <button class="btn font-mono" (click)="finishingQuiz()" routerLink="dashboard">Close</button>
-                        </form>
-                    </div>
-                </div>
-            </dialog> -->
+            <p class="font-mono text-2xl mt-5">You're current correct answer streak is: {{ correctAnswerStreak }}</p>
+            <p *ngIf="data.topic == 'decimalConversion'" class="font-mono" >{{ data.feedback }}</p> 
             <dialog id="my_modal_2" class="modal modal-middle">
                 <div class="modal-box">
                     <h3 class="text-lg font-mono font-bold">Are you really want to leave the quiz!</h3>
-                    <p class="py-4 font-mono">Do you want to sign up / login to keep up your achievement</p>
+                    <p  class="py-4 font-mono">Do you want to sign up / login to keep up your achievement</p>
                     <div class="modal-action">
                         <form method="dialog" class="fm">
                             <div class="button-container3">
@@ -66,7 +53,7 @@
             <dialog id="modal_auth_ok" class="modal modal-middle">
                 <div class="modal-box">
                     <h3 class="text-lg font-mono font-bold">Are you really want to leave the quiz!</h3>
-                    <p class="py-4 font-mono">Do you want to store the record?</p>
+                    <p class="modal-storerecored" class="py-4 font-mono">Do you want to store the record?</p>
                     <div class="modal-action">
                         <form method="dialog" class="fm">
                             <div class="button-container3">

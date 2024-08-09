@@ -92,6 +92,10 @@ export class AuthComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);
+        if (error.status === 401) {
+          const modal_show: any = document.getElementById('modal_wrong_credentials');
+          modal_show.showModal();
+      }
       }
     });
   }
