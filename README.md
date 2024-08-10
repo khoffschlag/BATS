@@ -1,5 +1,7 @@
 <p align="center"> <img src="src/assets/bats_logo.png" width="350"> </p>
 
+<h1 align="center" style="font-weight: bold;">BATS</h1>
+
 <h1 align="center"> Binary Arithmetic Teaching System </h1>
 
 <p align="center"> <img src="https://img.shields.io/badge/Universität Duisburg Essen-Advanced Web technologies-blue"/> </p>
