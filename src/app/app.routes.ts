@@ -5,7 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { TheoryComponent } from './theory/theory.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { QuizComponent } from './quiz/quiz.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { authGuard } from './guards/auth.guard';
 import { AuthComponent } from './auth/auth.component';
 
@@ -34,17 +34,17 @@ export const routes: Routes = [
     path: 'overview/quiz',
     children: [
       {
-        path: 'dashboard',
-        component: DashboardComponent,
-        title: 'Dashboard',
+        path: 'leaderboard',
+        component: LeaderboardComponent,
+        title: 'Leaderboard',
         canActivate: [authGuard],
       },
     ],
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    title: 'Dashboard',
+    path: 'leaderboard',
+    component: LeaderboardComponent,
+    title: 'Leaderboard',
     canActivate: [authGuard],
   },
   {

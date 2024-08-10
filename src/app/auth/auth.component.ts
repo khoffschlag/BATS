@@ -83,7 +83,7 @@ export class AuthComponent implements OnInit {
     };
     this.apiService.signIn(signInData).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/leaderboard']);
       },
       error: (error: HttpErrorResponse) => {
         console.error(error);

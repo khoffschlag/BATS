@@ -3,13 +3,13 @@ import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-leaderboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  templateUrl: './leaderboard.component.html',
+  styleUrl: './leaderboard.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class LeaderboardComponent implements OnInit {
   users: any[] = [];
 
   constructor(private apiService: ApiService) {}

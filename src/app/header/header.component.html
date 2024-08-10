@@ -13,7 +13,7 @@
         <ul class="menu menu-horizontal px-1">
             <li><a role="button" class="text-current font-mono font-medium text-sm"  routerLink="">Home</a></li>
             <li><a role="button" class="text-current font-mono font-medium text-sm"  routerLink="overview">Overview</a></li>
-            <li><a role="button" class="text-current font-mono font-medium text-sm"  routerLink="dashboard">Dashboard</a></li>
+            <li><a role="button" class="text-current font-mono font-medium text-sm"  routerLink="leaderboard">Leaderboard</a></li>
             <li><a role="button" class="text-current font-mono font-medium text-sm"  routerLink="about">About Us</a></li>
             <li  *ngIf="!isAuthenticated" ><a role="button" class="text-current font-mono font-medium text-sm"  routerLink="auth">Sign Up / Login</a></li>
             <li *ngIf="isAuthenticated"><a role="button" class="text-current font-mono font-medium text-sm" (click)="logout()">Log out</a></li>
