@@ -158,7 +158,7 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   updateStreakInDB() {
     this.api.updateStreak(this.correctAnswerStreak).subscribe();
-    this.goToDashboard();
+    this.goToLeaderboard();
   }
 
   isCorrectDigit(index: number): boolean {
@@ -229,7 +229,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.router.navigate(['/auth']);
   }
 
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
+  goToLeaderboard() {
+    this.router.navigate(['/leaderboard']);
   }
 }
