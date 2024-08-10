@@ -90,7 +90,7 @@ app.post("/api/sign-in", async (req, res) => {
     if (!passwordValid) {
       return res.status(401).json({ message: "Authentication failed" });
     }
-    if (correctAnswerStreak) {
+    if (correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak) {
       user.correctAnswerStreak = correctAnswerStreak;
       await user.save();
     }
@@ -139,11 +139,12 @@ app.post("/api/update-streak", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    user.correctAnswerStreak = correctAnswerStreak;
-    await user.save();
-
-    res.status(200).json({ message: "Streak updated successfully" });
+    if(correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak){
+      user.correctAnswerStreak = correctAnswerStreak;
+      await user.save();
+      res.status(200).json({ message: "Streak updated successfully" });
+    }
+    res.status(200).json({ message: "no update is done, streak is lower or equals to the stored value in the DB" });
   } catch (error) {
     res.status(500).json(error);
   }
