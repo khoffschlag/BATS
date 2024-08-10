@@ -8,10 +8,9 @@ import { ApiService } from '../api.service';
   standalone: true,
   imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit{
-
+export class HeaderComponent implements OnInit {
   isAuthenticated = false;
 
   constructor(
@@ -21,19 +20,17 @@ export class HeaderComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.apiService.authStatus$.subscribe(
-      (isAuthenticated) => {
-        this.isAuthenticated = isAuthenticated;
-      }
-    );
+    this.apiService.authStatus$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
     this.apiService.checkAuthStatus().subscribe();
   }
-  
+
   login() {
     this.router.navigate(['/auth']);
   }
 
-  logout(){
+  logout() {
     this.apiService.logout().subscribe({
       next: () => {
         console.log('Logged out successfully');

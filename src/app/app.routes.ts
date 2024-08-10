@@ -10,73 +10,76 @@ import { authGuard } from './guards/auth.guard';
 import { AuthComponent } from './auth/auth.component';
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: HomeComponent,
-        title: "Home"
-    },
-    {
-        path: "overview",
-        component: OverviewComponent,
-        title: "Overview"
-    },
-    {
-        path: "overview", children:[
-            {
-                path:"quiz",
-                component: QuizComponent,
-                title: "Quiz"
-            }
-        ]
-    },
-    {
-        path:"overview/quiz", children:[
-            {
-                path:"dashboard",
-                component: DashboardComponent,
-                title: "Dashboard",
-                canActivate: [authGuard]
-            }
-        ]
-    },
-    {
-        path: "dashboard",
+  {
+    path: '',
+    component: HomeComponent,
+    title: 'Home',
+  },
+  {
+    path: 'overview',
+    component: OverviewComponent,
+    title: 'Overview',
+  },
+  {
+    path: 'overview',
+    children: [
+      {
+        path: 'quiz',
+        component: QuizComponent,
+        title: 'Quiz',
+      },
+    ],
+  },
+  {
+    path: 'overview/quiz',
+    children: [
+      {
+        path: 'dashboard',
         component: DashboardComponent,
-        title:"Dashboard",
-        canActivate: [authGuard]
-    },
-    {
-        path: "about",
-        component: AboutComponent,
-        title: "About us"
-    },
-    {
-        path: "overview/theory/:topic",
-        component: TheoryComponent,
-        title: "Theory"
-    },
-    {
-        path:"overview/theory/:topic",children:[
-            {
-                path: "exercise/:topic",
-                component: ExerciseComponent,
-                title: "Exercise"
-            }
-        ]
-    },
-    {
-        path: "overview/exercise/:topic",
+        title: 'Dashboard',
+        canActivate: [authGuard],
+      },
+    ],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    title: 'Dashboard',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    title: 'About us',
+  },
+  {
+    path: 'overview/theory/:topic',
+    component: TheoryComponent,
+    title: 'Theory',
+  },
+  {
+    path: 'overview/theory/:topic',
+    children: [
+      {
+        path: 'exercise/:topic',
         component: ExerciseComponent,
-        title: "Exercise"
-    },
-    {
-        path: "auth",
-        component: AuthComponent,
-        title: "Authentication"
-    },
-    // Wildcard route
-    {
-        path: '**',
-        component: HomeComponent,
-    },
+        title: 'Exercise',
+      },
+    ],
+  },
+  {
+    path: 'overview/exercise/:topic',
+    component: ExerciseComponent,
+    title: 'Exercise',
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    title: 'Authentication',
+  },
+  // Wildcard route
+  {
+    path: '**',
+    component: HomeComponent,
+  },
 ];

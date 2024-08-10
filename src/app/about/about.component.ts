@@ -6,11 +6,10 @@ import { UserLoggerService } from '../user-logger.service';
   standalone: true,
   imports: [],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  styleUrl: './about.component.css',
 })
-export class AboutComponent implements OnInit{
-  constructor(private behaviorLogger: UserLoggerService) {
-  }
+export class AboutComponent implements OnInit {
+  constructor(private behaviorLogger: UserLoggerService) {}
 
   ngOnInit(): void {
     this.trackExercisePage();
@@ -18,7 +17,7 @@ export class AboutComponent implements OnInit{
 
   trackExercisePage() {
     const eventType = 'page loaded';
-    const eventData = { page: "About" };
+    const eventData = { page: 'About' };
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 }

@@ -7,19 +7,19 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
   users: any[] = [];
 
-  constructor(private apiService: ApiService) { }
-    ngOnInit(): void {
-    this.apiService.getUsers().subscribe(data => {
-        this.users = this.sortUsersByStreak(data);
-      });
-    }
+  constructor(private apiService: ApiService) {}
+  ngOnInit(): void {
+    this.apiService.getUsers().subscribe((data) => {
+      this.users = this.sortUsersByStreak(data);
+    });
+  }
 
-    sortUsersByStreak(users: any[]): any[] {
-      return users.sort((a,b) => b.correctAnswerStreak - a.correctAnswerStreak);
-    }
+  sortUsersByStreak(users: any[]): any[] {
+    return users.sort((a, b) => b.correctAnswerStreak - a.correctAnswerStreak);
+  }
 }

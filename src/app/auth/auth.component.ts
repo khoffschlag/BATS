@@ -6,36 +6,32 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
 
-
 @Component({
   selector: 'app-auth',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css'
+  styleUrl: './auth.component.css',
 })
 export class AuthComponent implements OnInit {
-
   isAuthenticated = false;
   correctAnswerStreak: number | undefined;
   saveStreak: string = '0';
   register: boolean = false;
 
-  constructor (private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private apiService: ApiService,
     private router: Router
   ) {}
 
-    ngOnInit(): void {
-      this.apiService.authStatus$.subscribe(
-        (isAuthenticated) => {
-          this.isAuthenticated = isAuthenticated;
-        }
-      );
+  ngOnInit(): void {
+    this.apiService.authStatus$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
 
     this.apiService.checkAuthStatus().subscribe();
   }
-
 
   form: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
@@ -46,12 +42,12 @@ export class AuthComponent implements OnInit {
     // do not reload every time when submitted
     e.preventDefault();
     const streakString = localStorage.getItem('correctAnswerStreak');
-    let correctAnswerStreak = 0 ;
+    let correctAnswerStreak = 0;
 
     if (streakString) {
-      correctAnswerStreak = JSON.parse(streakString); 
+      correctAnswerStreak = JSON.parse(streakString);
     }
-    const signUpData  = {
+    const signUpData = {
       ...this.form.value,
       correctAnswerStreak: correctAnswerStreak,
     };
@@ -67,7 +63,7 @@ export class AuthComponent implements OnInit {
         console.error(error);
         const modal_show: any = document.getElementById('modal_fail');
         modal_show.showModal();
-      }
+      },
     });
   }
 
@@ -79,12 +75,11 @@ export class AuthComponent implements OnInit {
 
     if (streakString) {
       correctAnswerStreak = JSON.parse(streakString);
-      localStorage.removeItem('correctAnswerStreak'); 
+      localStorage.removeItem('correctAnswerStreak');
     }
-    const signInData  = {
+    const signInData = {
       ...this.form.value,
       correctAnswerStreak: correctAnswerStreak,
-
     };
     this.apiService.signIn(signInData).subscribe({
       next: () => {
@@ -93,21 +88,23 @@ export class AuthComponent implements OnInit {
       error: (error: HttpErrorResponse) => {
         console.error(error);
         if (error.status === 401) {
-          const modal_show: any = document.getElementById('modal_wrong_credentials');
+          const modal_show: any = document.getElementById(
+            'modal_wrong_credentials'
+          );
           modal_show.showModal();
-      }
-      }
+        }
+      },
     });
   }
 
-  updateStreak( streak: number) {
+  updateStreak(streak: number) {
     this.apiService.updateStreak(streak).subscribe({
       next: () => {
         console.log('Streak updated successfully');
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error updating streak', error);
-      }
+      },
     });
   }
 }

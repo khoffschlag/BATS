@@ -3,21 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserLoggerService {
+  private apiUrl = 'http://localhost:3000/api/log';
+  private userId: String;
 
-
-  private apiUrl = "http://localhost:3000/api/log";
-  private userId : String;
-
-  constructor(private http : HttpClient) { 
+  constructor(private http: HttpClient) {
     this.userId = this.getUserId();
     console.log(`Generated userId: ${this.userId}`);
   }
 
-  private getUserId() : String {
-  let userId = localStorage.getItem('userId');
+  private getUserId(): String {
+    let userId = localStorage.getItem('userId');
     if (!userId) {
       userId = uuidv4();
       localStorage.setItem('userId', userId);
@@ -36,9 +34,7 @@ export class UserLoggerService {
 
     this.http.post<any>(this.apiUrl, behavior, { headers }).subscribe({
       next: (response) => console.log('Behavior logged successfully', response),
-      error: (error) => console.error('Error logging behavior: ', error)
+      error: (error) => console.error('Error logging behavior: ', error),
     });
   }
-  
 }
-
