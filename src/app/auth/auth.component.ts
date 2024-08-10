@@ -6,6 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../api.service';
 
+/**
+ * @component AuthComponent
+ * @description This component handles the user authentication process including login and registration.
+ */
 @Component({
   selector: 'app-auth',
   standalone: true,
@@ -14,11 +18,19 @@ import { ApiService } from '../api.service';
   styleUrl: './auth.component.css',
 })
 export class AuthComponent implements OnInit {
+
   isAuthenticated = false;
   correctAnswerStreak: number | undefined;
   saveStreak: string = '0';
   register: boolean = false;
 
+  /**
+   * @constructor
+   * @description Initializes the AuthComponent with necessary services.
+   * @param {FormBuilder} formBuilder - The form builder service used to create the forms.
+   * @param {ApiService} apiService - The API service used for authentication requests.
+   * @param {Router} router - The router service used for navigation.
+   */
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -33,11 +45,19 @@ export class AuthComponent implements OnInit {
     this.apiService.checkAuthStatus().subscribe();
   }
 
+  /**
+   * @property {FormGroup} form
+   * @description The form group for handling login input fields and validation.
+   */ 
   form: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
 
+  /**
+   * @method signUp
+   * @description Handles the registration process. Submits the registration form to the API service.
+   */
   signUp(e: Event) {
     // do not reload every time when submitted
     e.preventDefault();
@@ -67,6 +87,10 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  /**
+   * @method signIn
+   * @description Handles the login process. Submits the login form to the API service.
+   */
   signIn(e: Event) {
     e.preventDefault();
 
@@ -97,6 +121,10 @@ export class AuthComponent implements OnInit {
     });
   }
 
+  /**
+   * @method updateStreak
+   * @description Handles the update of the record for the user.
+   */
   updateStreak(streak: number) {
     this.apiService.updateStreak(streak).subscribe({
       next: () => {
