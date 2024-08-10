@@ -11,8 +11,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   // in case of error redirect and return false
   return apiService.isAuthenticated().pipe(
     map(() => {
-        return true;
-
+      return true;
     }),
     catchError(() => {
       router.navigate(['/auth']);

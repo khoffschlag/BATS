@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { FormsModule } from '@angular/forms';
 import { ExerciseData } from '../exercise-data.model';
@@ -7,33 +7,33 @@ import { CommonModule } from '@angular/common';
 import { UserLoggerService } from '../user-logger.service';
 import { NgClass } from '@angular/common';
 
-
 @Component({
   selector: 'app-exercise',
   standalone: true,
   imports: [CommonModule, FormsModule, NgClass],
   templateUrl: './exercise.component.html',
-  styleUrl: './exercise.component.css'
+  styleUrl: './exercise.component.css',
 })
-export class ExerciseComponent implements OnInit{
-
+export class ExerciseComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   data: ExerciseData = new ExerciseData();
   correctAnswerStreak: number = 0;
   disableCheckButton: boolean = true;
   toggleButtonToggled: boolean = false;
   modal: any = document.getElementById('my_modal_2');
-  checkBtnPressed:boolean=false;
+  checkBtnPressed: boolean = false;
   feedbackLines: string[] = [];
 
   current_level = 1;
-  helpers = [128, 64, 32, 16, 8, 4, 2, 1];  // Only available when using level 1
+  helpers = [128, 64, 32, 16, 8, 4, 2, 1]; // Only available when using level 1
 
-  constructor(private api: ApiService, private router: Router, private behaviorLogger: UserLoggerService) {
-
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private behaviorLogger: UserLoggerService
+  ) {
     this.data.topic = this.route.snapshot.params['topic'];
     this.newExercise();
-
   }
 
   ngOnInit(): void {
@@ -46,36 +46,37 @@ export class ExerciseComponent implements OnInit{
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 
-  trackButtonCheckClick(){
+  trackButtonCheckClick() {
     console.log('Tracking button click');
     const eventType = 'button_click';
-    const eventData = { 
+    const eventData = {
       button_id: 'Check Answer',
       data: this.data,
     };
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 
-  trackButtonNextExerciseClick(){
+  trackButtonNextExerciseClick() {
     console.log('Tracking button click');
     const eventType = 'button_click';
-    const eventData = { page: `next exercise: ${this.data.topic}`};
+    const eventData = { page: `next exercise: ${this.data.topic}` };
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 
-  trackButtonOverviewClick(){
+  trackButtonOverviewClick() {
     console.log('Tracking button click');
     const eventType = 'button_click';
-    const eventData = {page: `exercise to overview: ${this.data.topic}`};
+    const eventData = { page: `exercise to overview: ${this.data.topic}` };
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 
-  trackSetLevel(){
+  trackSetLevel() {
     console.log('Tracking level');
     const eventType = 'set_level';
     const eventData = {
       page: `exercise: ${this.data.topic}`,
-      level: this.current_level};
+      level: this.current_level,
+    };
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 
@@ -85,46 +86,42 @@ export class ExerciseComponent implements OnInit{
   }
 
   checkAnswer() {
-      const modal: any = document.getElementById('my_modal_2');
-      this.checkBtnPressed=true;
-      this.api.checkExercise(this.data).subscribe(response => {
-        this.data.result = (response as any).result;
-        this.data.feedback = (response as any).feedback;
+    const modal: any = document.getElementById('my_modal_2');
+    this.checkBtnPressed = true;
+    this.api.checkExercise(this.data).subscribe((response) => {
+      this.data.result = (response as any).result;
+      this.data.feedback = (response as any).feedback;
 
-        if (this.data.result) {
-          this.correctAnswerStreak += 1;
-          this.data.currentTry = 0;
-          this.disableCheckButton = true;
-        } else {
-          this.data.currentTry += 1;
-        }
-        if(this.data.currentTry == 2){
-          this.feedbackLines=this.data.feedback.split('\n');
-        }
-        if(modal){
-          modal.showModal();
-        }
-      })
-      this.trackButtonCheckClick();
-
-  }
-  onCloseButtonClick(){
-    if(this.data.result)
-      {
-        this.checkBtnPressed=false;
-        this.newExercise();
+      if (this.data.result) {
+        this.correctAnswerStreak += 1;
+        this.data.currentTry = 0;
         this.disableCheckButton = true;
+      } else {
+        this.data.currentTry += 1;
       }
-      else{
-        this.disableCheckButton = true;
-        this.closeDialog();
+      if (this.data.currentTry == 2) {
+        this.feedbackLines = this.data.feedback.split('\n');
       }
+      if (modal) {
+        modal.showModal();
+      }
+    });
+    this.trackButtonCheckClick();
   }
-  closeDialog(){
-    if(this.modal)
-      {
-        this.modal.close();
-      }
+  onCloseButtonClick() {
+    if (this.data.result) {
+      this.checkBtnPressed = false;
+      this.newExercise();
+      this.disableCheckButton = true;
+    } else {
+      this.disableCheckButton = true;
+      this.closeDialog();
+    }
+  }
+  closeDialog() {
+    if (this.modal) {
+      this.modal.close();
+    }
   }
 
   newExercise() {
@@ -136,25 +133,22 @@ export class ExerciseComponent implements OnInit{
       this.data.targetAnswer = -1;
     }
 
-    this.api.getExercise(this.data.topic).subscribe(response => {
+    this.api.getExercise(this.data.topic).subscribe((response) => {
       this.data.title = (response as any).title;
       this.data.task = (response as any).task;
       this.data.targetAnswer = (response as any).targetAnswer;
     });
-    this.trackButtonNextExerciseClick()
-
+    this.trackButtonNextExerciseClick();
   }
 
   getDigit(index: number) {
     // This method is needed because if we directly return the single digit in the component html without the Array check, we get an error
     if (Array.isArray(this.data.userAnswer)) {
       return this.data.userAnswer[index];
-    }
-    else {
+    } else {
       console.log('Can only index arrays (and lists)!');
       return -1;
     }
-
   }
 
   toggleDigit(index: number) {
@@ -162,8 +156,7 @@ export class ExerciseComponent implements OnInit{
       this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
       this.toggleButtonToggled = true;
       this.disableCheckButton = false;
-    }
-    else {
+    } else {
       console.log('Can only toggle buttons!');
     }
   }
@@ -173,11 +166,10 @@ export class ExerciseComponent implements OnInit{
     this.trackSetLevel();
   }
 
-  ensureArray(input : number | number[]) {
+  ensureArray(input: number | number[]) {
     if (Array.isArray(input)) {
       return input;
-    }
-    else {
+    } else {
       return [input];
     }
   }
@@ -189,19 +181,22 @@ export class ExerciseComponent implements OnInit{
 
   getButtonColor(index: number): { [key: string]: boolean } {
     if (this.checkBtnPressed) {
-      if (this.data.result === undefined || this.data.result === null || this.data.currentTry <= 1) {
-          return {};
-      } else if (this.data.currentTry >2) {
-              return {
-                  'btn-success': this.isCorrectDigit(index),
-                  'btn-error': !this.isCorrectDigit(index)
-                };
-          } 
+      if (
+        this.data.result === undefined ||
+        this.data.result === null ||
+        this.data.currentTry <= 1
+      ) {
+        return {};
+      } else if (this.data.currentTry > 2) {
+        return {
+          'btn-success': this.isCorrectDigit(index),
+          'btn-error': !this.isCorrectDigit(index),
+        };
+      }
+    }
+    return {};
   }
-  return {};
-  }
-  onInputFocus(){
+  onInputFocus() {
     this.disableCheckButton = false;
   }
-  }
-  
+}
