@@ -30,6 +30,13 @@ export class ApiService {
     return this.http.get(`${this.url}/quiz/`);
   }
 
+   /**
+   * Logs in a user.
+   * @param {Object} credentials - The user credentials.
+   * @param {string} credentials.username - The username of the user.
+   * @param {string} credentials.password - The password of the user.
+   * @returns {Observable<any>} An observable of the HTTP response.
+   */
   signIn(credentials: { username: string; password: string }): Observable<any> {
     return this.http
       .post(`${this.url}/sign-in`, credentials, { withCredentials: true })
@@ -40,6 +47,14 @@ export class ApiService {
       );
   }
 
+  /**
+   * Registers a new user.
+   * @param {Object} credentials - The user credentials.
+   * @param {string} credentials.username - The desired username.
+   * @param {string} credentials.password - The desired password.
+   * @param {Array} [credentials.correctAnswerStreak] - Optional quiz results.
+   * @returns {Observable<any>} An observable of the HTTP response.
+   */
   signUp(credentials: {
     username: String;
     password: String;
@@ -48,6 +63,10 @@ export class ApiService {
     return this.http.post(`${this.url}/sign-up`, credentials);
   }
 
+  /**
+   * Logs out the current user.
+   * @returns {Observable<any>} An observable of the HTTP response.
+   */
   logout(): Observable<any> {
     return this.http
       .post(`${this.url}/logout`, {}, { withCredentials: true })
@@ -59,6 +78,11 @@ export class ApiService {
       );
   }
 
+  /**
+   * Checks the authentication status of the current user.
+   * @param {boolean} isAuthenticated - The authentication status of the current user.
+   * @returns {Observable<any>} An observable of the HTTP response.
+   */
   checkAuthStatus(): Observable<{ isAuthenticated: boolean }> {
     return this.http
       .get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, {
@@ -83,10 +107,18 @@ export class ApiService {
     );
   }
 
+  /**
+   * Function to return the username in the database.
+   * @returns {Observable<any>} An observable of the HTTP response.
+   */ 
   getUsers(): Observable<any> {
     return this.http.get(`${this.url}/users`);
   }
 
+  /**
+   * Handles the authentication status of the current user.
+   * @returns {Observable<boolean>} An observable of the HTTP response.
+   */  
   isAuthenticated(): Observable<boolean> {
     return this.http
       .get<{ isAuthenticated: boolean }>(`${this.url}/is-authenticated`, {

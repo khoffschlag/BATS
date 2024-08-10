@@ -48,7 +48,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// Registration for a new user
+/**
+ * @description Handles user registration.
+ * @route POST /api/sign-up
+ * @param {Object} req - Express request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.username - The desired username.
+ * @param {string} req.body.password - The desired password.
+ * @param {Array} [req.body.quizResults] - Optional quiz results.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response indicating success or failure.
+ */
 app.post("/api/sign-up", async (req, res) => {
   try {
     const { username, password, correctAnswerStreak } = req.body;
@@ -58,14 +68,15 @@ app.post("/api/sign-up", async (req, res) => {
       correctAnswerStreak,
     });
     const existing = await User.findOne({ username });
-
+    
+    // Check if username is already taken
     if (existing) {
       return res.status(400).json({ message: "Username already taken." });
     }
 
-    // creating a new user
+    // Creating a new user
     const user = new User({ username, password, correctAnswerStreak });
-    await user.save();
+    await user.save(); // Save new user to the database
 
     res.status(201).json({ message: "User registered successfully." });
   } catch (error) {
@@ -73,7 +84,18 @@ app.post("/api/sign-up", async (req, res) => {
   }
 });
 
-// Login
+/**
+ * @description Handles user login.
+ * @route POST /api/sign-in
+ * @param {Object} req - Express request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.username - The username of the user.
+ * @param {string} req.body.password - The password of the user.
+ * @param {Array} [req.body.correctAnswerStreak] - Optional quiz results.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response indicating success or failure.
+ */
+
 app.post("/api/sign-in", async (req, res) => {
   try {
     const { username, password, correctAnswerStreak } = req.body;
@@ -81,21 +103,24 @@ app.post("/api/sign-in", async (req, res) => {
     const user = await User.findOne({ username });
     console.log("Found user:", user);
 
+    // Find the user by username
     if (!user) {
       return res.status(401).json({ message: "Authentication failed" });
     }
 
+    // Verify the provided password
     const passwordValid = await argon2.verify(user.password, password);
-
     if (!passwordValid) {
       return res.status(401).json({ message: "Authentication failed" });
     }
+
+    // optionally save the Quiz results if condition is true
     if (correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak) {
       user.correctAnswerStreak = correctAnswerStreak;
       await user.save();
     }
 
-    // modify the session
+    // Modify the session
     req.session.user = { id: user._id, username: user.username };
     console.log("Logged user:", { id: user._id, username: user.username });
     res.status(200).json({ message: "Logged in successfully" });
@@ -104,7 +129,13 @@ app.post("/api/sign-in", async (req, res) => {
   }
 });
 
-// Logout
+/**
+ * @description Checks if the user is authenticated.
+ * @route GET /api/is-authenticated
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response indicating authentication status.
+ */
 app.post("/api/logout", (req, res) => {
   if (req.session) {
     req.session.destroy((err) => {
@@ -122,6 +153,16 @@ app.post("/api/logout", (req, res) => {
   }
 });
 
+/**
+ * @description Checks if the user is authenticated by verifying the session.
+ * @route GET /api/is-authenticated
+ * @middleware {function} isAuthenticated - Middleware function that checks if the user is authenticated. If not, it sends a 401 response.
+ * @param {Object} req - Express request object.
+ * @param {Object} req.session - Session object containing user information.
+ * @param {boolean} req.isAuthenticated - Indicates whether the user is authenticated.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response with the authentication status.
+ */ 
 app.get("/api/is-authenticated", isAuthenticated, (req, res) => {
   res.status(200).json({ isAuthenticated: req.isAuthenticated });
 });
@@ -170,6 +211,13 @@ app.get("/api/check-streak", async (req, res) => {
   }
 });
 
+/**
+ * @description Returns list of users store in the database.
+ * @route POST /api/log
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response returns a list of stored usernames.
+ */
 app.get("/api/users", async (req, res) => {
   try {
     const users = await User.find({});
@@ -287,6 +335,17 @@ app.get("/api/quiz/", function (req, res) {
   });
 });
 
+/**
+ * @description Logs user behavior events to the database.
+ * @route POST /api/log
+ * @param {Object} req - Express request object.
+ * @param {Object} req.body - The body of the request.
+ * @param {string} req.body.userId - The unique identifier of the user performing the event.
+ * @param {string} req.body.eventType - The type of event being logged.
+ * @param {Object} req.body.eventData - Additional data related to the event.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response indicating success or failure.
+ */
 app.post("/api/log", async (req, res) => {
   console.log("Logging Event is triggered");
   const { userId, eventType, eventData } = req.body;
