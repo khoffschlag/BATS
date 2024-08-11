@@ -91,11 +91,10 @@ app.post("/api/sign-up", async (req, res) => {
  * @param {Object} req.body - The body of the request.
  * @param {string} req.body.username - The username of the user.
  * @param {string} req.body.password - The password of the user.
- * @param {Array} [req.body.correctAnswerStreak] - Optional quiz results.
+ * @param {Number} req.body.correctAnswerStreak - quiz result.
  * @param {Object} res - Express response object.
  * @returns {Object} JSON response indicating success or failure.
  */
-
 app.post("/api/sign-in", async (req, res) => {
   try {
     const { username, password, correctAnswerStreak } = req.body;
@@ -114,7 +113,7 @@ app.post("/api/sign-in", async (req, res) => {
       return res.status(401).json({ message: "Authentication failed" });
     }
 
-    // optionally save the Quiz results if condition is true
+    // Store the quiz result in case the user did the quiz before login
     if (correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak) {
       user.correctAnswerStreak = correctAnswerStreak;
       await user.save();
@@ -130,8 +129,8 @@ app.post("/api/sign-in", async (req, res) => {
 });
 
 /**
- * @description Checks if the user is authenticated.
- * @route GET /api/is-authenticated
+ * @description Handles user logout.
+ * @route POST /api/logout
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  * @returns {Object} JSON response indicating authentication status.
@@ -167,8 +166,18 @@ app.get("/api/is-authenticated", isAuthenticated, (req, res) => {
   res.status(200).json({ isAuthenticated: req.isAuthenticated });
 });
 
-// Update correctAnswerStreak value
+/**
+* @description Handles updating the user streak value
+* @route POST /api/update-streak
+* @param {Object} req - Express request object.
+* @param {Object} res - Express response object.
+* @param {Object} req.session.user - Holds the information of the currently authenticated user.
+* @param {String} req.session.user.username - Username string of the currently authenticated user.
+* @param {String} req.body.streak - The new streak value to be updated.
+* @returns {Object} JSON response.
+ */
 app.post("/api/update-streak", async (req, res) => {
+  //Checks if user logged in with a valid session and the user object has valid username.
   if (!req.session.user || !req.session.user.username) {
     return res.status(401).json({ message: "Unauthorized" });
   }
@@ -177,9 +186,12 @@ app.post("/api/update-streak", async (req, res) => {
     const correctAnswerStreak = req.body.correctAnswerStreak;
     const user = await User.findOne({ username });
 
+    // Find the user by username
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
+    //Update the user's streak value, if the condition was met
     if(correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak){
       user.correctAnswerStreak = correctAnswerStreak;
       await user.save();
@@ -191,6 +203,14 @@ app.post("/api/update-streak", async (req, res) => {
   }
 });
 
+/**
+* @description Check and return the current streak of the authenticated user.
+* @route GET /api/check-streak
+* @param {Object} req - Express request object.
+* @param {Object} res - Express response object.
+* @param {String} req.session.user.username - Username string of the logged in user.
+* @returns {Object} JSON response with the current streak of the user.
+ */
 app.get("/api/check-streak", async (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -200,10 +220,14 @@ app.get("/api/check-streak", async (req, res) => {
     console.log("User in session: ", req.session.user.username);
     const username = req.session.user.username;
     const user = await User.findOne({ username });
+
+    //Find user by username.
     if (!user) {
       console.log(user);
       return res.status(404).json({ message: "User not found" });
     }
+
+    //Fetch the streak value.
     const streak = user.correctAnswerStreak || 0;
     res.status(200).json({ streak });
   } catch (error) {
@@ -213,7 +237,7 @@ app.get("/api/check-streak", async (req, res) => {
 
 /**
  * @description Returns list of users store in the database.
- * @route POST /api/log
+ * @route POST /api/users
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  * @returns {Object} JSON response returns a list of stored usernames.

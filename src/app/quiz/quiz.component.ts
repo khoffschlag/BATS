@@ -30,8 +30,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   toggleButtonToggled: boolean = false;
   checkBtnPressed: boolean = false;
   correctAnswerStreak: number = 0;
-  modal1: any = document.getElementById('my_modal_1');
-  modal2: any = document.getElementById('my_modal_2');
+  modal1: any = document.getElementById('modal_no_record');
 
   isAuthenticated = false;
 
@@ -57,32 +56,38 @@ export class QuizComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.clearInerValue();
   }
+
+/**
+ * @method startTimer
+ * @description Starts the timer for the quiz
+ */
   startTimer() {
-    // const modal1: any = document.getElementById('my_modal_1');
     this.intervalValue = setInterval(() => {
       if (this.timer > 0) {
         this.timer--;
       } else {
         this.clearInerValue();
-        // if(modal1)
-        // {
-        //   modal1.showModal();
-        // }
         this.finishingQuiz();
       }
     }, 1000);
   }
 
+/**
+* @method clearInerValue
+* @description Stops and resets the timer value.
+ */
   clearInerValue(): void {
     if (this.intervalValue) {
       clearInterval(this.intervalValue);
       this.intervalValue = null;
     }
   }
+
   setLevel(level: number) {
     this.current_level = level;
     //this.trackSetLevel();
   }
+
   ensureArray(input: number | number[]) {
     if (Array.isArray(input)) {
       return input;
@@ -90,6 +95,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       return [input];
     }
   }
+
   getDigit(index: number) {
     // This method is needed because if we directly return the single digit in the component html without the Array check, we get an error
     if (Array.isArray(this.data.userAnswer)) {
@@ -109,6 +115,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       console.log('Can only toggle buttons!');
     }
   }
+
   newExercise() {
     this.data = new ExerciseData();
 
@@ -130,6 +137,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     });
     //this.trackButtonNextExerciseClick()
   }
+
   checkAnswer() {
     this.checkBtnPressed = true;
     this.api.checkExercise(this.data).subscribe((response) => {
@@ -148,7 +156,11 @@ export class QuizComponent implements OnInit, OnDestroy {
     });
     //this.trackButtonCheckClick();
   }
-  //storing the value of correctAnswerStreak in the browser local storage, to retrieve it in auth component
+  
+  /**
+   * @method storeCorrectAnswerStreak
+   * @description Stores the value of correctAnswerStreak in the browser local storage, to be retrieved in auth component.
+   */
   storeCorrectAnswerStreak() {
     localStorage.setItem(
       'correctAnswerStreak',
@@ -156,17 +168,33 @@ export class QuizComponent implements OnInit, OnDestroy {
     );
   }
 
+/**
+ * @method updateStreakInDB
+ * @description Updates the streak in the database, then redirects the user to the leaderboard.
+ */
   updateStreakInDB() {
     this.api.updateStreak(this.correctAnswerStreak).subscribe();
     this.goToLeaderboard();
   }
 
+/**
+ * @method isCorrectDigit
+ * @param {Number} index - index of the toggle button 
+ * @description Compares between the user answer in given index with the target answer.
+ * @returns {Boolean} if the user in the corresponding index equals to the target answer.
+ */
   isCorrectDigit(index: number): boolean {
     const userAnswerArray = this.data.userAnswer as number[];
     const targetAnswerArray = this.data.targetAnswer as number[];
     return userAnswerArray[index] == targetAnswerArray[index];
   }
 
+  /**
+   * @method getButtonColor
+   * @description Lets the toggle buttons to be colored either green or red depending on the answer.
+   * @param {Number} index - the index of the toggle button.
+   * @returns {Object}  An object that represent boolean values for the css to be displayed on the UI.
+   */
   getButtonColor(index: number): { [key: string]: boolean } {
     if (this.checkBtnPressed) {
       if (this.data.result === undefined || this.data.result === null) {
@@ -180,33 +208,48 @@ export class QuizComponent implements OnInit, OnDestroy {
     }
     return {};
   }
+
+  /**
+   * @method onCloseButtonClick
+   * @description Handles closing modal_no_record.
+   */
   onCloseButtonClick() {
     if (this.modal1) {
       this.modal1.close();
     }
   }
 
+  /**
+   * @method onInputFocus
+   * @description Enables check answer button, when the user starts to type the answer.
+   */
   onInputFocus() {
     this.disableCheckButton = false;
   }
 
+/**
+ * @method finishingQuiz
+ * @description Terminate the quiz.
+ */
   finishingQuiz() {
     this.clearInerValue();
     this.storeCorrectAnswerStreak();
 
-    let modal_show: any;
+    let modalShow: any;
 
+    //if the user is already logged in and did the quiz, retrieve his old streak value from the database
+    //and compare it with the new one, if the condition is met the new streak value is stored.
     if (this.isAuthenticated) {
       const currentRecordsubscription = this.api.checkUserStreak().subscribe({
         next: (streak) => {
           const currentRecord: number = streak;
           if (this.correctAnswerStreak > currentRecord) {
-            modal_show = document.getElementById('modal_auth_ok');
+            modalShow = document.getElementById('modal_auth_ok');
           } else {
-            modal_show = document.getElementById('modal_no_record');
+            modalShow = document.getElementById('modal_no_record');
           }
-          if (modal_show) {
-            modal_show.showModal();
+          if (modalShow) {
+            modalShow.showModal();
           }
         },
         error: (err) => {
@@ -214,21 +257,25 @@ export class QuizComponent implements OnInit, OnDestroy {
         },
       });
     } else {
-      modal_show = document.getElementById('my_modal_2');
+      //if the user is not logged in, he can choose either to register, log in or to go back. 
+      modalShow = document.getElementById('modal_leave_or_register');
     }
-    if (modal_show) {
-      modal_show.showModal();
+    if (modalShow) {
+      modalShow.showModal();
     }
   }
 
+  //redirect to overview component.
   goToOverview() {
     this.router.navigate(['/overview']);
   }
 
+  //redirect to auth component.
   goToLogin() {
     this.router.navigate(['/auth']);
   }
 
+  //redirect to leaderboard component.
   goToLeaderboard() {
     this.router.navigate(['/leaderboard']);
   }
