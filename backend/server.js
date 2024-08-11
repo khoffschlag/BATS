@@ -197,8 +197,10 @@ app.post("/api/update-streak", async (req, res) => {
       await user.save();
       res.status(200).json({ message: "Streak updated successfully" });
     }
+    else{
     res.status(200).json({ message: "no update is done, streak is lower or equals to the stored value in the DB" });
-  } catch (error) {
+  } 
+  }catch (error) {
     res.status(500).json(error);
   }
 });
