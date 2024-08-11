@@ -19,6 +19,11 @@ export class LeaderboardComponent implements OnInit {
     });
   }
 
+  /**
+   * @method sortUsersByStreak
+   * @param {Array} [users] -  array of the users objects.
+   * @returns {Array} - array of sorted users in descending order of the streak value.
+   */
   sortUsersByStreak(users: any[]): any[] {
     return users.sort((a, b) => b.correctAnswerStreak - a.correctAnswerStreak);
   }
