@@ -38,7 +38,7 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 ## Technical architecture 
 
 ![meanstack](https://github.com/user-attachments/assets/135dced0-068d-4fad-b665-3bbae2d2740a)
-[Imagag ref](https://www.practicallogix.com/building-web-applications-with-mean-stack/)
+[Image reference](https://www.practicallogix.com/building-web-applications-with-mean-stack/)
 
 
 ## Technologies 
