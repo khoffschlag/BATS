@@ -35,9 +35,18 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 ## Screenshots 
 
-## TechnicTechnical architecture 
+## Technical architecture 
 
 ![meanstack](https://github.com/user-attachments/assets/135dced0-068d-4fad-b665-3bbae2d2740a)
+[Imagag ref](https://www.practicallogix.com/building-web-applications-with-mean-stack/)
+
+
+## Technologies 
+
+**Frontend:** Angular 18, Tailwindcss, DaisyUI\
+**Backend:** Node.js, Express\
+**Database:** MongoDB Atlas\
+**Deployment:** Heroku
 
 ## Contributors
 BEEF (Bringing education everywhere for free)
