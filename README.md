@@ -32,3 +32,17 @@ Run `ng serve` in the root folder of BATS in order to start the frontend.
 Now open another terminal, change into the backend folder and run `nodemon server.js`.
 
 Afterward you can open `http://localhost:4200/` and use BATS locally.
+
+## Screenshots 
+
+## TechnicTechnical architecture 
+
+![meanstack](https://github.com/user-attachments/assets/135dced0-068d-4fad-b665-3bbae2d2740a)
+
+## Contributors
+BEEF (Bringing education everywhere for free)
+- [@khoffschlag](https://github.com/khoffschlag)
+- [@Ula-MK](https://github.com/Ula-MK)
+- [@nikabogd](https://github.com/nikabogd)
+
+  ![Logo](src/assets/beef_logo.png)
