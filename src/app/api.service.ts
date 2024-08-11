@@ -30,13 +30,13 @@ export class ApiService {
     return this.http.get(`${this.url}/quiz/`);
   }
 
-   /**
-   * Logs in a user.
-   * @param {Object} credentials - The user credentials.
-   * @param {string} credentials.username - The username of the user.
-   * @param {string} credentials.password - The password of the user.
-   * @returns {Observable<any>} An observable of the HTTP response.
-   */
+  /**
+  * Logs in a user.
+  * @param {Object} credentials - The user credentials.
+  * @param {string} credentials.username - The username of the user.
+  * @param {string} credentials.password - The password of the user.
+  * @returns {Observable<any>} An observable of the HTTP response.
+  */
   signIn(credentials: { username: string; password: string }): Observable<any> {
     return this.http
       .post(`${this.url}/sign-in`, credentials, { withCredentials: true })
@@ -99,6 +99,11 @@ export class ApiService {
       );
   }
 
+  /**
+   * Updates the streak value.
+   * @param {Number} correctAnswerStreak - the streak value.
+   * @returns {Observable<any>} An observable of the HTTP response.
+   */
   updateStreak(correctAnswerStreak: number): Observable<any> {
     return this.http.post(
       `${this.url}/update-streak`,
@@ -108,7 +113,7 @@ export class ApiService {
   }
 
   /**
-   * Function to return the username in the database.
+   * Returns the username in the database.
    * @returns {Observable<any>} An observable of the HTTP response.
    */ 
   getUsers(): Observable<any> {
@@ -127,6 +132,10 @@ export class ApiService {
       .pipe(map((response) => response.isAuthenticated));
   }
 
+  /**
+   * Retrieves the users current streak value.
+   * @returns {Observable<number>} An observable of the HTTP response.
+   */
   checkUserStreak(): Observable<number> {
     return this.http
       .get<{ streak: number }>(`${this.url}/check-streak`, {
