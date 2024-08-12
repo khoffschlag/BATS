@@ -89,6 +89,11 @@ export class ExerciseComponent implements OnInit {
     this.trackButtonOverviewClick();
   }
 
+  /**
+   * Check if user answer is correct, update answer streak and other variables accordingly, and show appropiate modal.
+   * @method checkAnswer
+   * @returns {Boolean} if the user in the corresponding index equals to the target answer.
+   */
   checkAnswer() {
     const modal: any = document.getElementById('modal_feedback');
     this.checkBtnPressed = true;
@@ -138,6 +143,10 @@ export class ExerciseComponent implements OnInit {
     }
   }
 
+  /**
+   * Get and set new exercise.
+   * @method newExercise
+   */
   newExercise() {
     let topic = this.data.topic;
     this.data = new ExerciseData();
@@ -155,8 +164,14 @@ export class ExerciseComponent implements OnInit {
     this.trackButtonNextExerciseClick();
   }
 
+  /**
+   * Check if user answer is list or array and return element at index i in that case, otherwise return -1.
+   * @method getDigit
+   * @description This method is needed because if we directly return the single digit in the component html without the Array check, we get an error.
+   * @param {Number} index - index of the toggle button
+   * @returns {Boolean} Element at specified position if user answer is list/array, otherwise -1
+   */
   getDigit(index: number) {
-    // This method is needed because if we directly return the single digit in the component html without the Array check, we get an error
     if (Array.isArray(this.data.userAnswer)) {
       return this.data.userAnswer[index];
     } else {
@@ -165,6 +180,11 @@ export class ExerciseComponent implements OnInit {
     }
   }
 
+  /**
+   * Toggle specified digit (0 to 1 and 1 to 0)
+   * @method toggleDigit
+   * @param {Number} index - Digit to toggle
+   */
   toggleDigit(index: number) {
     if (Array.isArray(this.data.userAnswer)) {
       this.data.userAnswer[index] = this.data.userAnswer[index] ^ 1; // Xor-operation to negate number
@@ -175,11 +195,23 @@ export class ExerciseComponent implements OnInit {
     }
   }
 
+  /**
+   * Set user helping level.
+   * @method setLevel
+   * @param {Number} level - 1 if helper bits should be shown, otherwise other number.
+   */
   setLevel(level: number) {
     this.current_level = level;
     this.trackSetLevel();
   }
 
+  /**
+   * If input is single number, return number in one-element array.
+   * @description If input is already an array, return input.
+   * @method ensureArray
+   * @param {Number | Number[]} input
+   * @returns {number[]} If input is single number, return number in one-element array, otherwise return input.
+   */
   ensureArray(input: number | number[]) {
     if (Array.isArray(input)) {
       return input;
