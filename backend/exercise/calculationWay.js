@@ -1,3 +1,10 @@
+/**
+ * Return calculation way for given topic and task
+ * @method showCalculationWay
+ * @param {String} topic - The topic (i.e., binaryConversion, decimalConversion, binaryArithmetic, logicalOperations)
+ * @param {String} task - The generated task
+ * @returns {String} Calculation way for given task.
+ */
 function showCalculationWay(topic, task) {
   switch (topic) {
     case "binaryConversion":
@@ -17,6 +24,12 @@ function showCalculationWay(topic, task) {
   return response;
 }
 
+/**
+ * Generate calculation way for given binary conversion task
+ * @method getBinaryConversionCalculationWay
+ * @param {String} task - The generated task
+ * @returns {String} Calculation way for given task.
+ */
 function getBinaryConversionCalculationWay(task) {
   let decimalNumber = Number(task.match(/\d+/g));
   let binaryNumber = "";
@@ -46,6 +59,12 @@ function getBinaryConversionCalculationWay(task) {
   return calculationWay;
 }
 
+/**
+ * Generate calculation way for given decimal conversion task
+ * @method getDecimalConversionCalculationWay
+ * @param {String} task - The generated task
+ * @returns {String} Calculation way for given task.
+ */
 function getDecimalConversionCalculationWay(task) {
   let binaryNumber = String(task.match(/\d+/g));
 
@@ -65,6 +84,12 @@ function getDecimalConversionCalculationWay(task) {
   return calculationWay;
 }
 
+/**
+ * Generate calculation way for given binary arithmetic task
+ * @method getBinaryArithmeticCalculationWay
+ * @param {String} task - The generated task
+ * @returns {String} Calculation way for given task.
+ */
 function getBinaryArithmeticCalculationWay(task) {
   matches = task.match(/\b[01]+\b/g);
   let number1 = String(matches[0]);
@@ -107,6 +132,12 @@ function getBinaryArithmeticCalculationWay(task) {
   return calculationWay;
 }
 
+/**
+ * Generate calculation way for given logical operations task
+ * @method getBinaryConversionCalculationWay
+ * @param {String} task - The generated task
+ * @returns {String} Calculation way for given task.
+ */
 function getLogicalOperationsCalculationWay(task) {
   let numberMatches = task.match(/\b[01]+\b/g);
   let number1 = String(numberMatches[0]);
