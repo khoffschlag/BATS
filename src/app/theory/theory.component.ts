@@ -75,8 +75,8 @@ export class TheoryComponent implements OnInit {
   }
 
   /**
+   * Redirects to the overview component.
    * @method goToOverview
-   * @description Redirects to the overview component.
    */
   goToOverview() {
     this.router.navigate(['/overview']);

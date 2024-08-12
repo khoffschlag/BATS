@@ -81,8 +81,8 @@ export class ExerciseComponent implements OnInit {
   }
 
 /**
+ * Redirects to the overview component.
  * @method goToOverview
- * @description Redirects to the overview component.
  */
   goToOverview() {
     this.router.navigate(['/overview']);
@@ -114,8 +114,8 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
+   * If the answer is correct gives new exercise and closes the feedback modal, otherwise just closes the modal.
    * @method onCloseButtonClick
-   * @description If the answer is correct gives new exercise and closes the feedback modal, otherwise just closes the modal.
    */
   onCloseButtonClick() {
     if (this.data.result) {
@@ -129,8 +129,8 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
+   * Closes the feedback modal.
    * @method closeDialog
-   * @description Closes the feedback modal.
    */
   closeDialog() {
     if (this.modal) {
@@ -189,9 +189,9 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
+  * Compares between the user answer in given index with the target answer.
   * @method isCorrectDigit
   * @param {Number} index - index of the toggle button 
-  * @description Compares between the user answer in given index with the target answer.
   * @returns {Boolean} if the user in the corresponding index equals to the target answer.
   */
   isCorrectDigit(index: number): boolean {
@@ -201,8 +201,8 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
+  * Lets the toggle buttons to be colored either green or red depending on the answer.
   * @method getButtonColor
-  * @description Lets the toggle buttons to be colored either green or red depending on the answer.
   * @param {Number} index - the index of the toggle button.
   * @returns {Object}  An object that represent boolean values for the css to be displayed on the UI.
   */
@@ -227,8 +227,8 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
+  * Enables check answer button, when the user starts to type the answer or clicks on the arows provided inside the inputfield.
   * @method onInputChange
-  * @description Enables check answer button, when the user starts to type the answer or clicks on the arows provided inside the inputfield.
   */
   onInputChange() {
     this.disableCheckButton = false;

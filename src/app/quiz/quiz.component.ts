@@ -58,8 +58,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
 /**
+ * Starts the timer for the quiz
  * @method startTimer
- * @description Starts the timer for the quiz
  */
   startTimer() {
     this.intervalValue = setInterval(() => {
@@ -73,8 +73,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
 /**
-* @method clearInerValue
-* @description Stops and resets the timer value.
+ * Stops and resets the timer value.
+ * @method clearInerValue
  */
   clearInerValue(): void {
     if (this.intervalValue) {
@@ -158,8 +158,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
   
   /**
+   * Stores the value of correctAnswerStreak in the browser local storage, to be retrieved in auth component.
    * @method storeCorrectAnswerStreak
-   * @description Stores the value of correctAnswerStreak in the browser local storage, to be retrieved in auth component.
    */
   storeCorrectAnswerStreak() {
     localStorage.setItem(
@@ -169,8 +169,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
 /**
+ * Updates the streak in the database, then redirects the user to the leaderboard.
  * @method updateStreakInDB
- * @description Updates the streak in the database, then redirects the user to the leaderboard.
  */
   updateStreakInDB() {
     this.api.updateStreak(this.correctAnswerStreak).subscribe();
@@ -178,9 +178,9 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
 /**
+ * Compares between the user answer in given index with the target answer.
  * @method isCorrectDigit
  * @param {Number} index - index of the toggle button 
- * @description Compares between the user answer in given index with the target answer.
  * @returns {Boolean} if the user in the corresponding index equals to the target answer.
  */
   isCorrectDigit(index: number): boolean {
@@ -190,8 +190,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Lets the toggle buttons to be colored either green or red depending on the answer.
    * @method getButtonColor
-   * @description Lets the toggle buttons to be colored either green or red depending on the answer.
    * @param {Number} index - the index of the toggle button.
    * @returns {Object}  An object that represent boolean values for the css to be displayed on the UI.
    */
@@ -210,8 +210,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Handles closing modal_no_record.
    * @method onCloseButtonClick
-   * @description Handles closing modal_no_record.
    */
   onCloseButtonClick() {
     if (this.modal1) {
@@ -220,16 +220,16 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Enables check answer button, when the user starts to type the answer or clicks on the arows provided inside the inputfield.
    * @method onInputChange
-   * @description Enables check answer button, when the user starts to type the answer or clicks on the arows provided inside the inputfield.
    */
   onInputChange() {
     this.disableCheckButton = false;
   }
 
 /**
+ * Terminate the quiz.
  * @method finishingQuiz
- * @description Terminate the quiz.
  */
   finishingQuiz() {
     this.clearInerValue();

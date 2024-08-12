@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 });
 
 /**
- * @description Handles user registration.
+ * Handles user registration.
  * @route POST /api/sign-up
  * @param {Object} req - Express request object.
  * @param {Object} req.body - The body of the request.
@@ -85,7 +85,7 @@ app.post("/api/sign-up", async (req, res) => {
 });
 
 /**
- * @description Handles user login.
+ * Handles user login.
  * @route POST /api/sign-in
  * @param {Object} req - Express request object.
  * @param {Object} req.body - The body of the request.
@@ -129,7 +129,7 @@ app.post("/api/sign-in", async (req, res) => {
 });
 
 /**
- * @description Handles user logout.
+ * Handles user logout.
  * @route POST /api/logout
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
@@ -153,7 +153,7 @@ app.post("/api/logout", (req, res) => {
 });
 
 /**
- * @description Checks if the user is authenticated by verifying the session.
+ * Checks if the user is authenticated by verifying the session.
  * @route GET /api/is-authenticated
  * @middleware {function} isAuthenticated - Middleware function that checks if the user is authenticated. If not, it sends a 401 response.
  * @param {Object} req - Express request object.
@@ -167,7 +167,7 @@ app.get("/api/is-authenticated", isAuthenticated, (req, res) => {
 });
 
 /**
-* @description Handles updating the user streak value
+* Handles updating the user streak value
 * @route POST /api/update-streak
 * @param {Object} req - Express request object.
 * @param {Object} res - Express response object.
@@ -206,7 +206,7 @@ app.post("/api/update-streak", async (req, res) => {
 });
 
 /**
-* @description Check and return the current streak of the authenticated user.
+* Check and return the current streak of the authenticated user.
 * @route GET /api/check-streak
 * @param {Object} req - Express request object.
 * @param {Object} res - Express response object.
@@ -238,7 +238,7 @@ app.get("/api/check-streak", async (req, res) => {
 });
 
 /**
- * @description Returns list of users store in the database.
+ * Returns list of users store in the database.
  * @route POST /api/users
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
@@ -362,7 +362,7 @@ app.get("/api/quiz/", function (req, res) {
 });
 
 /**
- * @description Logs user behavior events to the database.
+ * Logs user behavior events to the database.
  * @route POST /api/log
  * @param {Object} req - Express request object.
  * @param {Object} req.body - The body of the request.
