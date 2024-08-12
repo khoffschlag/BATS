@@ -223,7 +223,7 @@ export class QuizComponent implements OnInit, OnDestroy {
    * @method onInputFocus
    * @description Enables check answer button, when the user starts to type the answer.
    */
-  onInputFocus() {
+  onInputChange() {
     this.disableCheckButton = false;
   }
 

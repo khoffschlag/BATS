@@ -230,7 +230,7 @@ export class ExerciseComponent implements OnInit {
   * @method onInputFocus
   * @description Enables check answer button, when the user starts to type the answer.
   */
-  onInputFocus() {
+  onInputChange() {
     this.disableCheckButton = false;
   }
 }

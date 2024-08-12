@@ -15,7 +15,7 @@
             </div>
 
             <div *ngIf="data.topic == 'decimalConversion'">
-                <input type="number" class="input input-bordered w-full max-w-xs custom-background" [(ngModel)]="data.userAnswer" (focus)="onInputFocus()" />
+                <input type="number" class="input input-bordered w-full max-w-xs custom-background" [(ngModel)]="data.userAnswer" (ngModelChange)="onInputChange()" />
             </div>
 
             <div *ngIf="data.topic != 'decimalConversion'">
