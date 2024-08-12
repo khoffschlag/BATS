@@ -10,34 +10,33 @@
 
 # 🦇 Introduction
 
-You don't know how do deal with binary numbers? No worries, BATS will help you! BATS provides theoretical information as well as automatically generated and evaluated exercises in order to help you learn binary conversion, decimal conversion, bianry arithmetic and logical operators.
+You don't know how to deal with binary numbers? No worries, BATS will help you! BATS provides theoretical information as well as automatically generated and evaluated exercises in order to help you learn binary conversion, decimal conversion, binary arithmetic and logical operators.
 
 # 🧰 Features
 
-BATS teaches binary conversion, decimal conversion, logical operations and binary arithmetics by providing features like
+BATS teaches binary conversion, decimal conversion, logical operations and binary arithmetic by providing features like
 
 ✅ theoretical explanations for each topic
 
 ✅ randomly generated exercises
 
-✅ progressive feedback to incorrect answers with for example hints and calculation steps
+✅ progressive feedback to incorrect answers with, for example, hints and calculation steps
 
 ✅ timed quizzes that allow you to compete with other users
 
-✅ showcases your best quiz performance on a leaderboard alongside with other users
+✅ showcases your best quiz performance on a leaderboard alongside other users
 
 # 🔨 Installation
 
-This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2 as well express.js.
+This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2 as well as express.js.
 
-If you want to install a local version of BATS, make sure to first install Angular 18.0.2 as well as express.js.
+If you want to install a local version of BATS, make sure to first install Angular 18.0.2 and express.js.
 
 Then you can install the frontend by running the command-line command `npm install` in the root folder of BATS.
 
-After running the command in the root folder, change to the backend folder and run `npm install` again.
+After running the command in the root folder, change to the backend folder, and run `npm install` again.
 
-Last step is to put the .env file with the needed password keys in the backend folder.
-We will provide the professor with an .env file.
+Last step is to set up the database.
 
 ## 🚀 Start the app
 
