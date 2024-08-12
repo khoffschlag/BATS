@@ -8,7 +8,7 @@
 
 <p align="center"> <a href="">Video Demo</a> - <a href="https://uni-project-bats-2d2ac9526513.herokuapp.com">Live Demo </a> </p>
 
-# Introduction
+# 🦇 Introduction
 
 You don't know how do deal with binary numbers? No worries, BATS will help you! BATS provides theoretical information as well as automatically generated and evaluated exercises in order to help you learn binary conversion, decimal conversion, bianry arithmetic and logical operators.
 
@@ -26,7 +26,7 @@ BATS teaches binary conversion, decimal conversion, logical operations and binar
 
 ✅ showcases your best quiz performance on a leaderboard alongside with other users
 
-# Installation
+# 🔨 Installation
 
 This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2 as well express.js.
 
@@ -39,7 +39,7 @@ After running the command in the root folder, change to the backend folder and r
 Last step is to put the .env file with the needed password keys in the backend folder.
 We will provide the professor with an .env file.
 
-## Start the app
+## 🚀 Start the app
 
 Run `ng serve` in the root folder of BATS in order to start the frontend.
 
@@ -47,7 +47,7 @@ Now open another terminal, change into the backend folder and run `nodemon serve
 
 Afterward you can open `http://localhost:4200/` and use BATS locally.
 
-## Screenshots 
+## 🖼️ Screenshots 
 
 ![screenshotsGroup1](https://github.com/user-attachments/assets/69b25440-859e-48d8-85cb-054b8f1135bb)
 
@@ -64,13 +64,13 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 ![screenshotsGroup4](https://github.com/user-attachments/assets/24e2cefe-9751-45f6-97be-9eecf5e93404)
 
 
-## Technical architecture 
+## 🧱 Technical architecture 
 
 ![meanstack](https://github.com/user-attachments/assets/135dced0-068d-4fad-b665-3bbae2d2740a)
 [Image reference](https://www.practicallogix.com/building-web-applications-with-mean-stack/)
 
 
-## Technologies 
+## 🔎 Technologies 
 
 **Frontend:**
 
@@ -94,7 +94,7 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 - [Heroku](https://dashboard.heroku.com/)
 
-## Contributors
+## 🧑‍💻Contributors
 BEEF (Bringing education everywhere for free)
 - [@khoffschlag](https://github.com/khoffschlag)
 - [@Ula-MK](https://github.com/Ula-MK)
