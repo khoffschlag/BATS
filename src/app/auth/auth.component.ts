@@ -18,7 +18,6 @@ import { ApiService } from '../api.service';
   styleUrl: './auth.component.css',
 })
 export class AuthComponent implements OnInit {
-
   isAuthenticated = false;
   correctAnswerStreak: number | undefined;
   saveStreak: string = '0';
@@ -48,7 +47,7 @@ export class AuthComponent implements OnInit {
   /**
    * The form group for handling login input fields and validation.
    * @property {FormGroup} form
-   */ 
+   */
   form: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required],

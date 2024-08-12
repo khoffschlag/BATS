@@ -80,10 +80,10 @@ export class ExerciseComponent implements OnInit {
     this.behaviorLogger.logBehavior(eventType, eventData);
   }
 
-/**
- * Redirects to the overview component.
- * @method goToOverview
- */
+  /**
+   * Redirects to the overview component.
+   * @method goToOverview
+   */
   goToOverview() {
     this.router.navigate(['/overview']);
     this.trackButtonOverviewClick();
@@ -189,11 +189,11 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
-  * Compares between the user answer in given index with the target answer.
-  * @method isCorrectDigit
-  * @param {Number} index - index of the toggle button 
-  * @returns {Boolean} if the user in the corresponding index equals to the target answer.
-  */
+   * Compares between the user answer in given index with the target answer.
+   * @method isCorrectDigit
+   * @param {Number} index - index of the toggle button
+   * @returns {Boolean} if the user in the corresponding index equals to the target answer.
+   */
   isCorrectDigit(index: number): boolean {
     const userAnswerArray = this.data.userAnswer as number[];
     const targetAnswerArray = this.data.targetAnswer as number[];
@@ -201,11 +201,11 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
-  * Lets the toggle buttons to be colored either green or red depending on the answer.
-  * @method getButtonColor
-  * @param {Number} index - the index of the toggle button.
-  * @returns {Object}  An object that represent boolean values for the css to be displayed on the UI.
-  */
+   * Lets the toggle buttons to be colored either green or red depending on the answer.
+   * @method getButtonColor
+   * @param {Number} index - the index of the toggle button.
+   * @returns {Object}  An object that represent boolean values for the css to be displayed on the UI.
+   */
   getButtonColor(index: number): { [key: string]: boolean } {
     if (this.checkBtnPressed) {
       if (
@@ -214,8 +214,8 @@ export class ExerciseComponent implements OnInit {
         this.data.currentTry <= 1
       ) {
         return {};
-      //when the user tries for the third time, he will get in addition the modal_feedback,
-      //colored toggle buttons that refers to correct and wrong answers.
+        //when the user tries for the third time, he will get in addition the modal_feedback,
+        //colored toggle buttons that refers to correct and wrong answers.
       } else if (this.data.currentTry > 2) {
         return {
           'btn-success': this.isCorrectDigit(index),
@@ -227,9 +227,9 @@ export class ExerciseComponent implements OnInit {
   }
 
   /**
-  * Enables check answer button, when the user starts to type the answer or clicks on the arows provided inside the inputfield.
-  * @method onInputChange
-  */
+   * Enables check answer button, when the user starts to type the answer or clicks on the arows provided inside the inputfield.
+   * @method onInputChange
+   */
   onInputChange() {
     this.disableCheckButton = false;
   }

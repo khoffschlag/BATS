@@ -68,7 +68,7 @@ app.post("/api/sign-up", async (req, res) => {
       correctAnswerStreak,
     });
     const existing = await User.findOne({ username });
-    
+
     // Check if username is already taken
     if (existing) {
       return res.status(400).json({ message: "Username already taken." });
@@ -114,7 +114,10 @@ app.post("/api/sign-in", async (req, res) => {
     }
 
     // Store the quiz result in case the user did the quiz before login
-    if (correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak) {
+    if (
+      correctAnswerStreak !== null &&
+      correctAnswerStreak > user.correctAnswerStreak
+    ) {
       user.correctAnswerStreak = correctAnswerStreak;
       await user.save();
     }
@@ -161,20 +164,20 @@ app.post("/api/logout", (req, res) => {
  * @param {boolean} req.isAuthenticated - Indicates whether the user is authenticated.
  * @param {Object} res - Express response object.
  * @returns {Object} JSON response with the authentication status.
- */ 
+ */
 app.get("/api/is-authenticated", isAuthenticated, (req, res) => {
   res.status(200).json({ isAuthenticated: req.isAuthenticated });
 });
 
 /**
-* Handles updating the user streak value
-* @route POST /api/update-streak
-* @param {Object} req - Express request object.
-* @param {Object} res - Express response object.
-* @param {Object} req.session.user - Holds the information of the currently authenticated user.
-* @param {String} req.session.user.username - Username string of the currently authenticated user.
-* @param {String} req.body.streak - The new streak value to be updated.
-* @returns {Object} JSON response.
+ * Handles updating the user streak value
+ * @route POST /api/update-streak
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {Object} req.session.user - Holds the information of the currently authenticated user.
+ * @param {String} req.session.user.username - Username string of the currently authenticated user.
+ * @param {String} req.body.streak - The new streak value to be updated.
+ * @returns {Object} JSON response.
  */
 app.post("/api/update-streak", async (req, res) => {
   //Checks if user logged in with a valid session and the user object has valid username.
@@ -192,26 +195,33 @@ app.post("/api/update-streak", async (req, res) => {
     }
 
     //Update the user's streak value, if the condition was met
-    if(correctAnswerStreak !== null && correctAnswerStreak > user.correctAnswerStreak){
+    if (
+      correctAnswerStreak !== null &&
+      correctAnswerStreak > user.correctAnswerStreak
+    ) {
       user.correctAnswerStreak = correctAnswerStreak;
       await user.save();
       res.status(200).json({ message: "Streak updated successfully" });
+    } else {
+      res
+        .status(200)
+        .json({
+          message:
+            "no update is done, streak is lower or equals to the stored value in the DB",
+        });
     }
-    else{
-    res.status(200).json({ message: "no update is done, streak is lower or equals to the stored value in the DB" });
-  } 
-  }catch (error) {
+  } catch (error) {
     res.status(500).json(error);
   }
 });
 
 /**
-* Check and return the current streak of the authenticated user.
-* @route GET /api/check-streak
-* @param {Object} req - Express request object.
-* @param {Object} res - Express response object.
-* @param {String} req.session.user.username - Username string of the logged in user.
-* @returns {Object} JSON response with the current streak of the user.
+ * Check and return the current streak of the authenticated user.
+ * @route GET /api/check-streak
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {String} req.session.user.username - Username string of the logged in user.
+ * @returns {Object} JSON response with the current streak of the user.
  */
 app.get("/api/check-streak", async (req, res) => {
   if (!req.session.user) {

@@ -57,10 +57,10 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.clearInerValue();
   }
 
-/**
- * Starts the timer for the quiz
- * @method startTimer
- */
+  /**
+   * Starts the timer for the quiz
+   * @method startTimer
+   */
   startTimer() {
     this.intervalValue = setInterval(() => {
       if (this.timer > 0) {
@@ -72,10 +72,10 @@ export class QuizComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-/**
- * Stops and resets the timer value.
- * @method clearInerValue
- */
+  /**
+   * Stops and resets the timer value.
+   * @method clearInerValue
+   */
   clearInerValue(): void {
     if (this.intervalValue) {
       clearInterval(this.intervalValue);
@@ -156,7 +156,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     });
     //this.trackButtonCheckClick();
   }
-  
+
   /**
    * Stores the value of correctAnswerStreak in the browser local storage, to be retrieved in auth component.
    * @method storeCorrectAnswerStreak
@@ -168,21 +168,21 @@ export class QuizComponent implements OnInit, OnDestroy {
     );
   }
 
-/**
- * Updates the streak in the database, then redirects the user to the leaderboard.
- * @method updateStreakInDB
- */
+  /**
+   * Updates the streak in the database, then redirects the user to the leaderboard.
+   * @method updateStreakInDB
+   */
   updateStreakInDB() {
     this.api.updateStreak(this.correctAnswerStreak).subscribe();
     this.goToLeaderboard();
   }
 
-/**
- * Compares between the user answer in given index with the target answer.
- * @method isCorrectDigit
- * @param {Number} index - index of the toggle button 
- * @returns {Boolean} if the user in the corresponding index equals to the target answer.
- */
+  /**
+   * Compares between the user answer in given index with the target answer.
+   * @method isCorrectDigit
+   * @param {Number} index - index of the toggle button
+   * @returns {Boolean} if the user in the corresponding index equals to the target answer.
+   */
   isCorrectDigit(index: number): boolean {
     const userAnswerArray = this.data.userAnswer as number[];
     const targetAnswerArray = this.data.targetAnswer as number[];
@@ -227,10 +227,10 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.disableCheckButton = false;
   }
 
-/**
- * Terminate the quiz.
- * @method finishingQuiz
- */
+  /**
+   * Terminate the quiz.
+   * @method finishingQuiz
+   */
   finishingQuiz() {
     this.clearInerValue();
     this.storeCorrectAnswerStreak();
@@ -257,7 +257,7 @@ export class QuizComponent implements OnInit, OnDestroy {
         },
       });
     } else {
-      //if the user is not logged in, he can choose either to register, log in or to go back. 
+      //if the user is not logged in, he can choose either to register, log in or to go back.
       modalShow = document.getElementById('modal_leave_or_register');
     }
     if (modalShow) {
