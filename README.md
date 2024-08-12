@@ -52,7 +52,6 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 
 
-
 ![screenshotsGroup2](https://github.com/user-attachments/assets/116837a8-932e-4ea6-957b-710579decfd1)
 
 
@@ -61,7 +60,12 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 
 
-![screenshotsGroup4](https://github.com/user-attachments/assets/24e2cefe-9751-45f6-97be-9eecf5e93404)
+![screenshotsGroup4](https://github.com/user-attachments/assets/30a5711d-2fea-49b2-a478-646f2495127a)
+
+
+
+![screenshotsGroup5](https://github.com/user-attachments/assets/a6143465-24fc-47ce-a0f3-f51e8e1f8f63)
+
 
 
 ## 🧱 Technical architecture 
