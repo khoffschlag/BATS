@@ -35,6 +35,21 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 ## Screenshots 
 
+![screenshotsGroup1]![1](https://github.com/user-attachments/assets/69b25440-859e-48d8-85cb-054b8f1135bb)
+
+
+
+![screenshotsGroup2]![2](https://github.com/user-attachments/assets/116837a8-932e-4ea6-957b-710579decfd1)
+
+
+
+![screenshotsGroup3]![3](https://github.com/user-attachments/assets/ed0b04c8-92b3-4f5c-9bff-88047780b627)
+
+
+
+![screenshotsGroup4]![4](https://github.com/user-attachments/assets/24e2cefe-9751-45f6-97be-9eecf5e93404)
+
+
 ## Technical architecture 
 
 ![meanstack](https://github.com/user-attachments/assets/135dced0-068d-4fad-b665-3bbae2d2740a)
