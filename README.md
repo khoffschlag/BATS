@@ -100,5 +100,4 @@ BEEF (Bringing education everywhere for free)
 - [@Ula-MK](https://github.com/Ula-MK)
 - [@nikabogd](https://github.com/nikabogd)
 
-  ![beef_logo_with_white_background](https://github.com/user-attachments/assets/21badf0e-fec5-4782-8c24-f617252d79e9)
-
+![beef_with_white_background](https://github.com/user-attachments/assets/e46f6d5c-e493-4b54-ac08-f80daf1d4ce9)
