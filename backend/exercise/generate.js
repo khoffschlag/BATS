@@ -1,3 +1,9 @@
+/**
+ * Generate exercise for given topic.
+ * @method showCalculationWay
+ * @param {String} topic - The topic (i.e., binaryConversion, decimalConversion, binaryArithmetic, logicalOperations)
+ * @returns {String} Generated task for given topic
+ */
 function generateExercise(topic) {
   switch (topic) {
     case "binaryConversion":
@@ -17,6 +23,11 @@ function generateExercise(topic) {
   return response;
 }
 
+/**
+ * Generate binary conversion exercise.
+ * @method getBinaryConversionExercise
+ * @returns {String} Generated task
+ */
 function getBinaryConversionExercise() {
   decimalNumber = Math.floor(Math.random() * 254) + 1; // Create number between 1 and 255
   targetAnswer = decimalNumber.toString(2).padStart(8, "0").split("");
@@ -27,6 +38,11 @@ function getBinaryConversionExercise() {
   };
 }
 
+/**
+ * Generate decimal conversion exercise.
+ * @method getDecimalConversionExercise
+ * @returns {String} Generated task
+ */
 function getDecimalConversionExercise() {
   decimalNumber = Math.floor(Math.random() * 254) + 1; // Create number between 1 and 255
   binaryRepresentation = decimalNumber.toString(2);
@@ -38,6 +54,11 @@ function getDecimalConversionExercise() {
   };
 }
 
+/**
+ * Generate binary arithmetic exercise.
+ * @method getBinaryArithmeticExercise
+ * @returns {String} Generated task
+ */
 function getBinaryArithmeticExercise() {
   decimalNumberOne = Math.floor(Math.random() * 127) + 1;
   decimalNumberTwo = Math.floor(Math.random() * 127) + 1;
@@ -76,6 +97,11 @@ function getBinaryArithmeticExercise() {
   };
 }
 
+/**
+ * Generate logical operations exercise.
+ * @method getLogicalOperationsExercise
+ * @returns {String} Generated task
+ */
 function getLogicalOperationsExercise() {
   const possibleOperators = ["&", "|", "xor"];
   let selectedOperator =
