@@ -93,10 +93,10 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 - [Heroku](https://dashboard.heroku.com/)
 
-## 🧑‍💻Contributors
-BEEF (Bringing education everywhere for free)
-- [@khoffschlag](https://github.com/khoffschlag)
-- [@Ula-MK](https://github.com/Ula-MK)
-- [@nikabogd](https://github.com/nikabogd)
+## 📈 Contributors
+BATS was created by the group BEEF (Bringing Education Everywhere for Free) with the members
+- 🧑‍💻 [@khoffschlag](https://github.com/khoffschlag)
+- 👩‍💻 [@Ula-MK](https://github.com/Ula-MK)
+- 👩‍💻 [@nikabogd](https://github.com/nikabogd)
 
 ![beef_with_white_background](https://github.com/user-attachments/assets/e46f6d5c-e493-4b54-ac08-f80daf1d4ce9)
