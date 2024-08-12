@@ -12,6 +12,20 @@
 
 You don't know how do deal with binary numbers? No worries, BATS will help you! BATS provides theoretical information as well as automatically generated and evaluated exercises in order to help you learn binary conversion, decimal conversion, bianry arithmetic and logical operators.
 
+# 🧰 Features
+
+BATS teaches binary conversion, decimal conversion, logical operations and binary arithmetics by providing features like
+
+✅ theoretical explanations for each topic
+
+✅ randomly generated exercises
+
+✅ progressive feedback to incorrect answers with for example hints and calculation steps
+
+✅ timed quizzes that allow you to compete with other users
+
+✅ showcases your best quiz performance on a leaderboard alongside with other users
+
 # Installation
 
 This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2 as well express.js.
