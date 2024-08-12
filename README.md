@@ -72,10 +72,27 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 ## Technologies 
 
-**Frontend:** Angular 18, Tailwindcss, DaisyUI\
-**Backend:** Node.js, Express\
-**Database:** MongoDB Atlas\
-**Deployment:** Heroku
+**Frontend:**
+
+- [Angular 18](https://angular.dev/)
+
+- [Tailwindcss](https://tailwindcss.com/)
+
+- [daisyUI](https://daisyui.com/)
+
+**Backend:**
+
+- [Node.js](https://nodejs.org/en)
+
+- [Express](https://expressjs.com/de/)
+
+**Database:**
+
+- [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
+
+**Deployment:**
+
+- [Heroku](https://dashboard.heroku.com/)
 
 ## Contributors
 BEEF (Bringing education everywhere for free)
