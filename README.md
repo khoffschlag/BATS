@@ -36,7 +36,7 @@ Then you can install the frontend by running the command-line command `npm insta
 
 After running the command in the root folder, change to the backend folder, and run `npm install` again.
 
-Last step is to set up the database.
+Last step is to set up the database. For this, see ["Using a local MongoDB"](#Using-a-local-MongoDB) or ["Using a remote MongoDB"](#Using-a-remote-MongoDB).
 
 # Using a local MongoDB
 
