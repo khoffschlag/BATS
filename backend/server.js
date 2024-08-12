@@ -1,7 +1,7 @@
 const isAuthenticated = require("./isAuthenticated.js");
 
-const { generateExercise } = require("./exercise/generate");
-const { checkExercise } = require("./exercise/check");
+const generateExercise = require("./exercise/generate");
+const checkExercise = require("./exercise/check");
 
 const express = require("express");
 const session = require("express-session");

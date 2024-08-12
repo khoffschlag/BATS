@@ -144,4 +144,4 @@ function getLogicalOperationsCalculationWay(task) {
   return calculationWay;
 }
 
-module.exports = { showCalculationWay };
+module.exports = showCalculationWay;

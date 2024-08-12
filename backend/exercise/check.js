@@ -76,4 +76,4 @@ function checkDecimalConversionExercise(userAnswer, targetAnswer) {
   return { result: result, feedback: feedback };
 }
 
-module.exports = { checkExercise };
+module.exports = checkExercise;

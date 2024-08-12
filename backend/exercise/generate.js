@@ -104,4 +104,4 @@ function getLogicalOperationsExercise() {
   };
 }
 
-module.exports = { generateExercise };
+module.exports = generateExercise;
