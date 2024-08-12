@@ -1,5 +1,15 @@
-const { showCalculationWay } = require("./calculationWay");
+const showCalculationWay = require("./calculationWay");
 
+/**
+ * Check user answer and return progressive feedback if user answer is wrong.
+ * @method checkExercise
+ * @param {String} topic - Topic (i.e., binaryConversion, decimalConversion, binaryArithmetic, logicalOperations)
+ * @param {String} task - The generated task
+ * @param {String} userAnswer - The user answer
+ * @param {String} targetAnswer - The correct answer
+ * @param {String} currentTry - How often the user has already tried this exercise (i.e., 0 -> first time, 1 -> once wrong, etc.)
+ * @returns {String} Progressive feedback
+ */
 function checkExercise(topic, task, userAnswer, targetAnswer, currentTry) {
   if (userAnswer.toString() == targetAnswer.toString()) {
     return { result: true, feedback: "Well done! Your answer is correct!" };
@@ -37,6 +47,13 @@ function checkExercise(topic, task, userAnswer, targetAnswer, currentTry) {
   }
 }
 
+/**
+ * Compare two binary numbers for differences between the digits
+ * @method bitComparison
+ * @param {String} userAnswer - The user answer
+ * @param {String} targetAnswer - The correct answer
+ * @returns {String} If provided numbers are not equal, return text which explains which bits are not equal.
+ */
 function bitComparison(userAnswer, targetAnswer) {
   let result, feedback;
   let different_positions = [];
@@ -59,6 +76,13 @@ function bitComparison(userAnswer, targetAnswer) {
   return { result: result, feedback: feedback };
 }
 
+/**
+ * Calculate rough displacement between user answer and target answer as one possible feedback for decimal conversion
+ * @method checkDecimalConversionExercise
+ * @param {String} userAnswer - The user answer
+ * @param {String} targetAnswer - The correct answer
+ * @returns {String} Text which explains the rough displacement between user answer and target answer in case these inputs are not equal
+ */
 function checkDecimalConversionExercise(userAnswer, targetAnswer) {
   let result, feedback;
 
