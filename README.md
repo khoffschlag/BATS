@@ -69,4 +69,5 @@ BEEF (Bringing education everywhere for free)
 - [@Ula-MK](https://github.com/Ula-MK)
 - [@nikabogd](https://github.com/nikabogd)
 
-  ![Logo](src/assets/beef_logo.png)
+  ![beef_logo_with_white_background](https://github.com/user-attachments/assets/21badf0e-fec5-4782-8c24-f617252d79e9)
+
