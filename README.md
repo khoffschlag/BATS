@@ -38,6 +38,29 @@ After running the command in the root folder, change to the backend folder, and 
 
 Last step is to set up the database.
 
+# Using a local MongoDB
+
+1. Install MongoDB on  your machine.
+
+https://www.mongodb.com/docs/manual/installation/
+
+2. In the backend folder create .env file with 2 variables like in the example:
+```
+MONGO_URL=mongodb://localhost:27017/myLocalDatabase
+SECRET_KEY = MySecretKey
+```
+
+3. Start MongoDB and pay attention to the port.
+
+# Using a remote MongoDB
+
+1. Create a Mongo Atlas account. 
+
+https://www.mongodb.com/products/platform/atlas-database
+
+2. Create a special user.
+3. Copy the generated URL into the env file described in the previous section.
+
 ## 🚀 Start the app
 
 Run `ng serve` in the root folder of BATS in order to start the frontend.
