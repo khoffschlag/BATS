@@ -289,6 +289,13 @@ app.post("/api/theory", async (req, res) => {
   }
 });
 
+/**
+ * Returns randomly generated exercise
+ * @route POST /api/exercise
+ * @param {Object} req - Express request object with topic.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response returns generated exercise with title, task and target answer.
+ */
 app.post("/api/exercise/", function (req, res) {
   const { topic } = req.body;
 
@@ -309,6 +316,13 @@ app.post("/api/exercise/", function (req, res) {
   res.json({ title: title, task: task, targetAnswer: targetAnswer });
 });
 
+/**
+ * Check user answer and return feedback.
+ * @route POST /api/check
+ * @param {Object} req - Express request object with topic, task, user answer, target answer and current try.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response returns result of checking and feedback.
+ */
 app.post("/api/check/", function (req, res) {
   const { data } = req.body;
 
@@ -349,6 +363,13 @@ app.post("/api/check/", function (req, res) {
   res.json({ result: result, feedback: feedback });
 });
 
+/**
+ * Generate exercise for quiz.
+ * @route POST /api/quiz
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response returns generated exercise with topic, title, task and target answer.
+ */
 app.get("/api/quiz/", function (req, res) {
   const possibleTopics = [
     "binaryConversion",
