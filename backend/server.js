@@ -263,7 +263,13 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-//Endpoint to get tutorial by title passed in the body
+/**
+ * Get tutorial by title passed in the body
+ * @route POST /api/theory
+ * @param {Object} req - Express request object with topic.
+ * @param {Object} res - Express response object.
+ * @returns {Object} JSON response with tutorial content.
+ */
 app.post("/api/theory", async (req, res) => {
   try {
     const { topic } = req.body;
