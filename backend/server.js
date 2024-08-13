@@ -1,17 +1,20 @@
+// Authentification related imports
 const isAuthenticated = require("./isAuthenticated.js");
 
+// Exercise related imports
 const generateExercise = require("./exercise/generate");
 const checkExercise = require("./exercise/check");
 
+// Express related imports
 const express = require("express");
 const session = require("express-session");
 
+// Database related imprts
 const path = require("path");
 const cors = require("cors");
 const argon2 = require("argon2");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
-
 const app = express();
 const mongoose = require("mongoose");
 const Tutorial = require("./models/tutorialModel");
@@ -27,7 +30,6 @@ const corsOptions = {
 };
 
 console.log(corsOptions);
-
 app.use(cors(corsOptions));
 
 app.use(
@@ -425,12 +427,12 @@ app.post("/api/log", async (req, res) => {
   }
 });
 
-//HEROKU
+// Deployment related code
 app.use(express.static(__dirname + "/../dist/bats/browser"));
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname + "/../dist/bats/browser/index.html"));
 });
-//-----------------------------------------------
+// -----------------------------------------------------------------------
 
 async function run() {
   try {
