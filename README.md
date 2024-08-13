@@ -36,26 +36,31 @@ Then you can install the frontend by running the command-line command `npm insta
 
 After running the command in the root folder, change to the backend folder, and run `npm install` again.
 
-Last step is to set up the database. For this, see ["Using a local MongoDB"](#Using-a-local-MongoDB) or ["Using a remote MongoDB"](#Using-a-remote-MongoDB).
+Last step is to set up the database. For this, see ["Using a local MongoDB"](#Using-a-local-MongoDB).
 
 # Using a local MongoDB
 
 1. [Install MongoDB](https://www.mongodb.com/docs/manual/installation/) on  your machine.
 
-2. In the backend folder create .env file with 2 variables like in the example:
+2. In the backend folder create .env file with the variable like in the example:
 ```
 MONGO_URI='mongodb://localhost:27017/myLocalDatabase'
-SECRET_KEY = MySecretKey
 ```
 
-3. Start MongoDB and pay attention to the port.
+3. Start MongoDB and ensure it's running on the correct port (default is 27017).
 
-# Using a remote MongoDB
+As an alternative, You may also create a MongoDB Atlas account and follow the instruction provided by the service to set up the remote database. See [MongoDB Atlas](https://www.mongodb.com/docs/manual/installation/).
 
-1. Create a [Mongo Atlas](https://www.mongodb.com/products/platform/atlas-database) account. 
+# Argon2 Encryption
 
-2. Create a special user.
-3. Copy the generated URL into the env file described in the previous section.
+For our user authentication process, we have chosen to implement Argon2 as the key encryption tool. Argon2 is a highly secure and efficient password-hashing algorithm designed to protect user credentials. 
+In our system, Argon2 is utilized to hash user passwords during the registration process. The hashed passwords are then stored in our database, ensuring that even if the database were to be compromised, the actual passwords remain secure. When users attempt to log in, their input is hashed using Argon2 with the same parameters, and the resulting hash is compared to the stored hash to authenticate the user.
+
+In order to set up Argon2 You need add the encryption variable in the created .env file:
+```
+SECRET_KEY = 'MySecretKey'
+```
+You can use [Argon2 Hash Generator & Verifier](https://argon2.online/) to generate the key.
 
 ## 🚀 Start the app
 
