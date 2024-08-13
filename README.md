@@ -6,7 +6,7 @@
 
 <p align="center"> <img src="https://img.shields.io/badge/Universität Duisburg Essen-Advanced Web technologies-blue"/> </p>
 
-<p align="center"> <a href="">Video Demo</a> - <a href="https://uni-project-bats-2d2ac9526513.herokuapp.com">Live Demo </a> </p>
+<p align="center"> <a href="https://youtu.be/t6FtW_T0HE4">Video Demo</a> - <a href="https://uni-project-bats-2d2ac9526513.herokuapp.com">Live Demo </a> </p>
 
 # 🦇 Introduction
 
