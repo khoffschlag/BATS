@@ -46,7 +46,7 @@ https://www.mongodb.com/docs/manual/installation/
 
 2. In the backend folder create .env file with 2 variables like in the example:
 ```
-MONGO_URL=mongodb://localhost:27017/myLocalDatabase
+MONGO_URI='mongodb://localhost:27017/myLocalDatabase'
 SECRET_KEY = MySecretKey
 ```
 
