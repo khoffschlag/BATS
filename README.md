@@ -84,7 +84,8 @@ Afterward you can open `http://localhost:4200/` and use BATS locally.
 
 
 
-![screenshotsGroup4](https://github.com/user-attachments/assets/30a5711d-2fea-49b2-a478-646f2495127a)
+![screenshotsGroup4](https://github.com/user-attachments/assets/975c19e2-ebde-4690-9747-3bffb9a9e8fd)
+
 
 
 
