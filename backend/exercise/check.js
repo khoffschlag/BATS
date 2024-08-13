@@ -48,7 +48,7 @@ function checkExercise(topic, task, userAnswer, targetAnswer, currentTry) {
 }
 
 /**
- * Compare two binary numbers for differences between the digits
+ * Compare two binary numbers for differences between the digits.
  * @method bitComparison
  * @param {String} userAnswer - The user answer
  * @param {String} targetAnswer - The correct answer
@@ -77,7 +77,7 @@ function bitComparison(userAnswer, targetAnswer) {
 }
 
 /**
- * Calculate rough displacement between user answer and target answer as one possible feedback for decimal conversion
+ * Calculate rough displacement between user answer and target answer as one possible feedback for decimal conversion.
  * @method checkDecimalConversionExercise
  * @param {String} userAnswer - The user answer
  * @param {String} targetAnswer - The correct answer
