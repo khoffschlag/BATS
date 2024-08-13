@@ -40,9 +40,7 @@ Last step is to set up the database. For this, see ["Using a local MongoDB"](#Us
 
 # Using a local MongoDB
 
-1. Install MongoDB on  your machine.
-
-https://www.mongodb.com/docs/manual/installation/
+1. [Install MongoDB](https://www.mongodb.com/docs/manual/installation/) on  your machine.
 
 2. In the backend folder create .env file with 2 variables like in the example:
 ```
@@ -54,9 +52,7 @@ SECRET_KEY = MySecretKey
 
 # Using a remote MongoDB
 
-1. Create a Mongo Atlas account. 
-
-https://www.mongodb.com/products/platform/atlas-database
+1. Create a [Mongo Atlas](https://www.mongodb.com/products/platform/atlas-database) account. 
 
 2. Create a special user.
 3. Copy the generated URL into the env file described in the previous section.
